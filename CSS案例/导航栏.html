@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>导航栏</title>
+    <!-- https://fontawesome.dashgame.com/ -->
+    <!-- <link rel="stylesheet" href="https://cdn.staticfile.org/font-awesome/4.7.0/css/font-awesome.css"> -->
+    <link rel="stylesheet" href="css/font-awesome.css">
+
+    <!-- https://ionic.io/ionicons -->
+
+
+    <link href="css/nav.css" rel="stylesheet" type="text/css"/>
+</head>
+<body>
+    <ul>
+        <li><a href="#"><ion-icon name="home-outline"></ion-icon></a></li>
+        <li class="active"><a href="#"><ion-icon name="clipboard-outline"></ion-icon></a></li>
+        <li ><a href="#"><ion-icon name="desktop-outline"></ion-icon></a></li>
+        <li><a href="#"><ion-icon name="planet-outline"></ion-icon></a></li>
+        <li><a href="#"><ion-icon name="snow-outline"></ion-icon></a></li>
+        <!-- <li><a href="#"><ion-icon name="woman-outline"></ion-icon></a></li> -->
+        <div id="marker"></div>
+    </ul>
+    <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script> 
+    <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
+    <script>
+        let marker =document.querySelector("#marker");
+        let list=document.querySelectorAll("ul li");
+        function moveIndicator(e){
+            marker.style.left=e.offsetLeft+"px";
+            marker.style.width=e.offsetWidth+"px";
+        }
+        list.forEach(link => {
+            link.addEventListener("mousemove",(e)=>{
+                moveIndicator(e.target);
+            }) 
+        })
+        function activeLink(){
+            list.forEah((item)=>
+            item.classList.remove("active"));
+            this.classList.add('active');
+        }
+        list.forEach((item)=>
+            item.addEventListener("mouseover",activeLink)
+        );
+
+
+        
+        
+    </script>
+    
+    <!-- <ul>
+        <li><a href="#"><i class="fa fa-bank"></i></a></li>
+        <li><a href="#"><i class="fa fa-superpowers"></i></a></li>
+        <li><a href="#"><i class="fa fa-s15"></i></a></li>
+        <li><a href="#"><i class="fa fa-bicycle"></i></a></li>
+        <li><a href="#"><i class="fa fa-child"></i></a></li>
+        <li><a href="#"><i class="fa fa-image"></i></a></li>
+    </ul> -->
+</body>
+</html>

@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>结合</title>
+    <link rel="stylesheet" href="css/demo.css"/>
+
+
+<body id="rainBox">
+<div>
+    <form method="post" action="" class="login">
+        <h2>用户登录</h2>
+        <div class="login_box">
+            <!-- required就是不能为空 必须在css效果中有很大的作用 -->
+            <!-- 可以简写为required -->
+            <input type="text" required="required"/>
+            <label>用户名</label>
+        </div>
+        <div class="login_box">
+            <input type="password" required="required"/>
+            <label>密码</label>
+        </div>
+        <a>
+            登录
+            <span></span>
+            <span></span>
+            <span></span>
+            <span></span>
+        </a>
+    </form>
+</div>
+
+    <script>
+        const box = document.getElementById("rainBox");
+        let boxHeight=box.clientHeight;
+        let boxWidth = box.clientWidth;
+        // 页面大小发生变化时，改变盒子大小
+        window.onresize = function () {
+            boxHeight = box.clientHeight;
+            boxWidth = box.clientWidth;
+        }
+        setInterval(
+                ()=>{
+                    const rain = document.createElement("div");
+                    rain.classList.add("rain");
+                    rain.style.top = 0;
+                    rain.style.left = Math.random()*boxWidth+'px';// 随机刷新雨点位置
+                    rain.style.opacity=Math.random();// 随机雨点透明度
+                    box.appendChild(rain);
+                    // 每隔一段时间,雨水下落
+                    let race = 1;
+                    const timer=setInterval(
+                        ()=>{
+                            if(parseInt(rain.style.top)>boxHeight)
+                            {
+                                clearInterval(timer);
+                                box.removeChild(rain);
+                            }
+                            race++;
+                            rain.style.top=parseInt(rain.style.top)+race+'px'
+                        },20)
+                },50)
+    </script>
+</body>
+</html>
+
+
+

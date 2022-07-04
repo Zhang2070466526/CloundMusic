@@ -1,0 +1,145 @@
+*{
+    margin:0;
+    padding:0;
+    box-sizing: border-box; /*    padding和border的值就不会在影响元素的宽高    */
+}
+body{
+    overflow:hidden; /*    当元素内的内容溢出的时候使它隐藏溢出的部分     */
+}
+section{
+    position:absolute;/*absolute绝对定位        relative相对定位*/
+    top:0;
+    left:0;
+    /* 以body为参考对象 距离顶部0像素,左侧0像素 */
+    width:100%;
+    height:100vh;
+    background: url(../img/bk.jpg) no-repeat;
+    background-position-x:center ;
+    /*background-size:100%;*/
+    background-size:cover; /*把背景图像扩展至足够大，以使背景图像完全覆盖背景区域。背景图像的某些部分也许无法显示在背景定位区域中。*/
+    animation:picture 15s linear infinite  alternate;
+}
+@keyframes picture {/*背景图片动画  */
+    0%,100%{
+        transform:scale(1);/* 增大为其原始宽度的一倍 */
+        /* transform 属性向元素应用 2D 或 3D 转换。该属性允许我们对元素进行旋转、缩放、移动或倾斜。 */
+    }
+    50%{
+        transform: scale(1.2);
+    }
+}
+span{
+    position:absolute;/* 绝对定位,以section为参考对象 */
+    top:50%;
+    left:50%;
+    /* 以section标签为对象,距离其顶部50%,宽度50% */
+    width:8px;
+    height:4px;
+    /*background: rgb(255,255,255);*/
+    background: rgb(255, 4, 4);
+    border-radius: 50%;/* 设置圆角边框*/
+    box-shadow:0 0 0 1px rgba(255,255,255,0.1),
+               0 0 0 2px rgba(255,255,255,0.1),
+               0 0  5px rgba(255,255,255,1); /* 多重阴影 */
+    /* 阴影:横向偏移量(长度单位),纵向偏移量(长度单位),阴影模糊半径(0-无穷),阴影扩散半径(长度单位),阴影颜色,位置:inset(内阴影)/默认是外阴影*/
+    animation: pointer 3s linear infinite;
+}
+/* before 伪元素在元素内容的前面插入新内容 */
+/* after 伪元素在元素内容的后面插入新内容 */
+/* 通过样式达到元素的效果 必须和content属性结合使用*/
+/* content:''在使用时不需要添加内容*/
+span::before{
+    content:'';
+    position:absolute;
+    top:50%;/* 距离父级元素section顶部50% */
+    transform:translateY(-50%);/* 参数为负,即反方向移动,向上移动50% */
+    /* translate()方法从其当前位置移动元素（根据为 X 轴和 Y 轴指定的参数）。transform: translate(50px, 100px);从其当前位置向右移动 50 个像素，并向下移动 100 个像素 */
+    width:180px;
+    height:1px;
+    background-image: linear-gradient(90deg,#ffffff,transparent);
+    /*transparent 作为为渐变色的第一个参数，也就是 0% 时的颜色为完全透明色;最后一个参数时在最后的渐变为透明*/
+}
+@keyframes pointer{
+    0%{
+        transform:rotate(315deg)  translateX(0);
+        /*顺时针旋转315度, 向右移动0个元素*/
+        opacity:1; /*    规定不透明度。从 0.0 （完全透明）到 1.0（完全不透明）。*/
+    }
+    70%{
+        opacity: 1;
+    }
+    100%{
+        transform:rotate(315deg) translateX(-1000px);
+        opacity: 0;
+    }
+}
+span:nth-child(1){ /*第一个span*/
+    top:0;
+    right:0;
+    animation-delay:1s; /*定义动画开始前等待的时间，以秒或毫秒计。默认值是 0。*/
+    animation-duration: 3s; /*    定义动画完成一个周期所需要的时间，以秒或毫秒计*/
+}
+span:nth-child(2) {
+    top: -100px;
+    right: 80px;
+    left: initial;
+    animation-delay: 6s;
+    animation-duration: 3s;
+}
+
+span:nth-child(3){
+    top:80px;
+    right:0px;
+    left:initial;
+    animation-delay:4s;
+    animation-duration: 2s;
+}
+span:nth-child(4){
+     top:0;
+     right:180px;
+     left:initial;
+     animation-delay:2s;
+     animation-duration: 3.5s;
+}
+span:nth-child(5){
+    top:0;
+    right:400px;
+    left:initial;
+    animation-delay:0.8s;
+    animation-duration: 2.5s;
+}
+span:nth-child(6){
+    top:0;
+    right:600px;
+    left:initial;
+    animation-delay:1s;
+    animation-duration: 3s;
+}
+span:nth-child(7){
+    top:300px;
+    right:0px;
+    left:initial;
+    animation-delay:1.2s;
+    animation-duration: 2s;
+}
+span:nth-child(8){
+    top:0px;
+    right:700px;
+    left:initial;
+    animation-delay:1.4s;
+    animation-duration: 3.25s;
+}
+span:nth-child(9){
+    top:0;
+    right:1000px;
+    left:initial;
+    animation-delay:5s;
+    animation-duration: 2.25s;
+}
+span:nth-child(10){
+    top:670px;
+    right:450px;
+    left:initial;
+    animation-delay:0.13s;
+    animation-duration: 2.25s;
+}

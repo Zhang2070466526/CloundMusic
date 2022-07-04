@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>键盘</title>
+    <link rel="stylesheet" href="css/keybord1.css"/>
+</head>
+<body>
+    <div class="keyboard">
+        <!-- 键盘第一行 -->
+        <ul class="row">
+          <li class="key clay" id="esc">☘️</li>
+          <li class="key clay">1</li>
+          <li class="key clay">2</li>
+          <li class="key clay">3</li>
+          <li class="key clay">4</li>
+          <li class="key clay">5</li>
+          <li class="key clay">6</li>
+          <li class="key clay">7</li>
+          <li class="key clay">8</li>
+          <li class="key clay">9</li>
+          <li class="key clay">0</li>
+          <li class="key clay">-</li>
+          <li class="key clay">=</li>
+          <li class="key clay" id="del">🗑️</li>
+        </ul>
+        <!-- 键盘第二行 -->
+        <ul class="row">
+          <li class="key clay" id="tab">🦃</li>
+          <li class="key clay">Q</li>
+          <li class="key clay">W</li>
+          <li class="key clay">E</li>
+          <li class="key clay">R</li>
+          <li class="key clay">T</li>
+          <li class="key clay">Y</li>
+          <li class="key clay">U</li>
+          <li class="key clay">I</li>
+          <li class="key clay">O</li>
+          <li class="key clay">P</li>
+          <li class="key clay">{</li>
+          <li class="key clay">}</li>
+          <li class="key clay" id="slash">\</li>
+        </ul>
+        <!-- 键盘第三行 -->
+        <ul class="row">
+          <li class="key clay" id="caps">🎓</li>
+          <li class="key clay">A</li>
+          <li class="key clay">S</li>
+          <li class="key clay">D</li>
+          <li class="key clay">F</li>
+          <li class="key clay">G</li>
+          <li class="key clay">H</li>
+          <li class="key clay">J</li>
+          <li class="key clay">K</li>
+          <li class="key clay">L</li>
+          <li class="key clay">;</li>
+          <li class="key clay">'</li>
+          <li class="key clay" id="enter">🦘</li>
+        </ul>
+        <!-- 键盘第四行 -->
+        <ul class="row">
+          <li class="key clay" id="shift">🛹</li>
+          <li class="key clay">Z</li>
+          <li class="key clay">X</li>
+          <li class="key clay">C</li>
+          <li class="key clay">V</li>
+          <li class="key clay">B</li>
+          <li class="key clay">N</li>
+          <li class="key clay">M</li>
+          <li class="key clay">,</li>
+          <li class="key clay">.</li>
+          <li class="key clay">/</li>
+          <li class="key clay" id="shift2">⛸️</li>
+          <li class="key clay" id="up-arrow">☝️</li>
+        </ul>
+        <!-- 键盘第五行 -->
+        <ul class="row">
+          <li class="key clay" id="ctrl">🕹️</li>
+          <li class="key clay" id="fn">🎪</li>
+          <li class="key clay" id="win">🌏</li>
+          <li class="key clay" id="alt">🦇</li>
+          <li class="key clay" id="space"></li>
+          <li class="key clay" id="altgr">⛓</li>
+          <li class="key clay" id="menu">🌶️</li>
+          <li class="key clay" id="ctrl2">🐪</li>
+          <li class="key clay" id="left-arrow">👈🏿</li>
+          <li class="key clay" id="down-arrow">👇🏻</li>
+        </ul>
+      </div>
+
+
+
+
+
+
+      <!--
+
+        一般的按键
+        宽度 50px  高度 50px  背景颜色    #ebebeb， 圆角率15px
+        移动上去阴影 #d3d3d3
+
+        定义的变量
+        背景颜色  --clay-background         默认值rgba(0,0,0,.005)
+        边框圆角率 --clay-border-radius     默认值32px
+        盒子阴影  --clay-shadow-outset      8px 8px 16px 0 rgba(0,0,0,.25)
+                --clay-shadow-inset-primary    -8px -8px 16px 0 rgba(0,0,0,.25)
+                --clay-shadow-inset-secondary  8px 8px 16px 0 hsla(0,0%,100%,.2)
+
+
+        特殊的按键
+        第一行   14个按键
+            位置   ID值/符号   键盘宽度  背景颜色     鼠标放上去盒子背景的颜色 
+            最左侧  esc☘️     35px     palegreen    lightgreen
+            最右侧  del🗑️     75px     #AFEEEE      #B0E0E6
+
+        第二行   14个按键
+            位置   ID值/符号   键盘宽度  背景颜色     鼠标放上去盒子背景的颜色 
+            最左侧  tab🦃     70px     #FF7F50      indianred
+            最右侧  slash\     
+
+        第三行   13个按键
+            位置   ID值/符号   键盘宽度  背景颜色     鼠标放上去盒子背景的颜色 
+            最左侧  caps🎓     80px     #00dbff     #10A5F5
+            最右侧  enter🦘    80px     #40E0D0     #00CED1
+
+        第四行    13个按键
+            位置   ID值/符号   键盘宽度  背景颜色     鼠标放上去盒子背景的颜色 
+            最左侧  shift🛹     110px   #6495ED     #527fd1
+            右侧一  shift2⛸️    70px    #87CEFA     #79bde8
+            右侧二  up-arrow☝️  
+
+        第五行    10个按键
+            位置   ID值/符号      键盘宽度  背景颜色        鼠标放上去盒子背景的颜色 
+            1       ctrl🕹️                #DC143C         #ba1133
+            2       fn🎪                  orange          darkorange
+            3       win🌏                 mediumpurple    slateblue
+            4       alt🦇                 #778899         #708090
+            5       space         300px
+            6       altgr⛓               lightgray       silver
+            7       menu🌶️                red             #d90000
+            8      ctrl2🐪                chocolate       sienna
+            9       left-arrow👈🏿             
+            10      down-arrow👇🏻              
+
+        -->
+</body>
+</html>

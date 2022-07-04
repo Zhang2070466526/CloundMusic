@@ -1,0 +1,55 @@
+*{
+    margin: 0;
+    apdding:0;
+}
+body{
+    height:100vh;
+    width:100vw;
+    /* 背景颜色 */
+    background: #ffa17f;
+    /* 背景颜色 线性渐变 */
+    background: linear-gradient(to right,#00223e,#ffa17f);
+    /* 溢出隐藏 */
+    overflow: hidden;
+
+}
+
+/* 设置不同大小的粒度 */
+.stat0{
+    height: 1px;
+    width: 1px;
+    /* 透明度 */
+    opacity: 1;
+    /* 绝对定位 */
+    position: absolute;
+}
+
+/* 第二种粒子 */
+.stat1{
+    height: 2px;
+    width: 2px;
+    border-radius: 50%;
+    opacity: 1;
+    position: absolute;
+}
+
+/* 第三种粒子 */
+.stat2{
+    height: 3px;
+    width: 3px;
+    border-radius: 50%;
+    opacity: 1;
+    position: absolute;
+}
+
+
+/* 第四种粒子 */
+.stat3{
+    height: 4px;
+    width: 4px;
+    border-radius: 50%;
+    opacity: 1;
+    position: absolute;
+
+
+}
