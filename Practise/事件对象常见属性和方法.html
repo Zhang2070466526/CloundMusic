@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>event</title>
+    <style>
+        *{
+            margin:0;
+            padding:0;
+        }
+        /* div{
+            width:20vw;
+            height:20vh;
+            background-color: #3d4cd3;
+        } */
+        ul{
+            background-color: mistyrose;
+            margin:5px;
+            width:500px;
+            height:250px;
+        }
+        li{
+            list-style: none;
+            background-color: #8e44ad;
+            margin:5px;
+            width:200px;
+            height:20px;
+        }
+
+        .father{
+            height:400px;
+            width:400px;
+            background-color: blue;
+            display:flex;
+            justify-content: center;
+            align-items: center;
+        }
+        .son{
+            height:200px;
+            width:200px;
+            background-color: crimson;
+        }
+
+    </style>
+</head>
+<body>
+    <a href="https://www.baidu.com">百度</a>
+    
+    <ul>
+        <li>一</li>
+        <li>二</li>
+        <li>三</li>
+        <li>四</li>
+        <li>五</li>
+    </ul>
+
+    <form action="http://www.baidu.com">
+            <input type="submit" value="提交" name="sub">
+    </form>
+
+    <div class="father">
+        <div class="son">son</div>
+    </div>
+    
+
+    <script>
+        var ul=document.querySelector('ul')
+        ul.addEventListener('click',function(event){
+            console.log(this)             //this返回的是绑定事件的对象   ul
+            console.log(event.target)     //返回触发事件的元素(对象)     li
+            // 低版本采用event.srcElement   兼容性处理 event.target||event.srcElement
+            console.log(event.type)       //返回事件的类型  click mousemove等
+        })
+
+        //阻止默认事件（默认行为）  屏蔽其本身功能(当满足一定条件在跳转),例如超链接不跳转,提交按钮不提交
+        var a =document.querySelector('a')
+        a.onclick=function(e){
+            e.preventDefault()    //阻止其默认事件(行为)
+            e.returnValue         //低版本
+            return false         //没有兼容性问题,但后面程序也不会执行,同时也只限于传统的注册方式(onclick等)
+        }
+        
+
+        //阻止冒泡事件
+        var father=document.querySelector('.father')
+        var son=document.querySelector('.son')
+        document.addEventListener('click',function(e){
+            alert('这是document!')
+        })
+        father.addEventListener('click',function(e){
+            alert("这是father!")
+            e.stopPropagation()  //阻止冒泡,冒泡到这一层就不会往上冒了
+            // window.event.cancelBubble=true;    //阻止冒泡,老版本浏览器
+        })
+        son.addEventListener('click',function(e){
+            alert("这点son!")
+        })
+            //冒泡事件兼容性方案
+            if(e&&e.stopPropagation){
+                e.stopPropagation();
+            }else{
+                window.event.cancelBubble=true;
+            }
+        
+        
+
+    </script>
+</body>
+</html>

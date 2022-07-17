@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>定时器</title>
+</head>
+<body>
+    <!-- setTimeout和setInterval都在固定时间段内执行程序   延迟毫秒数省略默认是0即立即执行-->
+
+    <!-- setTimeout只执行一次程序   当需要延迟的毫秒数时间到了(倒计时)执行程序-->
+    <p>setTimeout(调用的函数,[延迟的毫秒数])   在指定毫秒数后调用函数或执行某程序</p>
+    <p>clearTimeout(定时器名)   取消由setTimeout()方法设置的定时器</p>
+
+    <!-- setInterval在指定时间内自动重复某程序   每隔一段时间就调用某函数 -->
+    <p>setInterval(调用的函数,[间隔的毫秒数])   按照指定周期(毫秒计)调用函数或执行某程序</p>
+    <p>clearInterval(定时器名)   取消由setInterval()设置的定时器</p>
+
+    <button class="out">点击停止setTimeout的定时器</button>
+    <button class="begin">点击开始setInterval的定时器</button>
+    <button class="stop">点击停止celarInterval的定时器</button>
+
+    <script>
+        //setTiimeout
+         function boom(){
+            console.log("爆炸了")
+         }
+         setTimeout(boom,3000)//3秒后执行boom函数(也可以匿名函数) 
+         
+         //设置了两个不同定时器
+         var timer1=setTimeout(boom,4000)  //赋值给标识符
+         var timer2=setTimeout(boom,5000)
+         
+         //取消定时器
+         var btn1=document.querySelector('.out')
+         btn1.addEventListener('click',function(){
+             clearTimeout(timer1)  //在执行程序前点击就不会执行timer1
+         })
+
+
+         //setInterval
+         setInterval(function(){
+             console.log("持续输出中!")
+         },2000);  //每隔俩秒就执行一次 
+
+
+         var begin=document.querySelector('.begin')
+         var stop=document.querySelector('.stop')
+         var timer=null; //全局变量 null是空对象 这里是为了给定时器加标识符
+         begin.addEventListener('click',function(){
+             timer=setInterval(function(){
+                 console.log("开始喽!")
+             },1000)//3秒一次
+         })
+         stop.addEventListener('click',function(){
+             clearInterval(timer)
+         })
+
+
+
+
+
+
+
+
+    </script>
+</body>
+</html>

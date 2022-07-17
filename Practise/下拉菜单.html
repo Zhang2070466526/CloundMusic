@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>下拉菜单(字节点应用)</title>
+    <style>
+        *{
+            margin:0;
+            padding: 0;
+            font-size:20px;
+            color:red;
+            list-style: none; /*  每个列表项前面圆点消失*/
+        }
+        body{
+            height:100vh;
+            display:flex;
+            justify-content: center;
+            align-items: center;
+            background:linear-gradient(to right ,rgba(0,47,167,0.5),rgba(0,213,231,0.2));
+        }
+        .shell{
+            display:flex;   /*默认主轴为横向*/
+            justify-content: center;
+        }
+        .button , .portrait{
+            background-color: #433F67;
+            width:200px;
+            height:65px;
+            text-align: center;
+            line-height: 65px; /*只要行高等于高度就会居中*/
+            transition:0.3s ; /* 过度时长   */
+            cursor: pointer; /* 鼠标样式变小手*/
+        }
+
+        .portrait::before{   /*在头像前插入*/
+            content:"";
+            display:block;
+            width:100px;
+            height:100px;
+            border-radius: 50%; /*添加圆角边框*/
+            transform: translate(30px ,-30px);
+            background-image: url(img/portrait.png);
+            background-size: cover;
+            border:10px solid #fff;
+        }
+
+        .information{
+            width:220px;
+            background-color:yellow;
+            border-radius: 10px;
+            transform: translate(-20px,-200px); /*x轴移动-20px,y轴移动-200px*/
+            padding:20px 0;
+            line-height: 0;
+            height:0;
+            transition:0.3s; /*过渡时长*/
+            opacity: 0; /*完全透明*/
+        }
+        .button:hover{ /*把鼠标放在链接上的状态*/
+            background-color: slateblue;
+        }
+        .button li:hover{
+            background-color: #ff3838;
+        }
+
+        .button ul li{
+            height:0;
+            transition: 0.2s;
+            opacity:0;
+            transform: translateY(-65px);
+            background-color: #00CED1;
+        }
+
+        .button:hover li{ /*:hover “悬停”：鼠标放到标签上的时候*/
+            height:65px;
+            opacity:1;
+            transform:translateY(0);
+        }
+        .portrait:hover .information{
+            opacity:1;
+            line-height:65px;
+            transform: translate(-20px,-20px);
+            height:auto;
+        }
+    </style>
+</head>
+<body>
+    <ul class="shell">
+        <li class="button">
+            <span id="one">消息</span>
+            <ul>
+                <li>回复我的</li>
+                <li>收到的赞</li>
+                <li>我的消息</li>
+            </ul>
+        </li>
+        <li class="button">
+            <span>动态</span>
+            <ul>
+                <li>视频动态</li>
+                <li>直播</li>
+                <li>专栏</li>
+            </ul>
+        </li>
+        <li class="portrait">     <!-- 头像 -->
+            <ul class="information">
+                <li><a href="#">个人中心</a></li>
+                <li>投稿管理</li>
+                <li>订单中心</li>
+                <li>退出登录</li>
+            </ul>
+        </li>
+        <li class="button">
+            <span>收藏</span>
+            <ul>
+                <li>默认收藏</li>
+                <li>其他收藏</li>
+            </ul>
+        </li>
+        <li class="button">
+            <span>投稿</span>
+            <ul>
+                <li>专栏</li>
+                <li>音频</li>
+            </ul>
+        </ul>
+    </ul>
+
+</body>
+</html>

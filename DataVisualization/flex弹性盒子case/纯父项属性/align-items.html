@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>侧轴居中</title>
+    <style>
+        *{
+            margin:0;
+            padding:0;
+
+        }
+        html,body{
+            height:100%;
+            width:100%;
+        }
+        div{
+            display: flex;
+            flex-wrap: wrap;
+            height:100%;
+            width:100%;
+            /*background-color: #ff07c6;*/
+        }
+        div div:nth-child(1){
+            display: flex;
+            flex-wrap: wrap;
+            height:50%;
+            width:50%;
+            background-color:orangered;
+            /*相对的父级*/
+            flex-direction:row;/*默认*/
+            justify-content:space-around;/*在主轴上的排序方式*/
+
+            align-items: center;
+        }
+        div div div:nth-child(1){
+            height:20%;
+            width:10%;
+            background-color: purple;
+        }
+        div div div:nth-child(2){
+            height:20%;
+            width:10%;
+            background-color: gold;
+        }
+        div div div:nth-child(3){
+            height:20%;
+            width:10%;
+            background-color: lightyellow;
+        }
+        div div div:nth-child(4){
+            height:20%;
+            width:10%;
+            background-color: indigo;
+        }
+        div div div:nth-child(5){
+            height:20%;
+            width:10%;
+            background-color: red;
+        }
+
+
+        div .r1{
+            display: flex;
+            flex-wrap: wrap;
+            height:50%;
+            width:50%;
+            background-color:lime;
+            flex-direction:column;
+            justify-content:center;
+            align-items:center;
+            /*相对的父级*/
+        }
+        div .r1 div:nth-child(1){
+            height:15%;
+            width:10%;
+            background-color: red;
+        }
+        div .r1 div:nth-child(2){
+            height:15%;
+            width:10%;
+            background-color: yellow;
+        }
+        div .r1 div:nth-child(3){
+            height:15%;
+            width:10%;
+            background-color: gold;
+        }
+        div .r1 div:nth-child(4){
+            height:15%;
+            width:10%;
+            background-color: blue;
+        }
+        div .r1 div:nth-child(5){
+            height:15%;
+            width:10%;
+            background-color: purple;
+        }
+
+
+
+
+        div div:nth-child(3){
+            display: flex;
+            height:50%;
+            width:50%;
+            background-color: skyblue;
+            align-items:stretch ;/*子元素不能有高度*/
+            /*justify-content: flex-end;*/
+        }
+        div .l2 div:nth-child(1){
+            /*height:13%;*/
+            width:6%;
+            background-color: red;
+        }
+        div .l2 div:nth-child(2){
+            /*height:13%;*/
+            width:6%;
+            background-color: black;
+        }
+        div .l2 div:nth-child(3){
+            /*height:13%;*/
+            width:6%;
+            background-color: lime;
+        }
+        div .l2 div:nth-child(4){
+            /*height:13%;*/
+            width:6%;
+            background-color: hotpink;
+        }
+        div .l2 div:nth-child(5){
+            /*height:13%;*/
+            width:6%;
+            background-color: chocolate;
+        }
+
+
+
+
+
+        div div:nth-child(4) {
+            height: 50%;
+            width: 50%;
+            background-color: silver;
+        }
+
+
+
+
+
+
+
+
+    </style>
+
+</head>
+<body>
+    <div>
+        <div>
+            <div>1</div>
+            <div>2</div>
+            <div>3</div>
+            <div>4</div>
+            <div>5</div>
+        </div>
+        <div class="r1">
+            <div>一</div>
+            <div>二</div>
+            <div>三</div>
+            <div>四</div>
+            <div>五</div>
+        </div>
+        <div class="l2">
+            <div>A</div>
+            <div>B</div>
+            <div>C</div>
+            <div>D</div>
+            <div>E</div>
+        </div>
+        <div>丁</div>
+    </div>
+
+</body>
+</html>

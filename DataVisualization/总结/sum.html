@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+  <html lang="en">
+  <head>
+      <meta charset="UTF-8">
+      <title>终结</title>
+      <script src="Js/echarts.min.js"></script>
+      <script src='Js/jquery.min.js'></script>
+      <style>
+        *{
+          margin:0;
+          padding:0;
+          /* overflow:hidden; */
+        }
+        body{
+          height:200vh;
+          width:99vw;
+          display:flex;
+          /* background-color:red; */
+          flex-direction:column;
+        }
+        .top{
+          flex:1;
+          display:flex;
+          
+        }
+        .bottom{
+          flex:1;
+          background:linear-gradient(45deg,rgba(0,47,167,1),rgba(236,32,41,1),rgba(12,65,212,1),rgba(121,233,4));
+          animation:gradient-move 15s linear infinite alternate
+        }
+        @keyframes gradient-move{
+          0%{
+            background-position:100% 100%
+          }
+          100%{
+            background-position:0% 0%
+          }
+        }
+        
+
+        .left,.right{
+          flex:1;
+          /* background-color:pink; */
+          display:flex;
+          flex-direction:column;
+        }
+        .l_top,.l_center,.l_bottom,.r_top,.r_center,.r_bottom{
+          flex:1;
+        }
+        .r_bottom{
+          /* background-color:yellow; */
+        }
+
+        .center{
+          flex:1.5;
+          /* background-color:blue; */
+          display:flex;
+          flex-direction:column;
+        }
+        .c_top,.c_bottom{
+          flex:1;
+        } 
+      </style>
+  </head>
+  <body>
+      <div class="top">
+          <div class="left">
+            <div class='l_top'></div>
+            <div class="l_center"></div>
+            <div class="l_bottom"></div>
+          </div>
+          <div class="center">
+            <div class="c_top"></div>
+            <div class="c_bottom"></div>
+          </div>
+          <div class="right">
+            <div class='r_top'></div>
+            <div class="r_center"></div>
+            <div class="r_bottom"></div>
+          </div>
+      </div>
+
+      <div class="bottom"></div>
+
+      <script>
+
+
+
+
+
+
+
+
+
+
+        // var myCharts7=echarts.init(document.querySelector('.r_center'))
+        // var dataMax=[{name:"A",max:87},{name:"B",max:67},{name:"C",max:98},{name:"D",max:78},{name:"E",max:56},{name:"F",max:79},{name:"G",max:94}]
+        // var option7={
+        //   title:{
+        //     text:"雷达图",
+        //     link:"https://echarts.apache.org"
+        //   },
+        //   legend:{},
+        //   radar:{
+        //     indicator:dataMax,
+            
+        //   }
+
+        // }
+        // myCharts7.setOption(option7)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        var myCharts8=echarts.init(document.querySelector(".r_bottom"))
+        var option8={
+          title:{
+            text:"仪表盘",
+            bottom:"0%",
+            left:"center",
+            link:"https://echarts.apache.org",
+            textStyle:{
+              color:"red",
+              fontSize:20,
+            }
+          },
+          tooltip:{
+            formatter:"{a}:<br>{b}:{c}"//{a}（系列名称），{b}（数据项名称），{c}（数值）, {d}（百分比）
+          },
+          series:[
+            {
+              type:"gauge",
+              radius:"100%",//半径
+              center:["center","center"],//仪表盘的中心（圆心）坐标，数组的第一项是横坐标，第二项是纵坐标。相当于position的left,right,top,bottom,center
+              data:[//数组内每个元素都是一个指针
+                {
+                  value:67,
+                  itemStyle:{//指针样式
+                    color:"blue",
+                  },
+                  // min:0,
+                  // max:120,
+                },
+                {
+                  value:Math.random()*(100-1)+1,
+                  itemStyle:{
+                    color:"pink",
+                  },
+             
+                },
+              ],
+              min:1,
+              max:100,
+              axisLine:{
+                show:true,
+              },
+
+              splitNumber:5,//仪表盘刻度的分割段数
+              axisLine:{//轴线相关配置 
+                // show:false,
+                lineStyle:{//轴线样式
+                  color: [
+                            [0.3,'green'], // 0~30% 绿轴
+                            [0.6,'blue'], // 30~60% 蓝轴
+                            [1,"#8e44ad"],//60%~100%
+                        ],
+                  width:4,//轴线宽度
+                  opacity:0.4,//透明度
+                },
+              },
+              progress:{
+                show:true,//显示进度条
+                overlap:true,//多条数据进度条是否重叠
+                width:2,//进度条宽度
+                itemStyle:{//进度条样式
+                  color:"#c0392b",
+                }
+              },
+              splitLine:{//分割线样式
+                show:false,
+              },
+              axisTick:{//刻度样式
+                // show:false,
+                splitNumber:5,
+              },
+            },
+          ],
+        }
+        myCharts8.setOption(option8)
+
+
+
+
+
+
+
+
+
+
+        var myCharts4=echarts.init(document.querySelector('.c_top'))
+        $.get("mapData/china-cities.json",function(ret2){
+          echarts.registerMap('chinaCities',ret2)
+          console.log(ret2.features)
+          var chinaCitiesData=[]
+          for(var i=0;i<ret2.features.length;i++){
+            var obj={}
+            obj['name']=ret2.features[i].properties.name
+            obj['value']=Math.random()*(10000-1)+1
+            chinaCitiesData.push(obj)
+          }
+          console.log(chinaCitiesData)
+          var option4={
+            geo:{
+              type:"map",
+              map:"chinaCities",
+              roam:true,
+              label:{
+                // show:true,
+              },
+            },
+            series:[
+              {
+                type:"map",
+                geoIndex:0,
+                data:chinaCitiesData,
+              },
+            ],
+            visualMap:{
+              min:1,
+              max:10000,
+              inRange:{
+                color:['#780206','#3f4c6b','#061161','#12FFF7']
+              },
+              calculable:true,//显示拖拽用的手柄
+            }
+          }
+          myCharts4.setOption(option4)
+        })
+
+
+        
+      </script>
+  </body>
+</html>

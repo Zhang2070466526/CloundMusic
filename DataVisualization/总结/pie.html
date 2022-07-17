@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <script src="Js/echarts.min.js"></script>
+    <style>
+        *{
+            margin:0;
+            padding:0;
+            box-sizing: border-box;
+        }
+        body{
+            height:100vh;
+            /*background-color: #8e44ad;*/
+            display:flex;
+            flex-direction: column;
+            background: radial-gradient(ellipse at top,#2980b9 0%,#433F67 30%, #2c3e50 60%,#e74c3c 100%);
+            animation: bk 15s linear  infinite;
+        }
+        @keyframes bk {
+            to{
+                filter :hue-rotate(360deg); /*    一个色调360度不断旋转*/
+            }
+        }
+        .top{
+            flex:1;
+            /*background-color: dodgerblue;*/
+        }
+        .main{
+            flex:10;
+            /*background-color: #dbff19;*/
+            display: flex;
+        }
+        a{
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 27px;
+        }
+        a:link{
+            text-decoration: none;
+            color:pink;
+        }
+        a:visited{
+            color:purple;
+        }
+        a:hover{color:red}
+        a:active{color:yellow}
+        .main div{
+            flex:1;
+        }
+        .left{
+            display: flex;
+            flex-direction: column;
+        }
+        .right{
+            display:flex;
+            flex-direction: column;
+        }
+
+    </style>
+</head>
+<body>
+
+    <section class="top"><a>PIE综合应用</a></section>
+    <section class="main">
+        <div class="left">
+            <div id="case1">1</div>
+            <div id="case2">2</div>
+        </div>
+        <div class="center" id="case3">3</div>
+
+        <div class="right">
+            <div id="case4">4</div>
+            <div id="case5">5</div>
+        </div>
+    </section>
+    <script>
+
+
+
+
+    </script>
+
+
+</body>
+</html>

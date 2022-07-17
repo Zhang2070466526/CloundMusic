@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>scroll滚动</title>
+    <style>
+        div{
+            height:300px;
+            width:100px;
+            background-color: #3d4cd3;
+            border:2px dotted red;
+            overflow: auto; /*超出部分使用滚动条*/
+        }
+    </style>
+</head>
+<body>
+    <div>
+        打广告的个大概豆腐干大概豆腐干大范甘迪犯得上犯得上发射点发生改好发给甲方词条刚刚电话的复合风管更好地发挥的好的话的方式发送给符合规范教育iu由于苛刻条件国防事业和途径结果i革命党人同时特别热广泛大概公布的非农他们依然他们也turn天涯凡事包容与i欧锦
+    </div>
+    <script>
+        //scroll可以动态得到元素大小和滚动距离
+        var div=document.querySelector('div')
+        console.log(div.scrollTop)//返回被卷去的上侧距离,返回数值不带单位
+        console.log(div.scrollLeft)//返回被卷去的左侧距离
+        console.log(div.scrollWidth)//返回自身实际(当盒子内的内容超出时以内容宽高计算)的宽度,不含边框
+        console.log(div.scrollHeight)//返回自身实际的高度,不含边框
+
+        div.addEventListener('scroll',function(){//scroll滚动事件 当滚动条发生变化触发的事件
+            console.log((div.scrollLeft,div.scrollTop))
+        })
+    </script>
+</body>
+</html>

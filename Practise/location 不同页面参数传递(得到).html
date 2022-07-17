@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>得到参数</title>
+</head>
+<body>
+    这是得到参数的页面
+    <div></div>
+    <script>
+        console.log(location.href)   //该页面完整URL
+        console.log(location.search)    //'?'(含)后面的部分
+
+        var params=location.search.substr(1)  //截取字符   去掉'?'
+        console.log(params)
+
+        var arr=params.split('=')    //根据'='作为分隔符
+        console.log(arr)
+
+        var div=document.querySelector('div')
+        div.innerHTML=arr[1].substr(1)+"欢迎您"
+    </script>
+
+</body>
+</html>

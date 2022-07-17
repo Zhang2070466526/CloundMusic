@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>选择壁纸</title>
+    <style>
+        * {
+            padding: 0;
+            margin: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            height: 100vh;
+            width: 100vw;
+            /*background: url(https://w.wallhaven.cc/full/dp/wallhaven-dpo38l.jpg) no-repeat center;*/
+            /*background-size: cover; !*    把背景图像扩展至足够大，以使背景图像完全覆盖背景区域。背景图像的某些部分也许无法显示在背景定位区域中。*!*/
+        }
+
+        button {
+            width: 60px;
+            height: 50px;
+            color: red;
+            background: palegreen;
+        }
+    </style>
+</head>
+
+<body>
+    <button id="first">1</button>
+    <button id="second">2</button>
+    <button id="third">3</button>
+    <div>
+        <img src="img/img (4).png" alt="" title="1" width="800px" height="600px">
+    </div>
+    <script>
+        var wallPaper = document.querySelector('body')
+        var btn1 = document.getElementById('first')
+        var btn2 = document.getElementById('second')
+        var btn3 = document.getElementById('third')
+        var img = document.querySelector('img')
+        btn1.onclick = function () {
+            img.src = "img/img (1).png"
+            img.title = '1'
+            wallPaper.style.background = 'pink'
+        }
+        btn2.onclick = function () {
+            img.src = "img/img (2).png"
+            img.title = '2'
+        }
+        btn3.onclick = function () {
+            img.src = "img/img (3).png"
+            img.title = '3'
+        }
+
+
+
+
+    </script>
+</body>
+
+</html>

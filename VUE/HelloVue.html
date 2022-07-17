@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>第一个Vue</title>
+    <link type="text/css" rel="stylesheet" href="css/style.css"/>
+    <script type="text/javascript" src="js/script.js"></script>
+    <script src="js/vue.min.js"></script>
+</head>
+<body>
+    <p id="app">
+        {{message}}  <br>
+
+        {{people}}   <br>
+        {{people.name}}    {{people.sex}}    {{people.mobile}}   <!-- 对象类型需要.来调用 --> <br>
+
+        {{array}}    <br>
+        {{array[0]}}    {{array[4]}}     <!-- 数组类型需要索引来调用 -->
+
+
+    </p>
+    <script>
+        var app=new Vue({
+            el:"#app",
+            data:{
+                message:"Hello,Vue!",//字符串类型  
+                people:{//对象类型
+                    name:"VUE",
+                    sex:"男",
+                    mobile:"110"
+                },
+                array:["A",'B','C','D','E']//数组类型
+            },
+
+
+        })
+    </script>
+</body>
+</html>

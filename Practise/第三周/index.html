@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+	</head>
+	<body>
+		<div>
+			<p>请输入n的值:<input type="text" id="n"/></p>
+			<p>1-1/3+1/5-1/7+...+1/n= </p>
+			<p><button onclick="sum()">计算</button> <span id="result"> <span>   </p>
+		</div>
+		
+		<div>
+			<h1 align="center">九九乘法表</h1>
+				
+             <span id="s"> <span> 
+		</div>
+		
+		<script>
+		function sum(){
+			var n=document.getElementById("n").value;
+			var sum=0;
+			for( var flag=1,i=1;i<=n;i+=2){
+				sum+=flag*(1/i);
+				flag=-flag;
+			}
+			document.getElementById("result").innerHTML=sum;
+			
+		}
+		
+		str="<table>"
+		for(var i=1;i<=9;i++){
+			s+="<tr>";
+			for(var j=1;j<=i;j++){
+				str+="<td>"
+				str+= j+"*"+i+"="+i*j+"\t";
+				str+="</td>";
+			}
+			str+="</tr>";
+		}
+		str+="</table>";
+		document.getElementById("s").innerHTML=str
+
+
+			
+		</script>
+	</body>
+</html>

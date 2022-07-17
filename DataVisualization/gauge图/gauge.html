@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>gauge仪表盘</title>
+    <script src="echarts.min.js"></script>
+    <style>
+        body{
+            height:100vh;
+            width:100vw;
+            padding:0;
+            margin:0;
+            background-image: linear-gradient(315deg,#5112ed,#70a1ff,#747d8c,#1e90ff,#f98ff9,#2ed573);
+            background-size: 400%;
+            /*animation: back-name 15s linear infinite alternate;*/
+        }
+        @keyframes back-name {
+            from{
+                background-position: 0%,0%;
+            }
+            to{
+                background-position: 100%,100%;
+            }
+        }
+        .one{
+            display:flex;
+            height:50%;
+        }
+        div div{
+            flex:1;
+            /*background-color: #ff6348;*/
+        }
+
+
+    </style>
+</head>
+<body>
+    <div class="one">
+        <div id="degree">1</div>
+        <div>2</div>
+        <div>3</div>
+    </div>
+    <div class="one">
+        <div>A</div>
+        <div>B</div>
+        <div>C</div>
+    </div>
+    <script>//仪表盘更直观展现某个指标的进度或实际情况
+        var myCharts=echarts.init(document.getElementById("degree"))
+        var option={
+            title:{
+                text:"仪表盘主要用在进度把控以及数据范围的检测",
+                link:"https://echarts.apache.org",
+                textStyle:{color:'red',fontSize:18,},
+            },
+            series:[
+                {
+                    type:"gauge",
+                    data:[//数组内每个元素都是一个指针
+                        {
+                            value:67,
+                            itemStyle:{//指针样式
+                                color:'blue'
+                            }
+                        },
+                        // {value:87,},
+                        // {value:93,},
+                    ],
+                    min:60,//控制仪表盘数值范围
+                    max:120,
+                }
+            ]
+        }
+        myCharts.setOption(option)
+    </script>
+</body>
+</html>

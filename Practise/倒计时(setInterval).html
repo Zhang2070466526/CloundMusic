@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>倒计时(进阶版)</title>
+    <style>
+        /* div{
+            height:200px;
+            width:200px;
+            background-color: aqua;
+            position: relative;
+            font-size: 30px;
+            text-align: center;
+        }
+        .hour{
+            position: absolute;
+            left:10px;
+            background-color: cornflowerblue;
+            color:crimson;
+            height:40px;
+            width:40px;
+            margin-right: 10px;
+        }
+        .minute{
+            position: absolute;
+            left:60px;
+            background-color: royalblue;
+            color:crimson;
+            height:40px;
+            width:40px;
+            margin-right: 10px;
+        }
+        .second{
+            position: absolute;
+            left:110px;
+            background-color: palevioletred;
+            color:crimson;
+            height:40px;
+            width:40px;
+            margin-right: 10px;
+        } */
+
+        div {
+            width: 80%;
+            height: 30px;
+            margin: 0 auto;
+            margin-top: 10px;
+            color: #fff;
+            font-size: 20px;
+            margin-left: 25px;
+            /* background-color: aqua; */
+        }
+
+        div>span {
+            width: 30px;
+            height: 30px;
+            background: #2f3430;
+            margin-left: 5px;
+            text-align: center;
+            font-weight: bold;
+            padding-top: 4px;
+
+            /* 
+                inline（行内元素）:使元素变成行内元素，大小由内容撑开
+                block（块级元素）:使元素变成块级元素，独占一行
+                inline-block（融合行内于块级）:就是不独占一行的块级元素。允许在元素上设置宽度和高度。
+             */
+            display: inline-block;
+
+
+        }
+    </style>
+</head>
+
+<body>
+    <div>
+        <span class="hour">1</span>
+        <span class="minute">2</span>
+        <span class="second">3</span>
+    </div>
+    <script>
+        // d=parseInt(总秒数/60/60/24)     计算天数
+        // h=parseInt(总秒数/60/60%24)     计算小时
+        // m=parseInt(总秒数/60%60)        计算分钟数
+        // s=parseInt(总秒数%60)           计算秒数   1000毫秒等于1秒
+        var hour = document.querySelector('.hour')//小时
+        var minute = document.querySelector('.minute')//分钟
+        var second = document.querySelector('.second')//秒数
+
+        var inputTime = +new Date('2022-6-6 13:00:00') //用户输入time的时间戳
+
+        countDown()   //先调用一次防止第一次打开页面出现原始数据(或空白)
+        //开启定时器
+        setInterval(countDown,1000)
+                
+
+        function countDown() {
+            var nowTime = +new Date()//当前时间戳(毫秒)   +new Date() 是 new Date().getTime()的缩写
+            var times = (inputTime - nowTime) / 1000 //转换为秒
+
+            var s = parseInt(times % 60)    //秒
+            if (s < 10) {
+                s = '0' + s
+            } else {
+                s = s
+            }
+            second.innerHTML=s;
+
+            var m = parseInt(times / 60 % 60)    //分钟
+            m = m < 10 ? '0' + m : m
+            minute.innerHTML=m;
+
+            var h = parseInt(times / 60 / 60 % 24)  //小时
+            h = h < 10 ? '0' + h : h
+            hour.innerHTML=h;
+
+            // var d = parseInt(times / 60 / 60 / 24)  //天
+            // d = d < 10 ? '0' + d : d
+            // return d+'天'+h+"时"+m+'分'+s+'秒'
+
+        }
+        // countDown('2022-6-6 12:00:00')
+
+        
+
+
+    </script>
+</body>
+
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- <!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        ul {
+            width: 150px;
+            height: 200px;
+            margin: 100px auto;
+            background-color:aqua;
+        }
+
+        li {
+            width: 30px;
+            height: 30px;
+             color: white;
+            background-color: rgb(27, 25, 25);
+            float: left;
+            margin-right: 3px;
+            list-style: none;
+            text-align: center;
+            line-height: 30px;
+        }
+    </style>
+</head>
+
+<body>
+    <ul>
+        <li class="day"></li>
+        <li class="hour">1</li>
+        <li class="minute">2</li>
+        <li class="second">3</li>
+    </ul>
+    <script>
+        var day = document.querySelector('.day');
+        var hour = document.querySelector('.hour');
+        var minute = document.querySelector('.minute');
+        var second = document.querySelector('.second');
+        var targetTime = +new Date('2022-7-13 7:10:00');   // 目标时间总毫秒数
+        setInterval(countDown); // 先调用一次，防止刷新页面后有一秒的空白
+        setInterval(countDown, 1000);
+        function countDown() {
+            var nowTime = +new Date();   // 当前时间总毫秒数
+            var times = (targetTime - nowTime) / 1000;  // 剩余时间总秒数
+            var d = parseInt(times / 60 / 60 / 24);
+            d = d < 10 ? '0' + d : d;
+            day.innerHTML = d;
+            var h = parseInt(times / 60 / 60 % 24);
+            h = h < 10 ? '0' + h : h;
+            hour.innerHTML = h;
+            var m = parseInt(times / 60 % 60);
+            m = m < 10 ? '0' + m : m;
+            minute.innerHTML = m;
+            var s = parseInt(times % 60)
+            s = s < 10 ? '0' + s : s;
+            second.innerHTML = s;
+        }
+    </script>
+</body>
+
+</html> -->

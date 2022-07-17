@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>密码框验证信息</title>
+    <link rel="stylesheet" href="https://cdn.staticfile.org/font-awesome/4.7.0/css/font-awesome.css">
+    <style>
+        div {
+            width: 600px;
+            margin: 100px auto;
+        }
+
+        input {
+            outline: none;
+        }
+
+        .message {
+            display: inline-block;
+            font-size: 12px;
+            color: #999;
+            /*background: url(images/提示.png) no-repeat left center/16px 16px;*/
+            padding-left: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="'register">
+        <input type="password" class="ipt"/>
+        <i class="fa fa-exclamation-circle" aria-hidden="true"></i>
+        <p class="message">
+
+            请输入6~16位密码
+        </p>
+
+<!--        <i class="fa fa-exclamation-triangle" aria-hidden="true"></i>-->
+        <script>
+            var psd=document.querySelector('input')
+            var mesg=document.querySelector('p')
+            var i=document.querySelector('i')
+            psd.onblur=function (){
+                if(this.value.length<6||this.value.length>16){
+                    mesg.innerHTML='密码长度错误，应为6~16位';
+                    i.className='fa fa-exclamation-triangle';
+                }else{
+                    mesg.innerHTML='密码长度正确';
+                    i.className='fa fa-exclamation-circle';
+                }
+            }
+        </script>
+    </div>
+</body>
+</html>

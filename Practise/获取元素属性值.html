@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>属性操作</title>
+</head>
+<body>
+    <div id="demo" data-index="1" data-list-axis="one"></div>
+    <section></section>
+    <p class="axis" r="true"></p>
+    <script>
+        //获取元素属性值
+        var div=document.querySelector('div')
+        console.log(div.id)  //element.属性     一般获取内置属性(元素本身自带的属性)
+        console.log(div.getAttribute('data-index'))  //element.getAttribute('属性')   可以获取自定义的属性例如data-idnex
+            //element.dataset.属性 或 element.dataset['属性']
+            console.log(div.dataset)   //{"index": "1","listAxis": "one"}
+            console.log(div.dataset.index,div.dataset['index']) //  1 1
+            console.log(div.dataset.listAxis,div.dataset['listAxis'])//第二个要大写(驼峰命名法)   one  one
+
+        //修改元素属性值
+        var section=document.querySelector('section')
+        section.id='one'    //element.属性='值'
+        section.setAttribute('tick','2')   //element.setAttribute('属性','值')  一般用于自定义属性
+        console.log(section)
+
+        //移除元素属性值
+        var p=document.querySelector('p')
+        p.removeAttribute('class')  //element.removeAttribute('属性')
+        p.removeAttribute('r')
+
+
+    </script>
+
+</body>
+</html>

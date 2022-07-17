@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>主轴上的子元素排列方式</title>
+    <style>
+        .s1{
+            display: flex;
+            width:500px;
+            height:150px;
+            background-color: #00ff0b;
+            /*默认flex-direction:row    */
+            justify-content: flex-start;/*默认值 从头开始  若是x轴,则从左到右,若是y轴,则从上到下*/
+        }
+        .s1 div{
+            font-size:20px;
+            color: mediumpurple;
+            height: 30%;/*父盒子的高度的30%*/
+            width:40px;
+            background-color: #ff07c6;
+            border:1px double #9D989D;
+        }
+
+        .s2{
+            display: flex;
+            width:500px;
+            height:300px;
+            background-color: mediumpurple;
+            flex-direction:column;/*主轴是y轴*/
+            justify-content: flex-end;/*主轴是y轴,从下到上(只是将项目右移,不会改变项目顺序)*/
+        }
+        .s2 div{
+            font-size:20px;
+            color: mediumpurple;
+            height: 50px;
+            width:40px;
+            background-color: #d34222;
+            border:1px double rgb(0,47,1);
+        }
+
+        .s3{
+            display: flex;
+            width:500px;
+            height:150px;
+            background-color: yellow;
+            /*默认flex-direction:row    */
+            justify-content: center;
+        }
+        .s3 div{
+            font-size:20px;
+            color: blue;
+            height: 30%;/*父盒子的高度的30%*/
+            width:40px;
+            background-color: red;
+            border:1px double yellow;
+        }
+
+        .s4{
+            display: flex;
+            width:500px;
+            height:150px;
+            background-color: pink;
+            /*默认flex-direction:row    */
+            justify-content: space-around;
+        }
+        .s4 div{
+            font-size:20px;
+            color: mediumpurple;
+            height: 30%;/*父盒子的高度的30%*/
+            width:40px;
+            background-color: #ff07c6;
+            border:1px double #9D989D;
+        }
+
+        .s5{
+            display: flex;
+            width:500px;
+            height:150px;
+            background-color:silver;
+            /*默认flex-direction:row    */
+            justify-content: space-evenly;
+        }
+        .s5 div{
+            font-size:20px;
+            color: mediumpurple;
+            height: 30%;/*父盒子的高度的30%*/
+            width:40px;
+            background-color: #ff07c6;
+            border:1px double #9D989D;
+        }
+
+    </style>
+</head>
+<body>
+    <section class="s1">
+        <div>1</div>
+        <div>2</div>
+        <div>3</div>
+        <div>4</div>
+    </section>
+
+    <section class="s2">
+        <div>1</div>
+        <div>2</div>
+        <div>3</div>
+        <div>4</div>
+    </section>
+
+    <section class="s3">
+        <div>1</div>
+        <div>2</div>
+        <div>3</div>
+        <div>4</div>
+    </section>
+
+    <section class="s4">
+        <div>1</div>
+        <div>2</div>
+        <div>3</div>
+        <div>4</div>
+    </section>
+
+    <section class="s5">
+        <div>1</div>
+        <div>2</div>
+        <div>3</div>
+        <div>4</div>
+    </section>
+
+</body>
+</html>

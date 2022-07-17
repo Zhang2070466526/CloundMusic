@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+  <html lang="en">
+  <head>
+      <meta charset="UTF-8">
+      <title>内容绑定V-text</title>
+      <script src="js/vue.min.js"></script>
+  </head>
+  <body>
+    <div id="app">
+        <h1 v-text="message +'-----'">附加内容1</h1>     <!-- 附加内容1就不会显示 -->
+        <h2 v-text="info1 +'---'">附加内容2</h2>         <!-- 附加内容2就不会显示 -->
+        <h5 v-text="info4"></h5>
+
+        <h3>{{info2+'--'}}附加内容3</h3>
+        <H4>{{info3+':'+info2}}</H4>
+    </div>
+
+    <script>
+        var app=new Vue({
+          el:"#app",
+          data:{
+              message:"{{}}就是插值表达式",
+              info1:"内容绑定v-text:设置标签的文本值（textContent）",
+              info2:"例如document.getElementById('hello').textContent即获取id为hello的元素内容",
+              info3:"再来一次",
+              info4:"使用v-text后标签原本元素不会显示"
+          },
+        })
+    </script>
+      
+  </body>
+</html>

@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>渐变</title>
+    <style>
+        /**{*/
+        /*    margin:0;*/
+        /*    padding:0;*/
+        /*}*/
+        body,html{
+            /*height:100%;*/
+            /*width:100%;*/
+            /*margin:0;*/
+            /*padding:0;*/
+
+            background-image: linear-gradient(125deg,#2c3e50,#27ae60,#2980b9,#e74c3c,#8e44ad);
+            background-size:400%; /*背景图像大小  这里控制变换速度*/
+            animation:bganimation 15s infinite; /*infinite无限的*/
+            /*规定需要绑定到选择器的 keyframe 的名称。 规定完成动画所花费的时间，以秒或毫秒计。 规定动画的速度曲线。  */
+        }
+        .text{
+            /*font-family:monospace; !*字体*!*/
+            /*color:white;*/
+            /*text-align:center;*/
+            /*text-transform:uppercase;!*uppercase定义无小写字母，仅有大写字母*!*/
+            /*margin:350px 0;*/
+            /*font-size:220px;*/
+        }
+        @keyframes bganimation{
+            0%{ /*开头动画或用from*/
+                /*background-position: 0% 50%;*/
+                background-position: 0% 0%;
+            }
+            /*50%{*/
+            /*    !*background-position: 100% 50%;*!*/
+            /*    background-position: 0% 50%;*/
+            /*}*/
+            to{    /*当动画完成或100%*/
+                /*background-position: 0% 50%;*/
+                background-position: 100% 100%;
+            }
+
+        }
+    </style>
+</head>
+<body>
+    <div class="text">coordinateSystem</div>
+</body>
+</html>

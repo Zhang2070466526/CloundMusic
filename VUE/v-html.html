@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+  <html lang="en">
+  <head>
+      <meta charset="UTF-8">
+      <title>解析标签v-html</title>
+      <script src="js/vue.min.js"></script>
+  </head>
+  <body>
+    <!--  v-html 设置元素的innerHTML   内容中的html结构会被解析成html标签
+          v-text 无论内容是什么都会被解析成文本
+        解析文本使用v-text，解析html结构使用v-html 
+    -->
+    <div id="app">
+      <p v-text="content1"></p>
+      <p v-html="content2"></p>
+    </div>
+
+    <script>
+
+      var app=new Vue({
+        el:"#app",
+        data:{
+          content1:"这是一个文本",
+          content2:"<a href='https://echarts.apache.org'>这是一个超链接</a>",
+        }
+      })
+      
+    </script>
+      
+  </body>
+</html>

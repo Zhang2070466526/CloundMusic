@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+	</head>
+	<body>
+		<div>
+			<input type="text" id="x"/>
+			<select id="sel">
+				<option value="add">+</option>
+				<option value="sub">-</option>
+				
+			</select>
+			<input type="text" id="y"/>
+			<button onclick="jishuan()"> = </button> <span id="result"></span>
+		</div>
+		<script>
+			function add(){
+				var x=Number(document.getElementById("x").value);
+				var y=Number(document.getElementById("y").value);
+				var result=x+y;
+				document.getElementById("result").innerHTML=result;
+			}
+			function sub(){
+				var x=Number(document.getElementById("x").value);
+				var y=Number(document.getElementById("y").value);
+				var result=x-y;
+				document.getElementById("result").innerHTML=result;
+			}
+			function jishuan(){
+				var c=document.getElementById("sel").value;
+				switch(c){
+					case 'add':add();break;
+					case 'sub':sub();break;
+					default:console.log("请选择+或-");break;
+				}	
+			}
+
+		</script>
+	</body>
+</html>
+

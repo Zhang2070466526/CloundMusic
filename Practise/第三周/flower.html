@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+	</head>
+	<body>
+		<div>
+
+		     <span id="num"> <span> 
+		</div>
+		
+		<script>
+		for (var i=100;i<=999;i++){
+			a1=parseInt(i/100);//百位
+			b=parseInt(i%100);//去掉百位
+			a2=parseInt(b/10);//十位
+			a3=parseInt(b%10);//个位
+			sum=a1**3+a2**3+a3**3;
+			if (sum==i){
+				document.getElementById("num").innerHTML += sum+"<br/>";
+				//document.write(sum+"<br/>");
+			}
+		}
+			
+		</script>
+	</body>
+</html>

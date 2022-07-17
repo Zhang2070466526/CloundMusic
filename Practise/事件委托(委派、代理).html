@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>事件委托(代理或委派)</title>
+</head>
+<body>
+    事件委派:不给每个子节点单独设置事件监听器,而是将事件监听器设置在父节点上,利用冒泡原理影响每个子节点
+    <ul>
+        <li>1111111</li>
+        <li>2222222</li>
+        <li>3333333</li>
+        <li>4444444</li>
+        <li>5555555</li>
+    </ul>
+    <script>
+        var ul=document.querySelector('ul')
+        ul.addEventListener('click',function(e){
+            // for(var i=0;i<ul.children.length;i++){//排他思想
+            //     this.children[i].style.backgroundColor=''
+            // }
+            e.target.style.backgroundColor='pink'
+        })
+    </script>
+
+</body>
+</html>

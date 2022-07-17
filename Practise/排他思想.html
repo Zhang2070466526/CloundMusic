@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>排他思想</title>
+</head>
+<body>
+    <button>按钮1</button>
+    <button>按钮2</button>
+    <button>按钮3</button>
+    <button>按钮4</button>
+    <button>按钮5</button>
+    <button>按钮6</button>
+    <button>按钮7</button>
+    <script>
+        var btns=document.querySelectorAll('button')
+        for (var i =0;i<btns.length;i++){
+            btns[i].onclick=function(){
+                // this.style.background='pink' //最后所有点击的按钮都会修改,不会初始化
+                for (var i =0;i<btns.length;i++){ //先把所有按钮背景颜色去掉
+                   btns[i].style.background=''
+                }
+                this.style.background='pink'//然后设置当前元素背景颜色
+            }
+        }
+
+    </script>
+</body>
+</html>

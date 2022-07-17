@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>文本框内容的显示与隐藏</title>
+    <style>
+        div{
+            margin: 100px auto;
+            width:208px;
+            /*border:1px solid red;*/
+        }
+        input{
+            color:#999;
+            /*margin:10px auto;*/
+            margin: auto auto;
+            width:200px;
+        }
+    </style>
+</head>
+<body>
+    <div>
+        <input type="text" value="手机"/>
+    </div>
+
+    <script>
+        var text=document.querySelector('input')
+        text.onfocus=function(){  //获取焦点事件
+            // console.log('获取了焦点');
+            if(this.value==='手机'){
+                this.value=''
+            }
+            this.style.color = '#333';
+        }
+        text.onblur=function(){   //失去焦点事件
+            if(this.value===""){
+                this.value='手机'
+            }
+            this.style.color = '#999';
+        }
+    </script>
+
+
+
+</body>
+</html>

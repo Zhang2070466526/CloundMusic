@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>拖动模态框</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+        
+        a {
+            text-decoration: none;
+        }
+        
+        .eject-login {
+            text-align: center;
+        }
+        
+        .eject-login a {
+            color: #333;
+            font-size: 18px;
+        }
+        
+        .loginbox {
+            display: none;
+            position: absolute;
+            left: 50%;
+            top: 30%;
+            width: 360px;
+            height: 200px;
+            background: skyblue;
+            -webkit-transform: translate(-50%, -50%);
+
+            
+            border: 1px solid #ddd;
+
+            transform: translate(-50%, -50%);
+            
+            z-index: 2;
+        }
+        
+        .closebtn {
+            position: absolute;
+            top: 0px;
+            right: 0px;
+            width: 30px;
+            height: 30px;
+            text-align: center;
+            line-height: 30px;
+        }
+        
+        .closebtn a {
+            font-size: 24px;
+            color: #333;
+            background-color: blue;
+        }
+        
+        .logintit {
+            height: 40px;
+            line-height: 40px;
+            text-align: center;
+            cursor: move;
+            background-color: yellowgreen;
+        }
+/*         
+        .logincont {
+            width: 280px;
+            margin: 0 auto;
+        }
+        
+        .login-ipt {
+            margin: 10px 0 0 0;
+        }
+        
+        .login-ipt label {
+            display: inline-block;
+            width: 84px;
+            text-align: right;
+        }
+        
+        .name-ipt,
+        .pswd-ipt {
+            width: 170px;
+            height: 30px;
+            border: 1px solid #ddd;
+            outline: none;
+            padding: 0 5px;
+        }
+        
+        .loginbtn {
+            text-align: center;
+            margin: 20px 0 0 0;
+        }
+        
+        .loginbtn button {
+            width: 100px;
+            height: 30px;
+            border: 1px solid #ddd;
+            background-color: #fff;
+            outline: none;
+        } */
+        
+        .login-bg {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: deeppink;
+            z-index: 1;
+        }
+    </style>
+</head>
+<body>
+    <div class="eject-login">
+        <a href="javascript:(0)" id="eject">点击，弹出登录框</a>
+    </div>
+
+     <div class="loginbox">
+        <div class="closebtn">
+            <a href="javascript:(0)" id="close">×</a>
+        </div>
+        <div class="logintit">登录会员</div>
+        <div class="logincont">
+            <div class="login-ipt">
+                <label>用户名：</label>
+                <input type="text" placeholder="请输入用户名" class="name-ipt">
+            </div>
+            <div class="login-ipt">
+                <label>登录密码：</label>
+                <input type="password" placeholder="请输入登录密码" class="pswd-ipt">
+            </div>
+        </div>
+        <div class="loginbtn"><button>登 录</button></div>
+    </div> 
+    <!-- 遮盖层 -->
+    <div class="login-bg"></div>
+
+    <script>
+        var eject = document.querySelector('#eject');
+        var mask = document.querySelector('.login-bg');
+        var loginbox = document.querySelector('.loginbox');
+        var close = document.querySelector('#close');
+        var title = document.querySelector('.logintit')
+        eject.addEventListener('click', function() {
+            mask.style.display = 'block';
+            loginbox.style.display = 'block';
+        });
+        close.addEventListener('click', function() {
+            mask.style.display = 'none';
+            loginbox.style.display = 'none';
+        });
+        title.addEventListener('mousedown', function(e) {
+            var x = e.pageX - loginbox.offsetLeft;
+            var y = e.pageY - loginbox.offsetTop;
+            document.addEventListener('mousemove', move)
+                //console.log(x);
+            function move(e) {
+                loginbox.style.left = e.pageX - x + 'px';
+                loginbox.style.top = e.pageY - y + 'px';
+            };
+            document.addEventListener('mouseup', function() {
+                document.removeEventListener('mousemove', move)
+            })
+        })
+    </script>
+</body>
+</html>

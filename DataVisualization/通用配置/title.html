@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>标题通用配置</title>
+    <script src="echarts.min.js"></script>
+</head>
+<body>
+    <div id="main" style="width:50%;height:500%">
+        <!--图表-->
+    </div>
+    <script>
+        var mCharts=echarts.init(document.getElementById("main"))
+        var xDataArray=["A","B","C","D","E","F","G","H","I","J"]
+        var yDataArray=[132,65,3,65,99,100,123,149,150,34]
+        var option={
+            title:{
+                text:"letters(点击会跳转到link值指向的url地址)",
+                link:"https://echarts.apache.org",
+                textStyle:{
+                    color:"red"//主标题颜色
+                },
+                borderWidth:7,//标题边框线宽
+                borderColor:"rgb(0,47,167)",//边框颜色
+                borderRadius:5,//将矩形变宽转为圆角边框  即4个圆角半径都为5 ,或[3,4,5,6]对应顺时针的左上,右上,右下,左下
+                //left:"20%",//title 组件离容器左侧的距离。或"center","left","right"
+                top:10,//title 组件离容器上侧的距离。或"top","middle","bottom"
+                //right:"80%",//title 组件离容器右侧的距离。
+                right:"center",//title 组件离容器右侧的距离。
+                //bottom:1,//title 组件离容器下侧的距离。
+            },
+            xAxis:{
+              type:"category",
+              data:xDataArray,
+            },
+            yAxis:{
+                type:"value",
+            },
+            series:[
+                {
+                    type:"bar",//柱状图
+                    data: yDataArray,
+                    barWidth:"30%",
+                    showBackground:true,//是否显示柱条的背景色
+                    backgroundStyle:{//每一个柱条的背景样式。需要将 showBackground 设置为 true 时才有效。
+                        color:"rgb(0,47,167)"
+                    }
+
+                }
+            ]
+        }
+        mCharts.setOption(option)
+    </script>
+
+</body>
+</html>

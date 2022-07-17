@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>折线图效果A</title>
+    <script src="echarts.min.js"></script>
+
+</head>
+<body>
+    <div id="chart1" style="width:100%;height:500Px;"></div>
+    <script>
+        var myCharts=echarts.init(document.getElementById("chart1"))
+        function arr(len,min,max){
+            return Array.from({length:len},v=>Math.ceil(Math.random()*(max-min)+min))
+        }
+        //console.log(arr(12,10,100))
+        var xDataArr=["January","February","March","April","May","June","July","August","September","October","November","December"]
+        var option={
+            title:{
+              text:"武汉某校一年的在校人数",
+              link:"https://echarts.apace.org",
+              textStyle:{
+                  color:"gold",
+              },
+              borderWidth:3,
+              borderRadius:3,
+              borderColor:"pink",
+            },
+            tooltip:{
+                trigger:"axis",
+                triggerOn:"mousemove",
+                axisPointer:{
+                    type:"line"
+                }
+            },
+            toolbox:{
+              show:true,
+              feature:{
+                  saveAsImage:{},
+                  dataView:{readOnly:false},
+                  dataZoom:{},
+                  restore:{},
+                  magicType:{
+                      type:["line","stack","bar"]
+                  }
+              }
+            },
+            legend:{
+                data:["白天","黑夜"]
+            },
+            xAxis:{
+                type:"category",
+                data:xDataArr,
+                axisTick:{
+                    alignWithLabel:true
+                },
+                boundaryGap:false,//是否紧挨边缘,默认值是true不紧挨边缘(有边界间隙)
+
+            },
+            yAxis:{
+                type:"value",
+                scale:true//脱离0值比例,目的是当一组数据相差过小,数据之间差不好体现
+            },
+            series:[
+                {
+                    name:"黑夜",
+                    type:"line",
+                    data:arr(12,950,1000),
+                    markPoint:{
+                        data:[{type:"max",name:"最大值"},{type:"min",name:"最小值"}]
+                    },
+                    markLine:{
+                        data:[{type:"average",name:"平均值"}]
+                    },
+
+                },
+                {
+                    name:"白天",
+                    type:"line",
+                    data:arr(12,100,1000),
+                    markPoint:{
+                        data:[{type:"max",name:"最大值"},{type:"min",name:"最小值"}]
+                    },
+                    markLine:{
+                        data:[{type:"average",name:"平均值"}]
+                    },
+                    markArea:{//标注区间
+                        data:[[{xAxis:"May"},{xAxis: "July"}],[{xAxis:"October"},{xAxis: "November"}]],
+                    },
+                    smooth:true,//线条是否平滑
+                    lineStyle:{//线条的样式
+                        color:"red",
+                        type:"dashed"//虚线,dotted点连成的线,solid实线
+                    },
+                    areaStyle:{//线条下方区域的填充
+                        color:"black"
+                    }
+                }
+            ]
+        }
+        myCharts.setOption(option)
+    </script>
+
+</body>
+</html>

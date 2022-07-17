@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>修改子项的排列顺序</title>
+    <style>
+        *{
+            padding:0;
+            margin: 0;
+        }
+        body,html{
+            height:100%;
+            width:100%;
+        }
+        div{
+            width:60%;
+            height:30%;
+            margin: 0 auto;
+            background-color: aquamarine;
+            display: flex;
+             /* 整体下移 */
+            /*align-items: flex-end; */
+        }
+        div div{
+            height:100px;
+            flex:1;
+            /*不管是什么都会平均分除了0 因为约分 */
+        }
+        div  div:nth-child(3){
+            align-self: flex-end;
+            /* 只有第二个元素下移 */
+        }
+
+        div  div:nth-child(4){
+            order:-5;
+            /* 第四个盒子放在最前面,因为-1是最小的 */
+        }
+        div  div:nth-child(5){
+            order:-2;
+            /* 第四个盒子放在最前面,因为-1是最小的 */
+        }
+
+    </style>
+</head>
+<body>
+    <div>
+        <div style="background-color:red">1</div>
+        <div style="background-color:blue">2</div>
+        <div style="background-color:pink">3</div>
+        <div style="background-color:purple">4</div>
+        <div style="background-color:darkgreen">5</div>
+    </div>
+</body>
+</html>

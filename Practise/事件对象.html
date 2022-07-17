@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>事件对象</title>
+    <style>
+        *{
+            margin:0;
+            padding:0;
+        }
+        div{
+            height:100vh;
+            background-color: #00ff0b;
+        }
+    </style>
+</head>
+<body>
+    <div>1111</div>
+    <script>
+        var div=document.querySelector('div')
+        div.addEventListener('click',function(event){
+            console.log(event)  //event就是事件对象 当没有事件就不会存在
+            //事件对象:跟事件相关的一系列信息数据的集合,有很多属性和方法
+            console.log(window.event)   //早期浏览器
+            console.log(event||window.event)  //兼容处理
+        })
+    </script>
+</body>
+</html>

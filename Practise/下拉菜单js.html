@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>下拉列表(兄弟节点)</title>
+    <style>
+        *{
+            list-style: none;
+        }
+        body{
+            height:100vh;
+            display:flex;
+            justify-content: center;
+            align-items:center;
+        }
+        .shell{
+            display:flex;
+        }
+        .button{
+            background-color:rosybrown;
+            width:100px;
+            height:22px;
+            text-align: center;
+            line-height: 22px;
+            cursor:pointer;
+        }
+        .button ul{
+            display: none;
+            width: 57px;
+        }
+        .button:hover{
+            background-color: #ff3838;
+        }
+        .button ul li{
+            text-align:left;
+            height:22px;
+            line-height: 22px;
+            margin-right: 0;
+        }
+        .button ul li a:hover{
+            background-color: #8e44ad;
+        }
+
+
+    </style>
+</head>
+<body>
+    <ul class="shell">
+        <li class="button">
+            <span><a>湖北省</a></span>
+            <ul>
+                <li><a>襄阳</a></li>
+                <li><a>武汉</a></li>
+                <li><a>宜昌</a></li>
+                <li><a>十堰</a></li>
+            </ul>
+        </li>
+        <li class="button">
+            <span><a>河南</a></span>
+            <ul>
+                <li><a>洛阳</a></li>
+                <li><a>郑州</a></li>
+                <li><a>平顶山</a></li>
+                <li><a>三门峡</a></li>
+            </ul>
+        </li>
+        <li class="button">
+            <span><a>四川省</a></span>
+            <ul>
+                <li><a>攀枝花</a></li>
+                <li><a>成都</a></li>
+                <li><a>绵阳</a></li>
+                <li><a>乐山</a></li>
+            </ul>
+        </li>
+    </ul>
+
+    <script>
+        var shell=document.querySelector('.shell')
+        var lis=shell.children
+        console.log(lis)
+        for(var i=0;i<lis.length;i++){
+            console.log(lis[i].children[1])//lis[i].children[0]是span
+            lis[i].onmouseover=function(){//经过
+                this.children[1].style.display='block'
+            }
+            lis[i].onmouseout=function (){
+                this.children[1].style.display='none'
+            }
+        }
+    </script>
+
+</body>
+</html>

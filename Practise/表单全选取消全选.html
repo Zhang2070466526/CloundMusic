@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>表单全选取消全选</title>
+    <style>
+        *{
+            margin:0;
+            padding:0;
+        }
+        body{
+            display: flex;
+            height:100vh;
+            justify-content: center;
+            align-items: center;
+        }
+        table{
+            width:300px;
+            border:1px solid blue;
+            border-spacing: 10px 15px; /*    第一个是水平间隔，第二个是垂直间隔*/
+        }
+        thead{
+            background-color: cornflowerblue;
+            text-align: center;
+        }
+        tbody{
+            text-align: left;
+        }
+    </style>
+</head>
+<body>
+    <table>
+        <thead>
+            <tr>
+                <th><input type="checkbox" id="all"/></th> <th>商品</th> <th>价格</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td><input type="checkbox" class="choice"/></td> <td>iPhone10</td>  <td>9999</td>
+            </tr>
+            <tr>
+                <td><input type="checkbox"  class="choice"/></td> <td>iPad Pro</td>  <td>899</td>
+            </tr>
+            <tr>
+                <td><input type="checkbox"  class="choice"/></td> <td>iPad Air</td>  <td>3589</td>
+            </tr>
+            <tr>
+                <td><input type="checkbox"  class="choice"/></td> <td>Apple Watch</td>  <td>2199</td>
+            </tr>
+            <tr>
+                <td><input type="checkbox"  class="choice"/></td> <td>Apple Pencil</td>  <td>399</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <script>
+        var all=document.getElementById('all')
+        var choice=document.querySelectorAll('.choice')
+        //表单全选   (上面选项影响下面)
+        all.onclick=function(){
+            // console.log(this.checked) //checked：选中表示true  取消选中false
+            for(var  i=0;i<choice.length;i++){
+                choice[i].checked=this.checked;
+            }
+        }
+        //
+        // //下面复选框需全部选中 ，上面才能全选
+        // for(var i=0;i<choice.length;i++){
+        //     choice[i].onclick=function(){
+        //         var flag=true;  //flag控制上面的全选按钮是否选中
+        //         for(var j=0;j<choice.length;j++){  //每次点击下面的复选框都要循环检查所有按钮是否被全选
+        //             // if(!choice[j].checked){   //!false 即取消选中时 flag=false   选中 即!true  不执行
+        //             //     flag=false;   //如果所有复选框都被选中不执行if,同理
+        //             // }
+        //             if(choice[j].checked!==true){  //只要有一个没被选中 即有一个是false
+        //                 flag=false;
+        //             }
+        //         }
+        //         all.checked=flag
+        //     }
+        // }
+        //
+        //
+
+        for(var i=0;i<choice.length;i++){
+            choice[i].onclick=function(){
+                var flag=true
+                for(var j=0;j<choice.length;j++){
+                    if(choice[j].checked===false){//只要有一个是false(未被选中)即 flag就永远是false
+                        flag=false
+                    }
+                }
+                all.checked=flag
+            }
+        }
+
+    </script>
+
+
+</body>
+</html>

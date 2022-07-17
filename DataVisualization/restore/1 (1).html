@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="echarts.min.js"></script>
+    <style>
+        *{
+            margin:0;
+            padding:0;
+        }
+        html,body{
+            height:100%;
+            /*background-color: rgb(21,69,153);*/
+        }
+        div{
+            display:flex;
+            flex-wrap:wrap;
+            height:100%;
+            width:100%;
+            /* background-color: rgb(19, 8, 24); */
+            /*flex-direction:column;*/
+            flex:1;
+            /*   父级    */
+        }
+
+        div .yi{/*等价于  div div:nth-child(1)*/
+            background-color:palegreen;
+            /*    !*   父级的子级    *!*/
+            display:flex;
+            flex-wrap:wrap;
+            flex-direction:column;
+        }
+
+        div div:nth-child(2){
+            flex:1;
+            background-color:lightyellow;
+            display:flex;
+            flex-wrap:wrap;
+            flex-direction:column;
+            /*   父级的子级    */
+        }
+        div div:nth-child(3){
+            background-color: black;
+            display:flex;
+            flex-wrap:wrap;
+            flex-direction:column;
+            /*   父级的子级    */
+        }
+        .one{
+            flex:1;
+        }
+
+
+
+
+
+
+    </style>
+</head>
+<body>
+<div>
+    <div class="yi">
+        <div class="one" style="background-color: #dbff19">甲</div>
+        <div class="one" style="background-color: #32ff19">乙</div>
+        <div class="one" style="background-color: #435d2d">丙</div>
+    </div>
+
+    <div >
+        <div class="one" style="background-color: #db4519">A</div>
+        <div class="one" style="background-color: #24f529">B</div>
+        <div class="one" style="background-color: #bd9321">C</div>
+    </div>
+    <div >
+        <div class="one" style="background-color: #6655dd">一</div>
+        <div class="one" style="background-color: #d23429">二</div>
+        <div class="one" style="background-color: #8532d3">三</div>
+    </div>
+</div>
+</body>
+</html>

@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>定位实现</title>
+    <style>
+        .radius{
+            position: relative;/*相对的位置*/
+            height:300px/*必须设置*/
+        }
+        .left{
+            position:absolute;/*绝对位置*/
+            width:300px;
+            background-color:silver;
+            height:100%;
+        }
+        .main{
+            position:absolute;/*绝对位置*/
+            background-color: yellow;
+            height:100%;
+            left:300px;/*相对于父元素或左上角的位置(所以是300,超出就会有空余出现)*/
+
+            right:0px;/*距离右边界的值*/
+
+        }
+
+
+
+
+    </style>
+</head>
+<body>
+    <div class="radius">
+        <div class="left">10000
+        </div>
+        <div class="main">2
+        </div>
+    </div>
+
+
+</body>
+</html>
+
+
+

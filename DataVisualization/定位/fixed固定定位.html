@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>固定定位</title>
+    <style>
+        *{
+            margin:0;
+            padding:0;
+        }
+        .box{
+            position:fixed;/* 固定定位 开始飞起来了  参考对象是页面窗口*/
+            bottom:100px;/* 飞起来后的位置 */
+            
+            width:200px;
+            height:400px;
+            background: red;
+        }
+
+        p{
+            height:600px;
+            border:1px solid blue;
+        }
+    </style>
+</head>
+<body>
+    <div class="box">
+        这是一个固定的广告
+    </div>
+    
+    <p></p>
+    
+    <p></p>
+    
+    
+
+    <p></p>
+</body>
+</html>

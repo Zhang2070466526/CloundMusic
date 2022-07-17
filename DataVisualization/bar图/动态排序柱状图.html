@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>动态排序柱状图</title>
+    <script src="echarts.min.js"></script>
+</head>
+<body>
+    <div id="main" style="width:900px;height:600px"></div>
+    <script>
+        var myChart=echarts.init(document.getElementById("main"))
+        // var data = [];
+        // for (let i = 0; i < 5; ++i) {
+        //     data.push(Math.round(Math.random() * 200));
+        // }//数组写死了
+        // function arg(len,max,min){
+        //     return Array.from({length:len},()=>Math.floor(Math.random()*(max-min)+min))
+        // }
+
+
+        var option={
+            title:{
+                text:"进化吧王大彪",
+                link:"https://echarts.apache.org",
+                textStyle:{
+                    color:"yellow",
+                },
+                borderWidth:1,
+                borderRadius:2,
+                borderColor:"pink",
+            },
+            toolbox:{
+                show:true,
+                feature:{
+                    saveAsImage:{},
+                    dataView:{readOnly:false},
+                    dataZoom:{},
+                    restore:{},
+                    magicType:{
+                        type:["line","bar","static"]
+                    }
+                }
+            },
+            legend:{
+                show:true
+            },
+            xAxis:{
+                max:"dataMax",// 表示用数据的最大值作为 X 轴最大值，视觉效果更好
+            },
+            yAxis:{
+                type:"category",
+                data: ['A', 'B', 'C', 'D', 'E'],
+                axisTick:{
+                    alignWithLabel:true
+                },
+                inverse:true,//表示 Y 轴从下往上是从小到大的排列
+                animationDuration:30,//表示第一次柱条排序动画的时长
+                animationDurationUpdate:30,//表示第一次后柱条排序动画的时长
+                //max:2//如果想只显示前 n 名，将 yAxis.max 设为 n - 1，否则显示所有柱条
+            },
+            series:[
+                {
+                    realtimeSort:true,//表示开启该系列的动态排序效果
+                    name:"甲",
+                    type:"bar",
+                    data:[10,200,0,300,500],
+                    barWidth:"35%",
+
+                    label:{
+                        show:true,
+                        position:"right",
+                        valueAnimation:true,//实时改变标签
+                    }
+                },
+            ],
+            animationDuration: 3000,//animationDuration 设为 0，表示第一份数据不需要从 0 开始动画（如果希望从 0 开始则设为和 animationDurationUpdate 相同的值）
+            animationDurationUpdate: 3000,//animationDurationUpdate 建议设为 3000 表示每次更新动画时长，这一数值应与调用 setOption 改变数据的频率相同
+            //以 animationDurationUpdate 的频率调用 setInterval，更新数据值，显示下一个时间点对应的柱条排序
+            animationEasing: 'linear',
+            animationEasingUpdate: 'linear'
+        };
+        //console.log(option.series[0])
+
+        function update() {
+            var data = option.series[0].data;//[10,200,0,300,500]
+            for (var i = 0; i < data.length; ++i) {
+                if (Math.random() > 0.9) {
+                    data[i] += Math.round(Math.random() * 2000);
+                } else {
+                    data[i] += Math.round(Math.random() * 200);
+                }
+            }
+            myChart.setOption(option);
+        }
+
+        setInterval(function() {
+            update();
+        }, 3000);
+
+
+    </script>
+
+</body>
+</html>

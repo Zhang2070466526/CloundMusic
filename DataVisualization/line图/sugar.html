@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>1</title>
+</head>
+<body>
+    <script>
+        function randArray(len, min, max) {
+	        return Array.from({length:len}, v=> Math.floor(Math.random()*(max-min)+min));
+
+            // b={length:len}
+            // var  c=[];
+            // c.length=10//申明数组长度
+            // return Array.from(c, v=> Math.floor(Math.random()*(max-min))+min);
+        }
+        a=randArray(10,1,10)
+        console.log(a)
+
+        // var arr = Array.from([1, 2, 3], x => x * 10);
+        // document.write(arr)
+        //
+        // function ran() {
+        //     var a = Array.from({length:10})//创建一个长度为10，值为undefined的数组
+        //     return Array.from({length:10},()=> Math.floor(Math.random()*(100-1))+1);
+        // }
+        // document.write(ran())
+        //
+        //
+        // //使用Array.from()创建一个长度为10的空数组，使用mapfunction将该数组的索引值作为新数组的值
+        // var a = Array.from({length:10},(v,i)=>i)
+        // console.log(a)//[0,1,2...9]
+        //
+        // var b = [10, 20, 30].map((v,i,s)=>console.log(v,i,s))
+        // //元素 索引 数组
+        // // 10 0 (3) [10, 20, 30]
+        // // 20 1 (3) [10, 20, 30]
+        // // 30 2 (3) [10, 20, 30]
+        //
+        // //箭头函数
+        // hello = function() {
+        //     return "Hello World!";
+        // }
+        //
+        // hello = () => {
+        //     return "Hello World!";
+        // }
+        //
+        // hello = () => "Hello World!";//只有一个语句
+        // hello = (val) => "Hello " + val;//有参数
+        // hello = val => "Hello " + val;//如果只有一个参数，您也可以略过括号：
+
+
+    </script>
+
+
+
+</body>
+</html>

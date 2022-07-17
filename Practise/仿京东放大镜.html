@@ -1,0 +1,269 @@
+<!--<!DOCTYPE html>-->
+<!--<html>-->
+<!--<head>-->
+<!--  <title>放大镜</title>-->
+<!--  <meta charset="utf-8">-->
+<!--</head>-->
+<!--<style type="text/css">-->
+<!--  *{-->
+<!--    margin: 0px;-->
+<!--    padding: 0px;-->
+<!--  }-->
+<!--  body{-->
+<!--    width: 1400px;-->
+<!--    margin:40px auto;-->
+<!--  }-->
+<!--  #small{-->
+<!--    width: 900px;-->
+<!--    height: 500px;-->
+<!--    border:1px solid #eee;-->
+<!--    border-radius: 4px;-->
+<!--    position: relative;-->
+<!--  }-->
+
+<!--  #small img{-->
+<!--    width: 100%;-->
+<!--    height: 100%;-->
+<!--  }-->
+
+<!--  div    {-->
+<!--    float: left;-->
+<!--    margin-right: 10px;-->
+<!--  }-->
+
+<!--  #big{-->
+<!--    width: 400px;-->
+<!--    height: 250px;-->
+<!--    overflow: hidden;-->
+<!--    position: relative;-->
+<!--    top:20px;-->
+<!--    border:1px solid #eee;-->
+<!--    border-radius: 4px;-->
+<!--    display: none;-->
+<!--  }-->
+<!--  #big img{-->
+<!--    width: 600%;-->
+<!--    height: 600%;-->
+<!--  }-->
+<!--  #datu{-->
+<!--    position: absolute;-->
+<!--    left: 0px;-->
+<!--    top:0px;-->
+<!--  }-->
+<!--  h1{-->
+<!--    display: block;-->
+<!--  }-->
+<!--  #move{-->
+<!--    width: 100px;-->
+<!--    height: 100px;-->
+<!--    background:#000;-->
+<!--    opacity: .4;-->
+<!--    position: absolute;-->
+<!--    display: none;-->
+<!--    left: 0px;-->
+<!--    top: 0px;-->
+<!--  }-->
+<!--</style>-->
+
+<!--<body>-->
+<!--<div id="small">-->
+<!--  <img src="./img/1.jpg">-->
+<!--  <p id="move"></p>-->
+<!--</div>-->
+<!--<h1>放大窗口</h1>-->
+<!--<div id="big">-->
+<!--  <img src="./img/1.jpg" id="datu">-->
+<!--</div>-->
+<!--</body>-->
+<!--<script type="text/javascript">-->
+<!--  var move = document.getElementById('move');-->
+<!--  var small = document.getElementById('small');-->
+<!--  var big = document.getElementById('big');-->
+<!--  var datu = document.getElementById('datu');-->
+<!--  small.onmousemove = function(event){-->
+<!--    event = event || window.event;-->
+<!--    this.style.cursor = 'move';-->
+<!--    // 计算移动小方块的left值-->
+<!--    var move_left = event.clientX - this.offsetLeft - move.offsetWidth/2;-->
+<!--    // 计算移动小方块的top值-->
+<!--    var move_top = event.clientY - this.offsetTop - move.offsetHeight/2;-->
+<!--    // 设置小方块不允许超出左边边界-->
+<!--    move_left = move_left < 0 ? 0 : move_left;-->
+<!--    //设置小方块不允许超出右边边界			计算方式是：盒子宽度-移动块的宽度=右边边界-->
+<!--    move_left = move_left > this.offsetWidth - move.offsetWidth ? this.offsetWidth - move.offsetWidth : move_left;-->
+<!--    // 跟左右设置一样-->
+<!--    move_top = move_top < 0 ? 0 : move_top;-->
+<!--    move_top = move_top > this.offsetHeight - move.offsetHeight ? this.offsetHeight - move.offsetHeight : move_top;-->
+<!--    // 修改移动小方块的left跟top值-->
+<!--    move.style.left = move_left + 'px';-->
+<!--    move.style.top = move_top + 'px';-->
+<!--    var x = move_left/(small.offsetWidth-move.offsetWidth) * (datu.offsetWidth-big.offsetWidth);-->
+<!--    var y = move_top/(small.offsetHeight-move.offsetHeight) * (datu.offsetHeight-big.offsetHeight);-->
+<!--    // 修改图片定位-->
+<!--    datu.style.left = -x + 'px';-->
+<!--    datu.style.top = -y + 'px';-->
+<!--  }-->
+<!--  // 原图移入事件-->
+<!--  small.onmouseover = function(){-->
+<!--    move.style.display = 'block';-->
+<!--    big.style.display = 'block';-->
+<!--  }-->
+<!--  // 原图移出事件-->
+<!--  small.onmouseout = function(){-->
+<!--    move.style.display = 'none';-->
+<!--    big.style.display = 'none';}-->
+<!--</script>-->
+<!--</html>-->
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>京东放大镜效果</title>
+    <script src="../js/index.js"></script>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+        .container {
+            box-sizing: border-box;
+            width: 1200px;
+            height: 500px;
+             background-color: pink;
+            margin: 200px auto;
+        }
+
+        .container .bottombox .leftbox {
+            float: left;
+            height: 400px;
+            width: 400px;
+             background-color: violet;
+            margin-top: 10px;
+        }
+
+        .container .bottombox .leftbox .leftphone {
+            position: relative;
+            overflow: hidden;
+            width: 400px;
+            height: 400px;
+             background-color: pink;
+            margin-top: 5px;
+            margin-left: 10px;
+            border: 1px solid #c8cbc8;
+        }
+
+        .leftbox .leftphone img {
+            width: 100%;
+            height: 100%;
+        }
+
+        .container .bottombox .leftbox .leftphone .cover {
+            position: absolute;
+            /*display: none;*/
+            top: 0;
+            left: 0;
+            width: 220px;
+            height: 220px;
+            background-color: #ffeba2;
+            opacity: 0.5;
+            border: 1px solid #ccc;
+            cursor: move;
+        }
+
+        .container .bottombox .rightbox {
+            float: left;
+            margin-top: 10px;
+            width: 420px;
+            height: 420px;
+            margin-left: 20px;
+            /*background-color: violet;*/
+        }
+
+        .container .bottombox .rightbox {
+            position: relative;
+            display: none;
+            border: 1px solid #ccc;
+            overflow: hidden;
+        }
+
+        .container .bottombox .rightbox img {
+            position: absolute;
+            top: 0;
+            left: 0;
+        }
+    </style>
+</head>
+
+<body>
+<div class="container">
+    <div class="bottombox">
+
+
+        <div class="leftbox">
+                <div class="leftphone">
+                    <img src="img/img%20(1).png" alt="">
+                    <div class="cover"></div>
+                </div>
+        </div>
+
+        <div class="rightbox">
+            <img src="img/img%20(2).png" alt="" class="big">
+        </div>
+
+    </div>
+
+</div>
+
+<script>
+    window.addEventListener('load', function() {
+        // 获取元素
+        var cover = this.document.querySelector('.cover');
+        var leftphone = this.document.querySelector('.leftphone');
+        var rightbox = this.document.querySelector('.rightbox');
+        var big = this.document.querySelector('.big');
+        // 鼠标移动到左边的手机上的时候遮罩层和右边的手机显示出来
+        leftphone.addEventListener('mouseover', function() {
+            cover.style.display = 'block'
+            rightbox.style.display = 'block'
+        })
+        // 鼠标移离开到左边的手机上的时候遮罩层和右边的手机隐藏
+        leftphone.addEventListener('mouseout', function() {
+            cover.style.display = 'none'
+            rightbox.style.display = 'none'
+        })
+        leftphone.addEventListener('mousemove', function(e) {
+            var x = e.pageX - this.offsetLeft;
+            var y = e.pageY - this.offsetTop;
+            // x的移动距离
+            var totalx = x - cover.offsetWidth / 2;
+            var totaly = y - cover.offsetHeight / 2
+            if (totalx < 0) {
+                totalx = 0;
+            } else if (totalx >= leftphone.offsetWidth - cover.offsetWidth) {
+                totalx = leftphone.offsetWidth - cover.offsetWidth;
+            }
+            if (totaly < 0) {
+                totaly = 0;
+            } else if (totaly >= leftphone.offsetHeight - cover.offsetHeight) {
+                totaly = leftphone.offsetHeight - cover.offsetHeight;
+            }
+            cover.style.left = totalx + 'px';
+            cover.style.top = totaly + 'px';
+            // imgmaxx是图片最大x移动距离
+            var imgmaxx = rightbox.offsetWidth - big.offsetWidth;
+            var imgmaxy = rightbox.offsetHeight - big.offsetHeight;
+            var imgmovex = totalx * imgmaxx / (leftphone.offsetWidth - cover.offsetWidth)
+            var imgmovey = totaly * imgmaxy / (leftphone.offsetHeight - cover.offsetHeight)
+            big.style.left = imgmovex + 'px';
+            big.style.top = imgmovey + 'px';
+
+        })
+    })
+</script>
+</body>
+
+</html>

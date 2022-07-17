@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>legend图例(配合series使用)</title>
+    <script src="echarts.min.js"></script>
+</head>
+<body>
+    <div id="main" style="width: 50%;height: 500px">
+        <!--图表容器-->
+    </div>
+    <script>
+        var myCharts=echarts.init(document.getElementById("main"))//初始化
+        var option={//设置option
+            title:{//标题
+                text:"一周的气温",
+                link:"https://echarts.apache.org",
+                textStyle:{
+                    color:"pink"
+                },
+                borderWidth:2,
+                borderRadius:3,
+                borderColor:"#9D989D"
+            },
+            tooltip:{//提示框
+                trigger:"axis",
+                triggerOn:"mousemove",
+                // formatter: function(arg){
+                //             return arg[0].name+"的气温是"+arg[0].data
+                //         },
+                axisPointer:{
+                    type:"cross"
+                },
+
+            },
+            toolbox:{//工具箱
+                show:true,
+                feature:{
+                    saveAsImage:{},
+                    dataView:{readOnly:false},
+                    restore:{},
+                    dataZoom:{},
+                    magicType:{
+                        type:["line","bar","stack"]
+                    },
+                }
+            },
+            legend:{//图例
+                data:["摄氏度℃","华氏度℉"]//列表中元素需要与series中name属性匹配
+            },
+            gird:{
+                show:true,
+                top:1
+            },
+            xAxis:{
+                type:"category",
+                data:["Monday","Tuesday","Wednesday","Thursday","Friday","Saturday","Sunday"],
+                axisTick:{
+                    alignWithLabel:true
+                },
+            },
+            yAxis:{
+                type:"value"
+            },
+            series:[
+                {
+                    name:"摄氏度℃",
+                    type:"bar",
+                    markPoint:{
+                        data:[
+                                {type:"max",name:"最大值"},
+                                {type:"min",name:"最小值"}
+                            ]
+                    },
+                    markLine:{
+                        data:[{type:"average",name:"平均值"}]
+                    },
+                    label:{//数值显示
+                        show:true,
+                        position:"top",
+                        color:"black",
+                    },
+                    barWidth:"20%",
+                    showBackground:true,
+                    backgroundStyle:{
+                        color:"cyan"
+                    },
+                    data:[32,21,26,27,31,29,19]
+                },
+                {
+                    name:"华氏度℉",
+                    type:"line",
+                    // markPoint:{
+                    //     data:[
+                    //         {type:"max",name:"最大值"},
+                    //         {type:"min",name:"最小值"}
+                    //     ]
+                    // },
+                    // markLine:{
+                    //     data:[{type:"average",name:"平均值"}]
+                    // },
+                    // label:{//数值显示
+                    //     show:true,
+                    //     position:"top",
+                    //     color:"yellow",
+                    // },
+
+                    //没啥用
+                    // barWidth:"20%",
+                    // showBackground:true,
+                    // backgroundStyle:{
+                    //     color:"silver"
+                    // },
+                    data:[89.6,69.8,78.8,80.6,87.8,84.2,66.2],
+                },
+            ]
+
+        }
+        myCharts.setOption(option)
+    </script>
+
+</body>
+</html>

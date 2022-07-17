@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>百度换肤</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+        }
+        body{
+            height:100vh;
+            width:100vw;
+            background-color:palegreen;
+            background: url("img/baidu (2).png") no-repeat center;
+        }
+        ul{
+            display: flex;
+            flex-direction: row;
+            justify-content: center;
+        }
+        img{
+            width:220px;
+            height:120px;
+        }
+
+    </style>
+</head>
+<body>
+        <ul class="baidu">
+            <li><img src="img/1.jpg" alt=""></li>
+            <li><img src="img/2.jpg" alt=""></li>
+            <li><img src="img/3.jpg" alt=""></li>
+            <li><img src="img/4.jpg" alt=""></li>
+            <li><img src="img/5.jpg" alt=""></li>
+        </ul>
+
+    <script>
+        var imgs=document.querySelector('.baidu').querySelectorAll('img')
+        // console.log(imgs)
+        for(var i=0;i<imgs.length;i++){
+            imgs[i].onclick=function(){
+                console.log(this.src)
+                document.body.style.backgroundImage='url('+this.src+')'
+            }
+        }
+
+    </script>
+</body>
+</html>
+
+

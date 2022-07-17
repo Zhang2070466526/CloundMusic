@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+	</head>
+	<body>
+		<p> 请输入你的姓名:<input type='text' id="a"/></p>
+		<p> 请输入你的年龄:<input type='text' id="b"/></p>
+		<p> 请输入你的电话号:<input type='text' id="c"/></p>
+		<p>
+			<button onclick="printf() ">打印出信息</button>
+		</p>
+		<p>
+			"姓名"=<span id='s1'></span>,
+		    "年龄"=<span id="s2"></span>,
+			"电话号"=<span id="s3"></span>,
+		</p>
+
+		
+		<script>
+			function printf(){
+				var a,b,c;
+				name=document.getElementById("a").value;
+				age=document.getElementById("b").value;
+				phone=document.getElementById("c").value;
+
+				document.getElementById("s1").innerHTML=name;
+				document.getElementById("s2").innerHTML=age;
+				document.getElementById("s3").innerHTML=phone;
+			}
+		
+		</script>
+	</body>
+</html>

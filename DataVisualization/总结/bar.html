@@ -1,0 +1,312 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>柱状图综合应用</title>
+    <script src="./Js/echarts.min.js"></script>
+    <style>
+        *{
+            margin:0;
+            padding:0;
+            box-sizing: border-box;
+        }
+        .father{
+            height:100vh;
+            width:100%;
+            background-image: linear-gradient(45deg,rgba(0,0,0,1),rgba(40, 20, 31,1.0),rgba(0, 40, 31,1.0),rgba(0,0,100,1),rgba(8, 19, 231,0.6));
+            background-size: 300%;
+            animation:barbk 5s linear infinite alternate;
+            display:flex;
+            flex-direction: column;
+        }
+        @keyframes barbk {
+            to{
+                background-position: 0% 0%;
+            }
+            from{
+                background-position: 100% 0%;
+            }
+        }
+        .head{
+            flex:1;
+            /*background-color:purple;*/
+            text-align: center;
+            font:25px Serif;
+        }
+        .main{
+            display:flex;
+            flex:19;
+            flex-wrap: nowrap;
+            /*background-color:pink;*/
+        }
+        div{
+            flex:3;
+        }
+        div:nth-child(1){
+            /*background-color: red;*/
+            display:flex;
+            flex-direction: column;
+        }
+        div:nth-child(2){
+            /*background-color: yellow;*/
+        }
+        div:nth-child(3){
+            /*background-color: blue;*/
+             display:flex;
+            flex-direction: column;
+        }
+        .case1{
+            flex:1;
+        }
+        .case2{
+            flex:1;
+        }
+        a:link{ /*未访问的连接*/
+            color:red;
+            text-decoration:none;
+        }
+        a:visited{/*已经访问过的链接*/
+            color:deepskyblue;
+        }
+        a:hover{ /*鼠标经过的链接*/
+            color:deeppink;
+        }
+        a:active{ /*鼠标按下但未弹起*/
+            color:springgreen;
+        }
+    </style>
+</head>
+<body>
+    <section class="father">
+        <section class="head"><a href="index.html">柱状图综合应用</a></section>
+        <section class="main">
+            <div>
+                <div class="case1" id="1">甲</div>
+                <div class="case1">乙</div>
+            </div>
+            <div>2</div>
+            <div>
+                <div class="case2" id="2"></div>
+                <div class="case2">B</div>
+            </div>
+        </section>
+    </section>
+
+    <script>
+        var myChart1=echarts.init(document.getElementById("1"))
+        // var xData=["Monday","Tuesday","Wednesday","Thursday","Friday","Saturday","Sunday"]
+        var xData=["A","B","C","D","E","F","G"]
+        var yData1=[65,42,54,76,54,92,23]
+        function dataArray(len,min,max){
+            return Array.from({length:len},v=>Math.ceil(Math.random()*(max-min)+min))
+        }
+        var yData2=dataArray(7,0,50)
+        var option1={
+            title:{
+                text:"一周气温变化图",
+                link:"https://echarts.apache.org",
+                textStyle:{
+                    color:"rgba(126, 214, 223,1.0)",
+                    fontSize:18,
+                },
+                borderWidth:1,
+                borderColor:"yellow",
+                borderRadius:3,
+                top:"top",
+                left:"left",
+            },
+            toolbox:{
+                show:true,
+                feature:{
+                    saveAsImage:{},
+                    dataZoom:{},
+                    restore:{},
+                    dataView:{},
+                    magicType:{type:["pie",'line',"stack"]}
+                }
+            },
+            tooltip:{
+                trigger:"item",
+                triggerOn:"mousemove",
+                axisPointer:{
+                    type:"cross"
+                }
+            },
+            legend:{data:["白天","黑夜"]},
+            grid:{
+                // show:true,
+                left:30,
+                bottom:25,
+            },
+            xAxis:{
+                type:"category",//类目轴
+                data:xData,
+                axisTick:{
+                    // show:false,//是否显示坐标轴刻度,默认开启
+                    alignWithLabel:true//保证刻度线和标签对齐
+                },
+            },
+            yAxis:{
+                type:"value",
+            },
+            series:[
+                {
+                    name:"白天",
+                    data:yData1,
+                    type:"bar",
+                    markPoint:{
+                        data:[{type:"max",name:"最大值"},{type:"min",name:"最小值"}]
+                    },
+                    markLine:{
+                        data:[{type:"average",name:'平均值'}]
+                    },
+                    label:{
+                        show:true,
+                        rotate:45,//向左旋转45度
+                        position:"insideTop",
+                        color:"rgba(48, 51, 107,1.0)",
+                    },
+                    barWidth:"20%",
+                    showBackground:true,
+                    backgroundStyle:{
+                        color:"rgba(255, 255, 255,0.5)"
+                    },
+                    itemStyle:{
+                        color:{
+                            type:"linear",
+                            x:0,
+                            y:0,
+                            x2:0,
+                            y2:1,
+                            colorStops:[
+                                {
+                                    offset:0,color:"blue",
+                                },
+                                {
+                                    offset:1,color:"red",
+                                }
+                            ]
+                        }
+                    }
+                },
+                {
+                    name:"黑夜",
+                    data:yData2,
+                    type:"bar",
+                    markPoint:{
+                        data:[
+                            {type:"max",name:"最大值"},
+                            {type:"min",name:"最小值"}
+                        ]
+                    },
+                    markLine:{
+                        data:[{type:"average",name:"平均值"}]
+                    },
+                    label:{//数值显示
+                        show:true,
+                        position:"top",
+                        color:"lightyellow",
+                    },
+                    barWidth:"20%",
+                    showBackground: true,
+                    backgroundStyle:{
+                        color:"rgba(255, 255, 255,0.5)"
+                    },
+                    itemStyle:{
+                        color:{
+                            type:"radial",//径向渐变  (建议在pie中使用)
+                            x:0.5,
+                            y:0.5,
+                            r:1,
+                            colorStops:[
+                                {
+                                    offset:0,color:"black",
+                                },
+                                {
+                                    offset:1,color:"cyan",
+                                }
+                            ]
+                        }
+                    }
+
+                }
+
+            ],
+        }
+        myChart1.setOption(option1)
+
+        var mycharts2=echarts.init(document.getElementById("2"))
+        var option2 ={
+            title:{
+                text:"柱状图2",
+                link:"bar-raw.html",
+                textStyle:{
+                    color:"#f368e0",
+                    fontSize: 20,
+                },
+                top:"top",
+                left:"left",
+                borderWidth: 1,
+                borderRadius: 1,
+                borderColor: "#c8d6e5",
+            },
+            tooltip:{trigger:"item",triggerOn:"mousemove",axisPointer:{type:"cross"}},
+            toolbox:{show:true,feature:{saveAsImage: {},restore:{},dataZoom: {},dataView: {},magicType: {type:["line","bar","stack"]}}},
+            grid:{
+                left:50,
+                bottom:30,
+            },
+            legend:{data:['2015', '2016', '2017','2022'],textStyle:{color:"red"},top:30,right:0,},
+            dataset:{
+                dimensions: ['product', '2015', '2016', '2017','2022'],
+                source: [
+                    { product: 'spring', 2015: 43.3, 2016: 85.8, 2017: 93.7 ,2022:34},
+                    { product: 'summer', 2015: 83.1, 2016: 73.4, 2017: 55.1 ,2022:74},
+                    { product: 'autumn', 2015: 86.4, 2016: 65.2, 2017: 82.5 ,2022:67},
+                    { product: 'winter', 2015: 72.4, 2016: 53.9, 2017: 39.1 ,2022:92}
+                ]
+            },
+            yAxis: {type:"category",axisTick:{alignWithLabel:true},},
+            xAxis:{type:"value"},
+            color:["#3498db","#27ae60","#fff"],//全局调色盘
+            series:[
+                {
+                    name:"2015",
+                    type:"bar"
+                },
+                {
+                    name:"2016",
+                    type:"bar"
+                },
+                {
+                    name:"2017",
+                    type:"bar",
+                    itemStyle:{
+                        color:{
+                            type:"linear",
+                            x:0,
+                            y:0,
+                            x2:1,
+                            y2:0,
+                            colorStops: [
+                            {
+                                offset:0,color:"red"
+                            },{
+                                offset:1,color:"blue"
+                                }
+                            ]
+                        }
+                    }
+                },
+                {
+                    name:"2022",
+                    type:"bar"
+                }
+            ]
+        }
+        mycharts2.setOption(option2)
+        window.onresize=mycharts2.resize
+
+    </script>
+</body>
+</html>

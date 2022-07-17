@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>offset偏移量</title>
+    <style>
+        *{
+            padding:0;
+            margin:0;
+        }
+        .father{
+            height:200px;
+            width:200px;
+            background-color: #3d4cd3;
+            margin-left:100px;
+            position: relative;
+        }
+        .son{
+            background-color: black;
+            height:100px;
+            width:100px;
+            position: absolute;
+            top:20px;
+            left:30px;
+        }
+        .tick{
+            margin-left: 10px;
+            width:600px;
+            height:300px;
+            background-color: chartreuse;
+            /* position: absolute; */
+        }
+    </style>
+</head>
+<body>
+    <div class="father">
+        <div class="son"></div>
+    </div>
+
+    <div class="tick"></div>
+    <script>
+        //偏移量以带有定位的父亲为准,如果没有父亲或者父亲没有定位属性(position)以body为准
+        var father=document.querySelector('.father')
+        console.log(father.offsetTop,father.offsetLeft)     //返回father元素离其父元素(body)的上侧和左侧距离
+        console.log(father.offsetWidth,father.offsetHeight)    //返回元素自身的宽度和高度(含padding,border等)
+        console.log(father.offsetParent)   //返回作为该元素的父元素(带有定位元素(relation)),父级没有定位返回body
+
+        var son=document.querySelector('.son')
+        console.log(son.offsetTop,son.offsetLeft)    //返回son元素离其父元素的距离
+        console.log(son.offsetWidth,son.offsetHeight)  //返回元素自身的宽度和高度(含padding,border等)
+        console.log(son.offsetParent)   //返回作为该元素的父元素(带有定位元素(relation)),父级没有定位返回body
+
+        //parentNode 和 offsetParent 的区别
+        //parentNode 返回该元素的父亲,是最近一级的亲爸爸,不管父亲有没有定位
+        //offsetParent 返回带有定位元素的父亲,一层一层网上找,否则返回body
+
+
+
+        var tick=document.querySelector('.tick')  //鼠标在盒子内部的坐标
+        tick.addEventListener('mousemove',function(e){
+            var x=e.pageX-tick.offsetLeft
+            var y=e.pageY-tick.offsetTop
+            console.log("鼠标在tick框里面的坐标:"+x,y)
+
+        })
+
+
+    </script>
+</body>
+</html>

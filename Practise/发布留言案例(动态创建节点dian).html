@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>发布留言案例(动态创建节点)</title>
+
+    <style>
+        body{
+            height:100vh;
+            display:flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+        textarea{
+            width:60vw;
+            height:30vh;
+            background-color: skyblue;
+            outline:5px dotted red; /*轮廓 类似border*/
+            font-size: 40px;
+            resize: none; /*    是否可由用户调整元素的尺寸。*/
+        }
+        button{
+            width:150px;
+            height:60px;
+            background-color: #00dbff;
+            margin:50px;
+        }
+        ul{
+        }
+        li{
+            margin:10px;
+            background-color: #33d9b2;
+            width:30vh;
+            list-style: none;
+        }
+        li a{
+            float:right;
+            color:red;
+        }
+    </style>
+</head>
+<body>
+    <textarea></textarea>
+    <button>发布</button>
+    <ul></ul>
+    <script>
+        var text = document.querySelector('textarea');
+        var btn = document.querySelector('button');
+        var ul = document.querySelector('ul');
+
+        btn.onclick=function(){
+            if (text.value===""){
+                alert("你是不是啥都没有输入!")
+                return false
+            }else{
+                //创建
+                var li=document.createElement('li')
+                //添加
+                ul.appendChild(li)
+                li.innerHTML="<strong>"+text.value+"</strong>"+"<a href='javascript:;'>删除</a>" //    javascript:;或 javascript:void(0); 指超链接不会跳转
+                //删除(当前链接的li)
+                var as=document.querySelectorAll('a')
+                for(var i=0;i<as.length;i++){
+                    as[i].onclick=function(){
+                        ul.removeChild(this.parentNode)
+                    }
+                }
+            }
+            text.value='';
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>页面加载事件(load和DOMcontentLoaded)</title>
+
+
+
+</head>
+<body>
+    <script>
+        //使用load事件后可以把程序写在页面任意地方,当页面(图片,css,file等)全部加载完毕,在执行该函数
+        //但window.onload注册事件只能写一次,多个,会执行最后一个,而addEventListener没有限制
+        window.addEventListener('load',function(){ //window.onload=function(){}
+            var  btn=document.querySelector('button')
+            btn.addEventListener('click',function(){
+                alert("你点击了我!")
+            })
+        })
+
+        //在DOM加载(不包括图片,CSS,动画等)完成后就触发,只能用addEventListener注册事件方式i,因为有兼容问题
+        window.addEventListener('DOMContentLoaded',function(){
+            alert("这是DOMContentLoaded")
+        })
+    </script>
+    
+    <button>点击</button>
+    <!-- <script>
+        var  btn=document.querySelector('button')
+        btn.addEventListener('click',function(){
+            alert("你点击了我!")
+        })
+    </script> -->
+</body>
+</html>

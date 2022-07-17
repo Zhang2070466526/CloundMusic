@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>client元素可视区</title>
+    <style>
+        div{
+            height:200px;
+            width:300px;
+            background-color: blue;
+            border:10px solid red;
+        }
+    </style>
+</head>
+<body>
+    <div></div>
+    <script>
+        //client相关属性可以得到该元素的边框大小和元素大小等
+        //client和offset对象的最大区别就是client不包含边框
+        var div=document.querySelector('div')
+        console.log(div.clientTop)//返回元素上边框的大小
+        console.log(div.clientLeft)//返回元素左边框的大小
+        console.log(div.clientWidth)//返回自身padding,内容区的宽度,不含边框,返回数值不带单位
+        console.log(div.clientHeight)//返回自身包括padding,内容区的高度,不含边框,返回数值不带单位
+    </script>
+</body>
+</html>

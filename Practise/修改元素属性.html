@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>元素的操作</title>
+</head>
+<body>
+    <button>显示当前系统时间</button>
+    <div class='a'  style=background-color:pink;height:50px;line-height:50px;>某个时间</div>
+    <div id ="one" style=background-color:blue;height:50px;line-height:50px;>某个时间</div>
+    <div class ="b" style=background-color:yellow;height:50px;line-height:50px;margin:0></div>
+
+    <section class="c"></section>
+
+    <div id="two">
+        <p>第一行</p>
+        <div>第二行</div>
+        <section>第三行</section>
+    </div>
+
+    <script>
+        var btn=document.querySelector('button')
+        var div1=document.querySelector('.a')
+        var div2=document.getElementById('one')
+
+        //添加事件修改元素
+        btn.onclick=function(){
+            div1.innerText='2022-5-22'
+        }
+        btn.onmouseover=function(){
+            div2.innerText=getDate()
+        }
+        function getDate(){
+            var date =new  Date();
+            // return date
+            var year=date.getFullYear()   //年
+            var month=date.getMonth()+1   //月 因为是从0开始的
+            var day=date.getDate()  //日
+            var week=date.getDay()  //星期几  0-6   0是周日
+            var weeks=['周日','周一','周二','周三','周四','周五','周六']
+            return '今天是'+year+'年'+month+'月'+day+'日'+weeks[week]
+        }
+
+        //不添加事件修改元素
+        var p=document.querySelector('.b')
+        p.innerText=new Date();
+
+
+        //innerHTML（可以识别html标签）
+        var stn=document.querySelector('.c')
+        stn.innerHTML="<strong style=color:purple>加粗紫色的innerHTML内容</strong>"
+
+        //innerHTML和innerText的读取
+        var div4=document.querySelector('#two')
+        console.log(div4.innerText)
+        console.log(div4.innerHTML)
+
+
+    </script>
+</body>
+</html>

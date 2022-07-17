@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>柱状图</title>
+    <script src="./Js/echarts.min.js"></script>
+    <style>
+        *{
+            padding:0;
+            margin:0;
+            box-sizing: border-box;
+        }
+        section {
+            width: 100%;
+            height: 100vh;
+            background:url(img/bk.jpg) no-repeat;
+            background-size: 100%;
+            display: flex;
+            flex-direction: column;
+        }
+        .head{
+            flex:1;
+            text-align: center;
+            font-size: 30px;
+        }
+        .main{
+            flex:14;
+            /*background-color: #dbff19;*/
+        }
+        a:link{ /*未点击的链接*/
+            color:blue;
+            text-decoration: none;/*    取消下划线*/
+        }
+        a:visited{/*已经访问过的链接*/
+            color:deepskyblue;
+        }
+        a:hover{ /*鼠标经过的链接*/
+            color:deeppink;
+        }
+        a:active{ /*鼠标按下但未弹起*/
+            color:springgreen;
+        }
+    </style>
+</head>
+<body>
+    <section>
+        <div class="head"><a href="bar.html">柱状图</a></div>
+        <div class="main" id="sugar"></div>
+    </section>
+    <script>
+        var myCharts=echarts.init(document.getElementById("sugar"))
+        myCharts.showLoading()//显示加载动画
+        var xdata=["January","February","March","April","May","June","July","August","September","October","November","December"]
+        function ydata(len,max,min){
+            myCharts.hideLoading()//隐藏加载动画
+            return Array.from({length:len},v=>Math.ceil(Math.random()*(max-min)+min))
+        }
+        var option={
+            title:{
+                text:"华中地区降水量和蒸发量",
+                link:"https://echarts.apache.org",
+                textStyle:{
+                    color:"#2980b9",
+                    fontSize:20,
+                },
+                borderRadius:1,
+                borderWidth:1,
+                borderColor:"skyblue",
+                bottom:"10px",
+                right:"10px",
+            },
+            toolbox:{
+                show:true,
+                feature:{
+                    saveAsImage:{},
+                    dataZoom:{},
+                    restore:{},
+                    dataView:{},
+                    magicType:{type:["line","bar","stack"]},
+                }
+            },
+            tooltip:{
+                trigger:"item",
+                triggerOn:"mousemove",
+                //formatter:{},//格式化 字符串模板,回调函数
+                axisPointer:{type:"cross"},
+            },
+            dataZoom:[
+                {
+                    type:"slider",//滑块控制
+                    xAxisIndex:0,//控制的轴
+                    start:0,
+                    end:100,
+                },
+                {
+                    type:"inside",//inside鼠标滚动,拖拽控制
+                    yAxisIndex:0,
+                    start:0,
+                    end:100,
+                }
+            ],
+            grid:{
+                // show:true,
+                left:50,
+                bottom:100,
+            },
+
+            legend:{
+                data:["白天降水量",'夜晚降水量',"蒸发量"],
+                textStyle:{
+                    color:"#16a085",
+                }
+            },
+            xAxis: {
+                name:"月份",
+                type:"category",//类目轴
+                data:xdata,
+                axisTick:{
+                    alignWithLabel:true,
+                },
+                //boundaryGap:false//是否有边界间隙,默认值是true,有边界间隙,但图形中存在柱状图不建议改为false
+                //position:"top",//x轴位置
+            },
+            yAxis:{
+                name:"降水量和蒸发量",
+                type:"value",
+                // scale:true,//是否脱离0值比例
+            },
+            series:[
+                {
+                    name:"白天降水量",
+                    type:"bar",
+                    data:ydata(12,0,1000),
+                    markPoint:{
+                        data:[{type:"max",name:"最大值"},{type:"min",name:"最小值"}]
+                    },
+                    markLine:{
+                        data:[{type:"average",name:"平均值"}]
+                    },
+                    label:{
+                        show:true,
+                        // position:"inside",
+                        position:[9,100],
+                        color:"pink",
+                        rotate:-45,//正值是逆时针,负值是顺时针(标签旋转的角度)
+
+                    },
+                    barWidth:" 30%",
+                    showBackground:true,
+                    backgroundStyle:{
+                        color:"rgba(0,0,255,0.1)",
+                    },
+                    itemStyle:{
+                        color:"rgba(10,147,100,1)",//轴颜色
+                    }
+                },
+                {
+                    name:"夜晚降水量",
+                    type:"bar",
+                    data:ydata(12,0,1000),
+                    markPoint:{
+                        data:[{type:"max",name:"最大值"},{type:"min",name:"最小值"}]
+                    },
+                    markLine:{
+                        data:[{type:"average",name:"平均值"}]
+                    },
+                    label:{
+                        show:true,
+                        position:"top",
+                        rotate: 45,
+                        color:"rgba(200,123,132,1)"
+                    },
+                    barWidth:" 30%",
+                    showBackground: true,
+                    backgroundStyle:{
+                        color:"rgba(0,0,255,0.1)"
+                    },
+                    itemStyle: {
+                        color: {
+                            type:"linear",//线性渐变
+                            x:0,
+                            y:0,
+                            x2:0,
+                            y2:1,
+                            colorStops:[
+                                {
+                                    offset:0,color:"red",//0%处颜色为红色
+                                },{
+                                    offset:1,color:"blue",//100%处颜色为蓝色
+                                }
+                            ],
+                        },
+                    }
+                },
+                {
+                    name:"蒸发量",
+                    type:"line",
+                    data:ydata(12,0,1000),
+                    markPoint:{
+                        data:[{type:'max',name:"最大值"},{type:"min",name:"最小值"}]
+                    },
+                    markLine: {
+                        data:[{type:"average",name:"平均值"}]
+                    },
+                    markArea:{
+                        data:[[{xAxis:"October"},{xAxis:"November"}]]
+                    },
+                    symbol:"arrow",//标记形状
+                    symbolSize:10,//形状的大小
+                    label:{
+                        show:true,
+                        position:"inside",
+                        color:"#fff"
+                    },
+                    smooth:true,//线条是否平滑
+                    lineStyle:{
+                        type:"dashed",//虚线,dotted点连成的线,solid实线
+                        color:"red",
+                    },
+                    areaStyle:{
+                        color:"rgba(41, 128, 185,0.4)"
+                    }
+                },
+            ]
+        }
+
+        myCharts.setOption(option)
+
+        // window.onresize=function(){//监听window窗口大小变化的事件,会在窗口或框架被调整大小时发生。窗口大小放大缩小时，触发这个函数；
+        //     myCharts.resize()
+        // }
+        window.onresize=myCharts.resize
+
+
+    </script>
+
+</body>
+</html>

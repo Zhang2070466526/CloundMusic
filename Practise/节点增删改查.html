@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>节点操作</title>
+</head>
+<body>
+    <ul>
+        <li>第一个</li>
+    </ul>
+
+    <script>
+
+
+        //创建节点元素
+        var li=document.createElement('li')
+
+
+        //添加节点 node.appendChild(child)   node父级    child子级
+        var ul=document.querySelector('ul')//获取父级元素
+        ul.appendChild(li)   //添加到指定父节点(ul)的子节点的列表末尾
+
+        //添加节点 node.insertBefore(child,指定元素)  将节点添加到指定子节点前面
+        var li2=document.createElement('li')
+        ul.insertBefore(li2,ul.children[0])
+
+        var span=document.createElement('span')   //仅仅创建是没有任何用处的,还需添加
+        span.innerHTML="<strong style=color:red>加粗红色的添加的节点内容</strong>"
+        document.body.insertBefore(span,document.body.children[0])
+
+
+        //删除节点 removeChild(child)
+        var p=document.createElement('p')   //仅仅创建是没有任何用处的,还需添加
+        document.body.appendChild(p)
+        p.innerHTML="<strong style=color:purple>加粗紫色的马上要删除的节点内容</strong>"
+        document.body.removeChild(p)   //从body元素中删除p节点
+
+
+        //复制节点 node.cloneNode(true/false)  node为被复制的节点  参数为空或flase指只复制节点本身,不复制其子节点  true指会复制节点本身和其子节点
+        var copyli1=ul.children[0].cloneNode()   //复制了ul.children[0]即ul中第一个li    浅拷贝,只复制节点本身,不复制其子节点
+        ul.appendChild(copyli1)
+        copyli1.innerHTML="<a href='javascript:void(0);'>这是浅拷贝了节点本身,然后用innerHTML写入的内容</a>"
+
+
+        var copyli2=ul.children[1].cloneNode(true)  //深拷贝
+        console.log(copyli2)
+        ul.insertBefore(copyli2,ul.children[0])
+
+
+
+
+
+    </script>
+</body>
+</html>

@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>散点图</title>
+    <script src="Js/echarts.min.js"></script>
+    <style>
+        *{
+            margin:0;
+            padding:0;
+            box-sizing: border-box;
+        }
+        body,html{
+            display:flex;
+            height:100vh;
+            width:100vw;
+            flex-direction: column;
+            position:fixed;
+            top:0;
+            left:0;
+            /*pointer-events:none;*/ /**/
+            /*background-color: red;*/
+
+        }
+        .title{
+            flex:1;
+            /*background-color: red;*/
+            font-size: 30px;text-align: center
+        }
+        .mains{
+            flex:10;
+            width:100%;
+            height:100%;
+            /*background-color: dodgerblue;*/
+        }
+
+        a:link{text-decoration: none;color:dodgerblue}
+        a:hover{color:red}
+        a:visited{color:slateblue}
+        a:active{color:blueviolet}
+
+        .content{
+            width:100vw;
+            height:100vh;
+            /*background:url(img/bk3.jpg) center center no-repeat;*/
+            /*background-size:cover;*/
+            /*background: #6655dd;*/
+        }
+        .rain
+        {
+            position:absolute;
+            width:4px;
+            height:9px;
+            /*background: linear-gradient(rgba(255,255,255,0.3),rgba(255,255,255,0.6));*/
+            background: deepskyblue;
+        }
+    </style>
+</head>
+<body  id="rainBox">
+    <section  class="content">
+        <section class="title">
+            <a href="scatter.html">散点图</a>
+        </section>
+        <section class="mains" id="one">
+        </section>
+    </section>
+
+    <script>
+        const box = document.getElementById("rainBox");
+        let boxHeight=box.clientHeight;
+        let boxWidth = box.clientWidth;
+        // 页面大小发生变化时，改变盒子大小
+        window.onresize = function () {
+            boxHeight = box.clientHeight;
+            boxWidth = box.clientWidth;
+        }
+        setInterval(
+            ()=>{
+                const rain = document.createElement("div");
+                rain.classList.add("rain");
+                rain.style.top = 0;
+                rain.style.left = Math.random()*boxWidth+'px';// 随机刷新雨点位置
+                rain.style.opacity=Math.random();// 随机雨点透明度
+                box.appendChild(rain);
+                // 每隔一段时间,雨水下落
+                let race = 1;
+                const timer=setInterval(
+                    ()=>{
+                        if(parseInt(rain.style.top)>boxHeight)
+                        {
+                            clearInterval(timer);
+                            box.removeChild(rain);
+                        }
+                        race++;
+                        rain.style.top=parseInt(rain.style.top)+race+'px'
+                    },20)
+                },50)
+
+            var myCharts=echarts.init(document.getElementById("one"))
+            function arrays(len,max,min){
+                var ls1=[]
+                for (var i=0;i<=len;i++){
+                    ls1.push(Array.from({length:2},()=>Math.ceil(Math.random()*(max-min)+min)))
+                }
+                return ls1
+             }
+            // console.log(arrays(100,100,1))
+            var option={
+                title:{
+                    text:"散点案例",
+                    link:"https://echarts.apache.org",
+                    textStyle:{color:"rgba(165,26,154)",fontSize:30,},
+                    // borderRadius:1,
+                    // borderWidth:2,
+                    // borderColor:"rgba(0,87,167,1)",
+                    left:5,
+                    bottom:45,
+                },
+                dataZoom:[
+                        {type:"inside",xAxisIndex:0,start:0,end:100},
+                        {type:"slider",yAxisIndex:0,start:0,end:100,}
+                ],
+                toolbox:{
+                    show:true,
+                    feature:{
+                        saveAsImage:{},
+                        dataZoom: {},
+                        restore:{},
+                        // dataView:{},
+                        // magicType:{type:["line","bar",'stack','pie']}
+                    },
+                    right:40,
+                },
+                tooltip:{
+                    trigger:'axis',
+                    triggerOn:"mousemove",
+                    type:"cross"
+                },
+                legend:{data:['图一','图二'],textStyle:{color:"#fff",fontSize:20,},left:'left'},
+                grid:{show:true,bottom:100},
+                xAxis:{name:"X",type:"value",axisTick:{alignWithLabel:true}},
+                yAxis:{name:"Y",type:"value",scale:true},
+                series:[
+                    {
+                        type:"scatter",
+                        data:arrays(100,10000,1000),
+                        name:"图一",
+                        markPoint:{data:[{type:"max",name:"最大值"},{type:"min",name:"最小值"}],},
+                        markLine:{data:[{type:"average",name:"平均值"}]},
+                    },
+                    {
+                        type: "effectScatter",//散点效果(即涟漪动画)
+                        data: arrays(100, 10000, 1000),
+                        name: "图二",
+                        showEffectOn: "render",//控制涟漪动画发生的时机  render:散点加载完自动渲染涟漪效果 emphasis:当鼠标点击或划过才会出现涟漪效果
+                        rippleEffect:{
+                            scale:4,//涟漪动画的范围或作用大小(散点扩大的规模)
+                            // color:"purple"
+                        },
+                        // symbolSize:7,//散点的大小
+                        symbolSize: function (sugar) {
+                            var x = sugar[0]
+                            var y = sugar[1]
+                            if (x * y < 25000000) {
+                                return 4
+                            } else if (x * y < 49000000) {
+                                return 7
+                            } else {
+                                return 10
+                            }
+                        },
+                        itemStyle:{
+                            color: function(sugar){
+                                var x=sugar.data[0]
+                                var y=sugar.data[1]
+                                if (x*y<25000000){
+                                    return "blue"
+                                } else if(x*y<49000000){
+                                    return "green"
+                                } else{return "red"}
+                            }
+                        },
+
+                    }
+                    ],
+            }
+        myCharts.setOption(option)
+        window.onresize=myCharts.resize
+    </script>
+</body>
+</html>

@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>gauge效果A</title>
+    <script src="echarts.min.js"></script>
+    <style>
+        body{
+            width:100vw;
+            height:100vh;
+            padding:0;
+            margin:0;
+            /*background-image: linear-gradient(120deg,#cd84f1,#7d5fff,#67e6dc,#c56cf0,#18dcff,#7158e2);*/
+            background-size: 400%;
+            animation: gauge 15s linear infinite alternate;
+        }
+        @keyframes gauge {
+            from{background-position: 0%,0%}
+            to{background-position: 100%,100%}
+        }
+    </style>
+</head>
+<body>
+    <div style="height:600px;width:600px;"><!--Lorem--></div>
+    <script>
+        var myCharts=echarts.init(document.querySelector("div"))
+        var option={
+            title:{
+                text:"Lorem ipsum dolor sit amet",
+                link:"https://echarts.apache.org",
+                textStyle:{
+                    color:"#18dcff",
+                    fontSize:15,
+                }
+            },
+            tooltip:{
+                formatter:"{a}:<br>{b}:{c}"//{a}（系列名称），{b}（数据项名称），{c}（数值）, {d}（百分比）
+            },
+            series:[
+                {
+                    name:"年份",
+                    type:'gauge',
+                    data:[{value:2001,name:"自由"}],
+                    itemStyle:{color:"#7efff5",},//指针样式
+                    min:1000,//仪表盘范围
+                    max:3000,
+                    progress:{//当前进度
+                        show:true//显示进度条
+                    },
+                }
+            ]
+
+        }
+        myCharts.setOption(option)
+    </script>
+</body>
+</html>

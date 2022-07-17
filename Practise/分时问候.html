@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>分时问候(操作元素的修改)</title>
+</head>
+<body>
+
+    <img src="img/img%20(5).png" height="400px" width="600px">
+    <div>上午好</div>
+    <div id="a">当前时间</div>
+
+    <script>
+
+
+
+         var img=document.getElementsByTagName('img') //img[0]才是对象  img是伪数组
+         var div=document.querySelector('div')
+         var date=new Date();
+         var h=date.getSeconds()//秒数
+
+         if (h<12){
+             img[0].src="img/img%20(1).png"
+             div.innerHTML='上午好'
+         }else if(h<30){
+             img[0].src="img/img%20(2).png"
+             div.innerHTML='下午好'
+         }else{
+             img[0].src="img/img%20(3).png"
+             div.innerHTML='晚上好'
+         }
+
+
+         var p=document.querySelector('#a')
+         p.innerText=new Date();
+
+
+
+    </script>
+</body>
+</html>

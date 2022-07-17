@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>鼠标事件对象MouseEvent</title>
+</head>
+<body>
+    
+    <ul>
+        <!-- 鼠标事件对象 MouseEvent -->
+        <li>e.clientX 返回鼠标相对于浏览器窗口可视区(当被页面覆盖或有控制台等就不算可视区)的X坐标</li>
+        <li>e.clientY 返回鼠标相对于浏览器窗口可视区的Y坐标</li>
+
+        <li>e.pageX 返回鼠标相对于文档(document)页面的X坐标(IE9+支持)</li>
+        <li>e.pageY 返回鼠标相对于文档页面的Y坐标(IE9+支持)</li>
+
+        <li>e.screenX 返回鼠标位于整个电脑屏幕的X坐标</li>
+        <li>e.screenY 返回鼠标位于整个电脑屏幕的Y坐标</li>
+    </ul>
+
+    <script>
+        document.addEventListener('click',function(e){
+            console.log(e.clientX,e.clientY)   //可视区坐标(无论屏幕是否滚动等,都以可视区为主)
+            console.log(e.pageX,e.pageY)      //整个document页面的坐标
+            console.log(e.screenX,e.screenY)
+        })
+    </script>
+    
+</body>
+</html>

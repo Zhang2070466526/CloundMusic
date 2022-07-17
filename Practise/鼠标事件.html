@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>鼠标事件</title>
+</head>
+<body>
+    <ul> 
+    <!-- 传统注册事件加on   监听注册方式不用加on -->
+        <li>onclick 单机鼠标左键触发</li>
+
+        <li>onfocus 获得鼠标指针焦点触发</li>
+        <li>onblur  失去鼠标指针焦点触发</li>
+
+        <li>onmouseover 鼠标指针经过时触发</li>
+        <li>onmouseout  鼠标指针离开时触发</li>
+
+        <li>onmousedown 按下任意鼠标按键时触发</li>
+        <li>onmouseup   释放任意鼠标按键时触发</li>
+
+        <li>onmousemove  在元素内鼠标指针移动时持续触发</li>
+
+        <li>oncontextmenu 控制何时出现右键的菜单</li>
+        <li>onselectstart 鼠标选中触发（我不愿意被分享或选中）</li>
+    </ul>
+
+    <script>
+        //禁止鼠标右击后出现菜单
+        document.addEventListener('contextmenu',function(e){
+            e.preventDefault()  //阻止出现菜单这个默认事件
+        })
+
+        //禁止鼠标选中
+        var ul=document.querySelectorAll('ul')
+        var noli=ul[0].children[ul[0].children.length -1]
+        noli.addEventListener('selectstart',function(e){
+            e.preventDefault()   //阻止开始选中这个默认事件
+        })
+    </script>
+
+
+</body>
+</html>

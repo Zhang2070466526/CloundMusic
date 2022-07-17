@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>案例B</title>
+    <script src="echarts.min.js"></script>
+</head>
+<body>
+      <div id="main" style="height: 500px;width: 1000px">
+          <!--存放图表-->
+      </div>
+     <script>
+         var mCharts=echarts.init(document.getElementById("main"));
+         var xDataArray=['王大杨','王二杨','王三杨','王四杨','王五杨','王六杨','王七杨','王八杨','王九杨','王小杨'];
+         var yDataArray=[10,90,67,2,22,56,83,43,76,100]
+         var option={
+             title:{
+                 text:"王部长家的成绩",
+                 textStyle:{
+                     color:"rgb(0,47,167)"
+                 }
+             },
+             xAxis:{
+                 type:"value",
+                 
+             },
+             yAxis:{
+                 type:"category",
+                 data:xDataArray
+             },
+             series:[
+                 {
+                     type:"bar",
+                     data:yDataArray,
+                     //标记 (最大值,最小值,平均值)
+                     markPoint:{ //标记点
+                         data:[{type:"max",name:"最大值"},//标记最大值
+                               {type:"min",name:"最小值"}//标记最小值
+                              ]
+                     },
+                     markLine:{//标记线
+                         data:[
+                             {
+                                 type:"average",name:"平均值"
+                             }
+                         ]
+                     },
+
+                     //显示 (数值显示,柱宽度,横向柱状图)
+                      label:{
+                          show:true, //显示数值
+                          rotate:90, //数值向左旋转角度
+                          position:"top",//数值的位置 默认为inside 柱子内部
+                          color:"red" //数值颜色
+                      },
+                      barWidth:"30%",//每个柱子的宽度
+                 }
+             ]
+         }
+         mCharts.setOption(option)
+     </script>
+
+
+</body>
+</html>

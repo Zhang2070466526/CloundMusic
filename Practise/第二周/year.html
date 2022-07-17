@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+	</head>
+	<body>
+		<div>
+			<p>请输入数值:<input type="text" id="num"/></p>
+			<button onclick="print()"> 返回 </button> <span id="result"></span>
+
+		</div>
+		
+		<script>
+			function print(){
+				var c = document.getElementById("num").value;
+				switch(c){
+					case '1':document.getElementById("result").innerHTML="星期一";break;
+					case '2':document.getElementById("result").innerHTML="星期二";break;
+					case '3':document.getElementById("result").innerHTML="星期三";break;
+					case '4':document.getElementById("result").innerHTML="星期四";break;
+					case '5':document.getElementById("result").innerHTML="星期五";break;
+					case '6':document.getElementById("result").innerHTML="星期六";break;
+					case '7':document.getElementById("result").innerHTML="星期日";break;
+					default:document.getElementById("result").innerHTML="请选择1~7之间的数字";break;
+				}	
+				
+			}
+		</script>
+	</body>
+</html>

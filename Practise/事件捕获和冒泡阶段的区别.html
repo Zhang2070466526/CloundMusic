@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>DOM事件流</title>
+    <style>
+        body{
+            height:100vh;
+            width:100vw;
+            display:flex;
+            justify-content: center;
+            align-items: center;
+        }
+        .father{
+            display:flex;
+            justify-content: center;
+            align-items: center;
+            background-color: #00CED1;
+            width:500px;
+            height:500px
+        }
+        .son{
+            background-color: violet;
+            width:200px;
+            height:200px;
+        }
+    </style>
+</head>
+<body>
+    <div class="father">
+        <div class="son"></div>
+    </div>
+    <script>
+        var father=document.querySelector('.father')
+        var son=document.querySelector('.son')
+
+        // //事件冒泡阶段  .son -> .father -> body -> html ->document
+        // father.addEventListener('click',function(){
+        //     alert("这是父亲father")
+        // })
+        // son.addEventListener('click',function(){
+        //     alert('这是儿子son')
+        // })
+        // document.addEventListener('click',function(){
+        //     alert("这是document")
+        // })
+
+
+        //事件捕获阶段  document -> html -> body -> .father  -> .son
+        father.addEventListener('click',function(){
+            alert("这是父亲father")
+        },true)
+        son.addEventListener('click',function(){
+            alert('这是儿子son')
+        },true)
+        document.addEventListener('click',function(){
+            alert("这是document")
+        },true)
+
+
+        //事件捕获阶段和冒泡阶段只能存在一种
+
+
+    </script>
+</body>
+</html>

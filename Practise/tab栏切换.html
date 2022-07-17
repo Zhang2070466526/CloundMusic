@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>tab栏切换</title>
+    <style>
+        .tab{
+            background-color: gray;
+            height: 39px;
+            width: 800px;
+            margin: auto;
+        }
+        ul{
+            display: flex;
+            flex-direction: row;
+            justify-content: space-around;
+            /*margin:auto auto;*/
+        }
+        .tab_list li{
+            list-style: none;
+            margin-top: 9px;
+            cursor: pointer; /*鼠标样式*/
+
+        }
+        .tab_list .current{
+            background-color: red;
+            color: #fff;
+        }
+
+        .item{
+            display: none;  /*  隐藏  */
+            /* block   以块状元素的方式显示*/
+
+        }
+        .tab_content{
+            float: left;
+            height: 639px;
+            width: 800px;
+            margin: auto;
+        }
+    </style>
+
+</head>
+<body>
+    <div class="tab">
+        <div class="tab_list">
+            <ul>
+                <li class="current">图片</li>
+                <li>视频</li>
+                <li>文字</li>
+                <li>音频</li>
+                <li>图表</li>
+                <li>颜色</li>
+            </ul>
+        </div>
+        <div class="tab_content">
+            <div class="item">图片页面展示信息</div>
+            <div class="item">视频页面展示信息</div>
+            <div class="item">文字页面展示信息</div>
+            <div class="item">音频页面展示信息</div>
+            <div class="item">图表页面展示信息</div>
+            <div class="item">颜色页面展示信息</div>
+        </div>
+    </div>
+    <script>
+        // var tablist =document.querySelector('.tab_list')
+        var lis=document.querySelectorAll('li')
+        var items=document.querySelectorAll('.item')
+        for(var i=0;i<lis.length;i++){
+            lis[i].setAttribute('index',i)//设置索引值
+            lis[i].onclick=function(){
+                for(var j=0;j<lis.length;j++){
+                    lis[j].className=''  //清空所有class属性
+                }
+                this.className='current'; // 选中的对象class属性设置为className
+
+                var index=this.getAttribute('index')
+                for(var k=0;k<items.length;k++){
+                    items[k].style.display='none'
+                }
+                items[index].style.display='block'
+
+            }
+
+        }
+
+
+    </script>
+</body>
+</html>

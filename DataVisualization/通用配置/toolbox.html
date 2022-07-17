@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>工具栏toolbox通用配置</title>
+    <script src="echarts.min.js"></script>
+</head>
+<body>
+    <div id="main" style="height: 500px;width: 50%">
+        <!--图片存放处-->
+    </div>
+    <script>
+        var myChart=echarts.init(document.getElementById("main"))
+        var option={
+            title:[//标题
+                {
+                    text:"sugar",
+                    link:"https://echarts.apache.org",
+                    textStyle:{color:"rgb(21,69,153)"},
+                    borderWidth:1,
+                    borderRadius:3,
+                    borderColor:"#9D989D",
+                    left:"center",
+                    top:"top",
+                }
+            ],
+            tooltip:[//提示框
+                {
+                    trigger:"axis",
+                    triggerOn:"mousemove",
+                    formatter:function(arg){
+                        return arg[0].name+"考了"+arg[0].data
+                    },
+
+                    axisPointer:{
+                        type:"shadow"
+                    },
+                },
+            ],
+            gird:[//网格
+                {
+                    show:false,
+                }
+            ],
+            toolbox:[//工具箱
+                {
+                    show: true,//虽然默认是显示,但是不写时,数据视图更改后不会有变化
+                    feature:{
+                        saveAsImage:{},//保存图片
+                        dataView:{readOnly: false},//数据视图   属性为是否只读(是否不可编辑)
+                        restore:{},//数据还原(当使用dataView工具时,可以还原数据,即刷新)
+                        dataZoom:{},//数据区域缩放
+                        magicType:{
+                            type:['line',"bar","stack"]
+                        },//动态图表类型切换 转换为line折线图 stack堆叠模式
+                    },
+                }
+            ],
+            xAxis:[//x轴
+                {
+                    type:"category",
+                    data:["A","B","C","D","E","F","G","H","I","J","K","L","M"],
+                    // axisTick:{
+                    //     alignWithLabel:true//x轴刻度与类目名对齐
+                    // }
+                }
+            ],
+            yAxis:[//y轴
+                {
+                    type:"value"
+                }
+            ],
+            series:[//系列
+                {
+                    name:"语文",
+                    type:"bar",
+                    data:[64,87,32,97,21,54,76,45,87,34,98,65,78],
+                    markPoint:{
+                        data:[{type:"max",name:"最大值"},
+                              {type:"min",name:"最小值"}]
+                    },
+                    markLine:{
+                        data:[{type:"average",name:"平均值"}]
+                    },
+                    label:{
+                        show:true,
+                        position:"top",
+                        color:"black",
+                    },
+                    barWidth:"40%",
+                    showBackground:true,
+                    backgroundStyle:{
+                        color:"cyan"
+                    },
+                }
+            ],
+        }
+        myChart.setOption(option)
+    </script>
+
+
+
+</body>
+</html>

@@ -1,0 +1,83 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>拖动模态</title>
+    <style>
+        *{
+            margin:0;
+            padding:0;
+            overflow:hidden;
+        }
+
+        .login{
+            /*display: none;*/
+            background-color: red;
+            border:slateblue 1px solid;
+            width:500px;
+            height:300px;
+            position: absolute;  /* left 和 top属性写在js中 */
+
+            /* display: none;
+            position: absolute;
+            left: 50%;
+            top: 30%;
+            transform: translate(-50%, -50%);
+            -webkit-transform: translate(-50%, -50%);
+            width: 360px;
+            height: 200px;
+            background: skyblue;
+            border: 1px solid #ddd;
+            z-index: 2; */
+        }
+
+        .login-title{
+            display: inline-block;
+            text-align: center;
+            width:500px;
+            height:30px;
+            line-height: 30px;
+            color:darkblue;
+            font-size: 20px;
+            background-color: aquamarine;
+            z-index:1;
+            position: absolute;
+            cursor: move;
+        }
+
+    </style>
+</head>
+<body>
+    <div class="login">
+        <div class="login-title">登录</div>
+    </div>  <!-- 登录框 -->
+
+<script>
+
+    var login=document.querySelector('.login')
+    var title=document.querySelector('.login-title')
+
+
+    title.addEventListener('mousedown', function(e) {
+        var x = e.pageX - login.offsetLeft;
+        var y = e.pageY - login.offsetTop;
+        document.addEventListener('mousemove', move)
+        //console.log(x);
+        function move(e) {
+            login.style.left = e.pageX - x + 'px';
+            login.style.top = e.pageY - y + 'px';
+        };
+        document.addEventListener('mouseup', function() {
+            document.removeEventListener('mousemove', move)
+        })
+    })
+
+
+
+
+</script>
+</body>
+</html>

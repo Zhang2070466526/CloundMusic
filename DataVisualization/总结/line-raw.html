@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>折线图</title>
+    <script src="./Js/echarts.min.js"></script>
+    <style>
+        *{
+            margin:0;
+            padding:0;
+            box-sizing: border-box;
+        }
+        body{
+            width: 100%;
+            height: 100vh;
+            display: flex;
+            flex-direction:column;
+        }
+        .head{
+            flex:1;
+            /*background-color: pink;*/
+            display:flex;
+            justify-content:center;
+            align-items: center;
+        }
+        .son{
+            width:100px;
+            height:50%;
+            /*background-color: #ff07c6;*/
+            font-size: 30px;
+        }
+
+        #A1{
+            flex:10;
+            /*background-color: darkblue;*/
+        }
+        a:link{
+            text-decoration: none;
+            red:red;
+        }
+        a:visited{
+            color:purple;
+        }
+        a:hover{
+            color:pink;
+        }
+        a:active{
+            color:white;
+        }
+    </style>
+
+</head>
+<body>
+
+<section class="head"><section class="son"><a href="line.html">折线图</a></section></section>
+<section id="A1"></section>
+
+
+    <script>
+        var myCharts=echarts.init(document.getElementById("A1"))
+        var Data=function(len,max,min){
+            return Array.from({length:len},v=>Math.ceil(Math.random()*(max-min)+min))
+        }
+        ydata1=Data(12,3000,0)
+        var ydata2=[]
+        for(var i=0;i<ydata1.length;i++){
+            ydata2[i]=3000-ydata1[i]
+        }
+
+        var option= {
+            color:["rgba(26, 188, 156,1.0)","rgba(46, 204, 113,1.0)","rgba(52, 152, 219,1.0)","rgba(155, 89, 182,1.0)","rgba(231, 76, 60,1.0)"],
+            title:{text:"武汉某高校一天的出校和在校人数统计",link:"https://echarts.apache.org",textStyle:{color:"red",fontSize:20,},left:"left",bottom:"bottom",borderRadius:1,borderWidth:1,borderColor:"blue"},
+            toolbox:{show:true,feature:{dataZoom:{},dataView:{},restore:{},saveAsImage:{},magicType:{type:["line","bar","stack"]}},right:"right",},
+            grid:{left:100},
+            legend:{data:["在校人数","出校人数","抑郁人数"],textStyle: {color:"rgba(11, 184, 90,1.0)"}},
+            tooltip: {
+                trigger:"axis",
+                triggerOn:'mousemove',
+                axisPointer: {
+                    type: 'cross' //十字准星指示器
+                }
+            },
+            dataZoom:[
+                {
+                    type:"inside",
+                    xAisIndex:0,
+                    start:0,
+                    end:100,
+                },
+                {
+                    type:"slider",
+                    yAxisIndex:0,
+                    start:0,
+                    end:100,
+                    left:0,
+                }
+            ],
+            xAxis:{
+                name:"时间",
+                type:"category",
+                data:["0:00","2:00","4:00","6:00","8:00","10:00","12:00","14:00","16:00","18:00","20:00","22:00"],
+                axisTick:{
+                    alignWithLabel:true,
+                },
+                boundaryGap:false,//没有边界间隙
+
+            },
+            yAxis:{
+                name:"人数",
+                type:"value",
+                scale:false,//从0值比例开始
+            },
+            series:[
+                {
+                    name:"在校人数",
+                    type:"line",
+                    stack:'one',
+                    data:ydata1,
+                    markPoint:{
+                        data:[{type:"max",name:"最大值"},{type:"min",name:"最小值"}]
+                    },
+                    markLine:{
+                        data:[{type:"average",name:"平均值"}]
+                    },
+                    markArea:{
+                        data:[[{xAxis:"20:00"},{xAxis: "22:00"}],]
+                    }
+
+                },
+                {   name:"出校人数",
+                    type:"line",
+                    data:ydata2,
+                    smooth:true,
+                    areaStyle:{
+                        color:"black"
+                    },
+                    lineStyle:{
+                        type:"dashed",//虚线,dotted点连成的线,solid实线
+                        color:"white",
+                    }
+                },
+
+                {   name:"抑郁人数",
+                    type:"line",
+                    stack:'one',//属性值任意,但堆叠的两个对象属性值要一样
+                    data:Data(12,300,100),
+                    label:{
+                        show:true,
+                        position:'bottom',
+                        color:"red"
+                    },
+                    areaStyle:{
+                        color:"blue"
+                    },
+
+                },
+
+
+
+            ]
+        }
+        myCharts.setOption(option)
+        window.onresize=myCharts.resize
+    </script>
+</body>
+</html>

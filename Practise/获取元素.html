@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>获取元素</title>
+</head>
+<body>
+
+    <p>文档:document </p>
+    <p>元素:element（标签）</p>
+    <p>节点:node</p>
+
+    <div id="one">2022/5/22</div>
+
+    <ul>
+        <li>张优秀</li>
+        <li>张很优秀</li>
+        <li>张最优秀</li>
+        <li>我知道张优秀</li>
+    </ul>
+
+    <ol id="two">
+        <li>大襄阳</li>
+        <li>湖北大襄阳</li>
+        <li>中国大襄阳</li>
+    </ol>
+
+    <div>
+        <label><input type="checkbox" name="fruit" value="苹果">苹果</label>
+        <label><input type="checkbox" name="fruit" value="香蕉">香蕉</label>
+        <label><input type="checkbox" name="fruit" value="西瓜">西瓜</label>
+        <label><input type="checkbox" name="fruit" value="桃子">桃子</label>
+    </div>
+
+    <div>
+        <span class="box">盒子1</span>
+        <span class="box">盒子2</span>
+        <span class="box">盒子3</span>
+    </div>
+
+    <script>
+    //根据id获取元素
+        var tick=document.getElementById('one')//返回id对应的元素对象,若没有返回null
+        console.log(tick)   //<div id="one">2022/5/22</div>
+        console.log(typeof tick)   //object
+
+    //根据标签名获取元素
+        //document.getElementsByTagName('标签名')      通过document对象获取元素
+        var axis=document.getElementsByTagName('li')//获取页面指定标签元素对象的集合(无论是否在同一父元素下),若没有返回空伪数组
+        console.log(axis) //HTMLCollection(7) [li, li, li, li, li, li, li] 页面所有li元素无论是否在同一个父元素下 伪数组元素存储
+        console.log(axis[0]) //li  type:object
+
+        //element.getElementsByTagName('标签名')     通过element对象获取元素
+        // 获取父元素内部所有指定标签名的子元素(父元素必须指明是哪一个元素对象,获取不包括父元素自己)
+        var ol1=document.getElementsByTagName('ol');//方案一
+        console.log(ol1[0].getElementsByTagName('li')); //HTMLCollection(3) [li, li, li]   ol1[0]是父元素对象,ol1则是数组不能作为元素对象
+
+        var ol2=document.getElementById('two')//方案二
+        console.log(ol2.getElementsByTagName('li'))//HTMLCollection(3) [li, li, li]
+
+    //根据name属性获取元素(一般用于表单)
+        var fruits=document.getElementsByName('fruit')
+        console.log(fruits) //NodeList(4) [input, input, input, input]
+        fruits[2].checked=true;//选中索引为2的
+
+    //根据类名获取元素
+        var boxs=document.getElementsByClassName('box');
+        console.log(boxs) //HTMLCollection(3) [section.box, section.box, section.box]
+        boxs[2].style.background='blue'  //设置索引为2的元素背景为蓝色
+
+    //根据选择器获取元素
+        //document.querySelector('选择器')  获取指定选择器的第一个元素对象
+        var firstBox=document.querySelector('.box')
+        console.log(firstBox) //获取class为box的第一个元素   <span class="box">盒子1</span>
+        var firstTwo=document.querySelector('#two')
+        console.log(firstTwo) //获取id为two的第一个元素   <ol id="two"><li>大襄阳</li><li>湖北大襄阳</li><li>中国大襄阳</li></ol>
+        var firstLi=document.querySelector('li')
+        console.log(firstLi) //获取页面的第一个li标签元素    <li>张优秀</li>
+
+        //document.querySelectorAll('选择器') 获取指定选择器的所有元素对象的集合(伪数组)
+        var allBox=document.querySelectorAll('.box')
+        console.log(allBox) //获取class为box的所有元素
+        var allTwo=document.querySelectorAll('#two')
+        console.log(allTwo) //获取id为two的所有元素
+        var allLi=document.querySelectorAll('li')
+        console.log(allLi) //获取页面的所有li标签元素
+
+    //获取body元素   document.body
+        console.log(document.body)
+
+    //获取html元素  document.documentElement
+        console.log(document.documentElement)
+
+    //获取title元素  document.title
+        console.log(document.title)
+
+    //返回对文档(该页面)所有Form对象的引用   document.forms
+        console.log(document.forms)
+
+    //返回对文档中所有Image对象的引用   document.images
+        console.log(document.images)
+
+    </script>
+
+
+</body>
+</html>

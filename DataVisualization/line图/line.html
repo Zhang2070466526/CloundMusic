@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>line折线图</title>
+    <script src="echarts.min.js"></script>
+</head>
+<body>
+    <!-- <section>父项 -->
+        <div id="left" style="width:60%;height:500px"><!-- 第二个图表存放处 --></div>
+        <!-- <div id="center">第二个图表存放处 </div>-->
+        <!-- <div id="right">第三个图表存放处 </div> -->
+    <!-- </section> -->
+    <script>
+        var myCharts1=echarts.init(document.getElementById("left"))
+        function randArray(len, min, max) {
+                    return Array.from({length:len}, v=> Math.floor(Math.random()*(max-min))+min);
+                }
+
+        var option={
+            title:{
+                text:"一周的出生人数",
+                link:"https://echarts.apache.org",
+                textStyle:{
+                    color:"silver"
+                }
+            },
+            toolbox:{
+                show:true,
+                feature:{
+                    saveAsImage:{},
+                    dataView:{readOnly:false},
+                    restore:{},
+                    dataZoom:{},
+                    magicType:{
+                        type:["line","bar","stack"]
+                    },
+
+                }
+            },
+            tooltip:{
+                trigger:"axis",
+                triggerOn:"click",
+                axisPointer:{
+                    type:"cross"
+                }
+            },
+            legend:{
+                data:["白天","黑夜"]
+            },
+            xAxis:{
+                type:"category",
+                data:["Monday","Tuesday","Wednesday","Thursday","Friday","Saturday","Sunday"],
+                axisTick:{
+                    alignWithLabel:true
+                }
+
+            },
+            yAxis:{
+                type:"value"
+            },
+            series:[
+                {
+                    name:"黑夜",
+                    type:"line",
+                    data:randArray(10,1,100),
+                    markPoint:{
+                        data:[{type:"max",name:"最大值"},
+                            {type:"min",name:"最小值"}
+                        ]
+                    },
+                    markLine:{
+                        data:[{type:"average",name:"平均值"}]
+                    },
+                    label:{
+                        show:true,
+                        position:"top",
+                        color:"purple",
+                    },
+
+                },
+                {
+                    name:"白天",
+                    type:"bar",
+                    data:randArray(10,1,100),
+                    markPoint:{
+                        data:[{type:"max",name:"最大值"},
+                              {type:"min",name:"最小值"}
+                        ]
+                    },
+                    markLine:{
+                        data:[{type:"average",name:"平均值"}]
+                    },
+                    label:{
+                        show:true,
+                        position:"top",
+                        color:"purple",
+                    },
+                    barWidth:"30%",
+                    showBackground:true,
+                    backgroundStyle:{
+                        color:"#50518b"
+                    },
+                }
+            ]
+
+        }
+        myCharts1.setOption(option)
+    </script>
+
+
+</body>
+</html>
+

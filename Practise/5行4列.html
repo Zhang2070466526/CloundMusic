@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+    <script>
+
+        var str="";
+        for(var i =1;i<=5;i++){//打印5行
+            for(var j=1;j<=4;j++){//4列
+                str+=j;//打印1234
+            }
+            str+='\n'
+        }
+        console.log(str)
+
+        var str1='';//三角
+        for(var i=1;i<=9;i++){
+            for(var j=1;j<=i;j++){
+                str1=str1+"*";
+            }
+            str1+="\n";
+        }
+        console.log(str1);
+
+        var str3="";//九九乘法表
+        for(var i=1;i<=9;i++){
+            for(var j=1;j<=i;j++){
+                str3+=i+"*"+j+"="+i*j+'\t';
+            }
+            str3+="\n"
+        }
+        console.log(str3)
+
+
+    </script>
+
+
+</body>
+</html>

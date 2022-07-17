@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>利用键盘定位到搜索框</title>
+    <style>
+        *{
+            padding:0;
+            margin:0;
+        }
+        .search{
+            position:relative;  /* 目的是给.con的绝对定位设置参考对象 */
+            background-color: aqua;
+            margin:100px 100px;
+            height:100px;
+            width:300px;
+        }
+        body{
+            background-color: bisque;
+            height:100vh;
+            width:100vw;
+        }
+        .con{
+            display:none;/* 隐藏 */
+            position:absolute;
+            top:-40px;
+            width:171px;
+            border:2px solid rgba(0,0,0);
+            box-shadow:0 2px 4px rgba(0,47,167); /* 阴影 */
+            padding:6px;
+            margin-left: 60px;
+            font-size: 18px;
+            line-height: 20px;
+            color:rgb(165, 42, 42);
+        }
+        .con::before{
+            content:"";
+            width:0;
+            height:0;
+            position:absolute;
+            top:28px;
+            left:18px;
+            border:13px solid #000;
+            border-style: solid dashed dashed;  /* 上 右 下 左  solid实线 dashed虚线 */
+            border-color:chartreuse transparent transparent ;  /* 上 右 下 左  transparent透明*/
+        }
+
+    </style>
+</head>
+<body>
+    <input type="text">
+
+    <div class="search">
+        <div class="con"></div>   
+        <label>
+            快递单号:<input type="text" placeholder="请输入您的快递单号" class="num">
+        </label>
+    </div>
+    
+
+    <script>
+        var search=document.querySelector('input')
+        document.addEventListener('keyup',function(e){
+            if(e.key=='s'||e.key=='S'){
+                alert('按下了s或S键!')
+            }
+            if(e.keyCode===65){   //a键
+                search.focus()    //文本框获得焦点
+            }
+        })
+
+        // 当表单输入内容,con盒子内容变大
+        var con=document.querySelector('.con')
+        var input=document.querySelector('.num')
+        input.addEventListener('keyup',function(){
+            if(this.value==''){
+                con.style.display='none'
+            }else {
+                    con.style.display='block'
+                    con.innerText=this.value //input里面的值赋值给con盒子做内容
+            }
+        })
+
+        input.addEventListener('blur',function(e){
+            con.style.display='none'  //输入框失去鼠标指针焦点后con隐藏
+        })
+        input.addEventListener('focus',function(e){
+            if(this.value!==''){  //输入框内容不为空时
+                con.style.display='block'  //输入框获得鼠标指针焦点后con显示
+            }
+            
+        })
+
+
+
+
+
+    </script>
+</body>
+</html>

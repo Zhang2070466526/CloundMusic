@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>渐变2</title>
+    <style>
+      * {
+        /*box-sizing: border-box;*/
+        margin: 0;
+        padding: 0;
+      }
+      body {
+        width: 100vw;
+        height: 100vh;
+        background: linear-gradient(
+                135deg,rgba(52, 152, 219,1.0),rgba(0,47,167,0.5),rgba(236, 240, 241,1.0),rgba(142, 68, 173,1.0)
+                /*hsl(170deg, 80%, 70%),*/
+                /*hsl(190deg, 80%, 70%),*/
+                /*hsl(250deg, 80%, 70%),*/
+                /*hsl(320deg, 80%, 70%)*/
+        );
+        background-size: 300% 300%;
+        /*在x轴和y轴(即宽高)上放大背景图像三倍*/
+        animation: gradient-move 15s linear infinite  alternate;
+          /*15s 规定完成动画所花费的时间，以秒或毫秒计。*/
+          /*  linear 动画从头到尾的速度是相同的。*/
+          /*infinite 规定动画应该无限次播放。可以用数字规定播放次数*/
+          /*  alternate 动画应该轮流反向播放。  normal默认值正常播放*/
+
+      }
+      @keyframes gradient-move {
+        0% {
+          background-position: 100% 100%;
+        /*  移动背景位置  第一个值水平位置 第二个值垂直位置 */
+        /*  左上角是 0% 0%。
+            右下角是 100% 100%。
+             如果您仅规定了一个值，另一个值将是 50%。*/
+        }
+        100% {
+          background-position: 0% 0%;
+        }
+      }
+    </style>
+</head>
+<body>
+
+</body>
+</html>

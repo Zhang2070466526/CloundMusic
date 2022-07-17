@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>loaction对象</title>
+</head>
+<body>
+    <ol>
+        <!-- 属性 -->
+        <li>location.href       返回完整URL</li>             <!-- "https://www.bilibili.com/video/BV1Sy4y1C7ha?p=282" -->
+        <li>location.protocol   返回URL协议</li>             <!-- "https:" -->
+        <li>location.host       返回URL域名(包括主机名和端口)</li>             <!-- "www.bilibili.com" -->
+        <li>location.hostname   返回URL主机名</li>           <!-- "www.bilibili.com" -->
+        <li>location.port       返回端口号(http默认80端口),若没有返回空字符串</li>   <!-- "" -->
+        <li>location.pathname   返回URL路径名</li>           <!--"/video/BV1Sy4y1C7ha" -->
+        <li>location.search     返回URL参数(URL中“?”之后部分)</li>                  <!-- "?p=282" -->
+        <li>location.hash       返回URL的锚部分('#'之后的部分,常用于链接锚点)</li>    <!-- "" -->
+
+        <hr>
+        <!-- 方法 -->
+        <ul>location.assign()   载入一个新的文档(URL)</ul>
+        <ul>location.reload()   重新加载当前文档(刷新)</ul>
+        <ul>location.replace()  用新的文档替换当前文档,覆盖浏览器当前记录</ul>
+    </ol>
+    <button id="one">assign跳转</button>
+    <button id="two">replace跳转</button>
+    <button id="three">强制刷新reload</button>
+
+    <script>
+        var btn1=document.querySelector('#one')
+        btn1.addEventListener('click',function(){
+            location.assign('https://developer.mozilla.org/zh-CN/') //跳转到该URL,生成新的历史记录(因为可以浏览历史,所以可以实现后退功能!)
+        })
+
+        var btn2=document.querySelector('#two')
+        btn2.addEventListener('click',function(){
+            location.replace('https://developer.mozilla.org/zh-CN/')//跳转到该URL,但是是替换,不生成新的历史记录(原页面变为空页面),所以不能实现后退功能
+        })
+
+        var btn3=document.querySelector('#three')
+        btn3.addEventListener('click',function(){
+            location.reload(true) //默认参数是空或false即普通刷新   若是true即强制刷新,相当于重新读取缓存
+        })
+    </script>
+</body>
+</html>

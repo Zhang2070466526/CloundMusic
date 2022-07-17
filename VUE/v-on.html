@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+  <html lang="en">
+  <head>
+      <meta charset="UTF-8">
+      <title>为元素绑定事件v-on</title>
+      <script src="js/vue.min.js"></script>
+  </head>
+  <body>
+    <div id="app">
+      <input type='button' value="v-on指令(按钮一)" v-on:click='doIt1'>
+      <input type='button' value="v-on指令简写(按钮二)" @click='doIt2'>    <!-- 简写 -->
+      <input type='button' value='双击事件' @dblclick='doIt3'>
+
+      <h1 @click="changeFood">{{food}}</h1> <!-- 按下任意按键触发 -->
+
+
+    </div>
+
+    <script>
+      var app=new Vue({
+        el:"#app",
+        data:{
+          food:"西兰花炒鸡蛋"
+        },
+        methods:{//methods是用来存放函数的，这里的函数会自动成为vue实例的方法
+          doIt1:function(){
+            alert("看这里,这是按钮一")
+          },
+          doIt2:function(){
+            alert("看这里,这是按钮二")
+          },
+          doIt3:function(){
+            alert(this.food)
+          },
+          changeFood:function(){
+            this.food+='好好吃'
+          },
+        },
+
+      })
+
+
+    </script>
+      
+  </body>
+</html>

@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>字符统计</title>
+</head>
+<body>
+    <script>
+        var char="abcdeabsda"
+        var dict={};
+        for(var i=0;i<char.length;i++){
+            var key=char.charAt(i);  //.charAt(index)根据索引返回字符
+            if(dict[key]){
+                dict[key]++;
+            }else{
+                dict[key]=1;
+            }
+        }
+        console.log(dict)
+
+        //最多字符
+        var max_num=0;
+        var max_letter='';
+        for(var k in dict){
+            console.log(k,dict[k])//遍历dict  等价于 key,value
+            if(dict[k]>max_num){
+                max_num=dict[k]
+                max_letter=k
+            }
+        }
+        console.log('出现最大的字符是:'+max_letter+',次数是:'+max_num)
+    </script>
+</body>
+</html>

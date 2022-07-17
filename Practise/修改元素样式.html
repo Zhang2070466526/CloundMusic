@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>元素样式的修改(Style)</title>
+    <style>
+        .change{
+            background:pink;
+            height:100px;
+            font-size: 25px;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+
+    <div>
+        element.style 行内样式操作
+    </div>
+
+    <div id="two" class="second">
+        element.className 类名样式操作
+    </div>
+
+    <script>
+        var div1=document.querySelector('div')
+        div1.onmouseover=function(){ //经过触发
+            this.style.background='purple';
+            this.style.height="100px";
+        }
+
+        var div2=document.getElementById('two')
+        div2.onclick=function(){
+            // this.className='change'   当div2有class属性时会覆盖
+            this.className='second change' //多样式选择器,second change都是该标签的样式
+        }
+
+
+    </script>
+
+</body>
+</html>

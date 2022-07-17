@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>拖动模态</title>
+    <style>
+        *{
+            margin:0;
+            padding:0;
+            overflow:hidden;
+        }
+        .eject-box{
+            display:flex;
+            justify-content: center;
+        }
+        .eject{
+            width: 500px;
+            height:60px;
+            line-height:60px;
+            background-color: aqua;
+            display: inline-block;
+            text-align: center;
+            text-decoration: none;/* 去掉链接的下划线 */
+        }
+        .mask{
+            width:100vw;
+            height:100vh;
+            background-color: blue;
+
+            position: fixed;
+            top:0;
+            left:0;
+            display: none;
+        }
+        .login{
+            display: none;
+            background-color: red;
+            border:slateblue 1px solid;
+            width:500px;
+            height:300px;
+            position: absolute;  /* left 和 top属性写在js中 */
+
+            /* display: none;
+            position: absolute;
+            left: 50%;
+            top: 30%;
+            transform: translate(-50%, -50%);
+            -webkit-transform: translate(-50%, -50%);
+            width: 360px;
+            height: 200px;
+            background: skyblue;
+            border: 1px solid #ddd;
+            z-index: 2; */
+        }
+
+        .close-box{
+            
+        }
+        .close-box>a{
+            display:inline-block;
+            text-decoration: none;
+            text-align: center;
+            height:20px;
+            width:30px;
+            line-height: 20px;
+            background: gold;
+            position:absolute;
+            right:0px;
+            z-index: 2;
+            
+        }
+        .login-title{
+            display: inline-block;
+            text-align: center;
+            width:500px;
+            height:30px;
+            line-height: 30px;
+            color:darkblue;
+            font-size: 20px;
+            background-color: aquamarine;
+            z-index:1;
+            position: absolute;
+            cursor: move;
+        }
+        .login-content{
+            width:500px;
+            height:270px;
+            background-color: chartreuse;
+            position:absolute;
+            bottom: 0;
+            /* display: flex;
+            flex-direction: column;
+            justify-content:space-around;
+            align-items: center; */
+            font-size: 15px;
+        }
+
+        .login-user,.login-psd,.login-btn{
+            margin:10px;
+            height:60px;
+            width:100%;
+            position: relative;
+            margin-top: 30px;
+        }
+        label{
+            position: absolute;
+            left:100px;
+            height:40px;
+            line-height: 40px;
+        }
+        .user,.psd{
+            height:30px;
+            line-height:30px;
+            width:200px;
+            position: absolute;
+            left:165px;
+            margin-top: 5px;
+        }
+        .login-btn{
+            /* display: inline-block; */
+            margin-left:80px;
+        }
+        button{
+            height:30px;
+            width:70px;
+            margin-left:60px;
+        }
+    </style>
+</head>
+<body>
+    <div class="eject-box">
+        <a href="javascript:(0);" class="eject">点击弹出登录框</a>
+    </div>
+
+    <div class="mask"></div>  <!-- 遮罩 -->
+
+    <div class="login">
+        <div class="close-box">
+            <a href="javascript:(0);" class="close">X</a>
+        </div>
+
+        <div class="login-title">登录</div>
+
+        <div class="login-content">
+            <div class="login-user">
+                <label for="">用户名:</label><input type="text" placeholder="请输入用户名" class="user">
+            </div>
+            <div class="login-psd">
+                <label for="">密 码:</label><input type="password" placeholder="请输入登录密码" class="psd">
+            </div>
+            <div class="login-btn">
+                <button>重置</button>
+                <button>登录</button>
+            </div>
+        </div>
+    </div>  <!-- 登录框 -->
+
+    <script>
+        var eject=document.querySelector('.eject')
+        var mask=document.querySelector('.mask')
+        var login=document.querySelector('.login')
+        eject.addEventListener('click', function() {  //打开
+            mask.style.display = 'block';
+            login.style.display = 'block';
+            //实现登录框居中
+            x=window.innerWidth   //当前屏幕宽度
+            y=window.innerHeight  //当前屏幕高度
+            login.style.left=x/2-250+"px"
+            login.style.top=y/2-150+"px"
+        });
+
+        var close=document.querySelector('.close')    //关闭
+        close.addEventListener('click',function(){
+            mask.style.display = 'none';
+            login.style.display = 'none';
+        })
+
+        login.addEventListener('mousedown',function(e){
+            var x=e.pageX-login.offsetLeft
+            var y=e.pageY-login.offsetTop
+            var move=function(e){
+                // login.style.left=e.pageX-x+'px'
+                // login.style.top=e.pageY-y+'px'
+
+                login.style.left=e.pageX-x+'px'
+                login.style.top=e.pageY-e.pageY-login.offsetTop+'px'
+
+
+                console.log(-login.offsetLeft,-login.offsetTop)
+            }
+
+            
+
+            
+            document.addEventListener('mousemove',move)  //鼠标移动
+            document.addEventListener('mouseup',function(e){    //鼠标释放
+                document.removeEventListener('mousemove',move)  //删除事件
+            })
+        })
+
+
+
+
+
+    </script>
+</body>
+</html>

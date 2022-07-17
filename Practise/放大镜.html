@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>放大镜</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            /*overflow: hidden;*/
+        }
+        body{
+            height:100vh;
+            width:100vw;
+            background-color: #1b2735;
+            display:flex;
+        }
+        .left{
+            flex:3;
+            background-color: #3d4cd3;
+            border:1px solid red;
+            position: relative;
+        }
+        .right{
+            flex:5;
+            background-color:steelblue;
+            border:1px solid blueviolet;
+        }
+        .raw{
+            display: block;
+            height:500px;
+            width:250px;
+            margin: 150px auto;
+        }
+        .big{
+            height:99vh;
+            width:450px;
+            display: block;
+            margin:0 auto;
+        }
+        .cover{
+            background-color: rgba(123,166,173,0.5);
+            height:100px;
+            width:100px;
+            position: absolute;
+            top:350px;
+            left:240px;
+        }
+
+    </style>
+</head>
+<body>
+    <div class="left">
+        <img src="img/raw.jpg" class="raw">
+        <div class="cover"></div>    <!--遮罩-->
+    </div>
+    <div class="right">
+        <img src="img/raw.jpg" class="big">
+    </div>
+    <script>
+
+    </script>
+</body>
+</html>

@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>注册事件(进阶版事件)</title>
+</head>
+<body>
+    <button onclick="alert('onclick事件')">弹出</button>
+    <button>再次弹出</button>
+    <button>事件监听事件</button>
+    <script>
+        //传统注册方式(利用on开头的事件,例如onclick)
+        var btn2=document.querySelectorAll('button')
+        btn2[1].onclick=function(){
+            alert('onclick另一种弹出')
+        }
+        //特点 传统注册事件有唯一性,只能使用一次,后面注册函数会覆盖前面注册函数
+
+
+        //方法监听注册方式  addEventListener       （老版本用attachEvent）
+        //eventTarget.addEventListener(type,listener[,useCapture])将指定监听器注册到eventTarget(目标对象)上,当该对象触发指定事件时,执行事件处理函数
+        //type:事件类型字符串,例click,mouseover 不带on     listener:事件处理函数,事件发生,调用该监听函数    useCapture:可选参数 布尔值  默认flase
+        btn2[2].addEventListener('click',function(){
+            alert("事件监听事件弹出的")
+        })
+        btn2[2].addEventListener('click',function(){
+            alert("哈哈,还是事件监听事件弹出的")
+        })//同一元素同一事件可以添加多个监听器(事件处理程序)
+
+
+
+        //封装
+        function addEventListener(element,eventName,fn){
+            //判断当前浏览器是否支持addEventListener方法
+            if(element.addEventListener){
+                element.addEventListener(eventName,fn)//第三个参数是false
+            }else if(element.attachEvent){
+                element.attachEvent('on'+eventName,fn)
+            }else{
+                element['on'+eventName]=fn
+            }
+        }
+
+    </script>
+
+
+
+</body>
+</html>

@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+</body>
+    父元素设置:
+        display: flex    给父盒子添加flex属性,控制子盒子
+        flex-direction:设置主轴方向
+        justify-content:设置主轴上的子元素排列方式
+        flex-wrap:设置子元素是否换行
+        align-content:设置侧轴上的子元素的排列方式(多行)
+        align-items:设置侧轴上的子元素的排列方式(单行)
+        flex-flow:复合属性,相当于设置了flex-direction和flex-wrap
+
+    主轴和侧轴:x和y轴,行和列（参考坐标系第四象限）
+        默认主轴方向就是x轴方向,水平向右
+        默认侧轴方向就是y轴方向,垂直向下
+
+        flex-direction属性决定主轴的方向(即项目的排列方向)
+        注意:主轴和侧轴是会变化的,看flex-direction设置谁为主轴,剩下的就是侧轴,子元素是根主轴排列的
+        属性值:row:从左到右  (默认值)
+               row-reverse:从右到左 即  翻转
+               column:从上倒下
+               column-reverse:从上到下
+
+        justify-content设置主轴上的子元素的排列方式,即项目在主轴上的对齐方式(使用前确定好主轴是那个)
+        属性值:flex-start:从头部开始,若是x轴,则从左到右(默认值)
+               flex-end:从尾部开始排列(只是将项目右移,不会改变项目顺序)
+               center:主轴居中对齐(若主轴是x轴,则水平居中)
+               space-around:平分剩余空间(剩下的剩余空间分配给每个项目之间的空格,包括每个项目的前后)
+               space-between:先两边贴边,在平分剩余空间(重要)
+        
+        flex-wrap 设置子元素是否换行
+        注意:默认子元素不换行(任意多子元素就是不换行,如果装不下会缩小子元素的宽度)
+        属性值:nowrap:不换行(默认值)
+               wrap:换行(装不下会换行)
+            
+        align-items设置侧轴上的子元素排列方式(单行)
+        注意:该属性是控制子项在侧轴(默认侧轴是y轴)上的排列方式,在子项为单项的时候使用
+        属性值:flex-start:从上到下(默认值)  上对齐
+               flex-end:从下到上   下对齐
+               center:挤在一起居中(垂直居中)    居中
+               stretch:拉伸(需要子盒子没有高度)   拉伸
+        
+        align-content 设置侧轴上的子元素排列方式(多行)
+        注意:只能用于子项出现1换行的情况(多行:flex-wrap:wrap),在单行下没有效果
+        属性值:flex-start:在侧轴的头部开始排列(默认)  上对齐
+               flex-end:在侧轴的尾部开始排列  下对齐
+               center:在侧轴中间显示    居中
+               space-around:子项在侧轴平分剩余空间  拉伸
+               space-between:子项在侧轴先分布在两头,在平分剩余空间   平均分配剩余空间
+               stretch:设置子项元素高度平分父元素高度
+            
+        flex-flow flex-direction和flex-wrap的复合属性
+        使用方式:flex-flow:row wrap  主轴从左到右且换行
+                ...
+    子项常见属性
+        flex属性:定义子项目分配剩余空间,用flex表示占多少份数
+        注意:是分配剩余空间
+        使用方式 flex:<number>(默认是0)
+
+        align-self:控制某一个子项自己在侧轴上的排列方式(自己对齐方式)
+        注意:align-self属性允许单个项目有与其他项目不一样的对齐方式,可覆盖父项align-items属性
+            默认值为auto,表示继承父元素的align-items属性,如果没有父元素,则等同于stretch
+        属性值:align-self:auto(默认值) 
+               align-self:baseline
+               align-self:center
+               align-self:flex-end
+               align-self:flex-start
+               align-self:inherit
+               align-self:initial
+               align-self:stretch
+               align-self:unset
+            
+        order:定义项目的排列顺序
+        注意:数值越小,排列越靠前
+        使用方式:order:<nnumber>(默认是0)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</html>

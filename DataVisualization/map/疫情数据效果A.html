@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>疫情数据</title>
+    <script src="jquery.min.js"></script>
+    <script src="echarts.min.js"></script>
+    <style>
+        *{
+            margin:0;
+            padding:0;
+        }
+        body,html{
+            height:100%;
+            weight:100%;
+        }
+        div{
+            height:100%;
+            width:100%;
+            background-image: linear-gradient(to top left,rgba(0,47,167,1),rgba(0,0,0,1),rgba(21,69,153,1),rgba(0,69,101,0));
+        }
+    </style>
+</head>
+<body>
+    <div></div>
+
+
+    <script>
+        var array=[{'name': '重庆', 'value': 147}, {'name': '云南', 'value': 231}, {'name': '新疆', 'value': 13}, {'name': '西藏', 'value': 0}, {'name': '天津', 'value': 24}, {'name': '台湾', 'value': 8}, {'name': '四川', 'value': 108}, {'name': '上海', 'value': 6576}, {'name': '陕西', 'value': 536}, {'name': '山西', 'value': 27}, {'name': '山东', 'value': 121}, {'name': '青海', 'value': 6}, {'name': '宁夏', 'value': 12}, {'name': '内蒙古', 'value': 16}, {'name': '辽宁', 'value': 397}, {'name': '江西', 'value': 109}, {'name': '江苏', 'value': 99}, {'name': '吉林', 'value': 9}, {'name': '湖南', 'value': 221}, {'name': '湖北', 'value': 3554}, {'name': '黑龙江', 'value': 1525}, {'name': '河南', 'value': 206}, {'name': '河北', 'value': 1310}, {'name': '海南', 'value': 43}, {'name': '贵州', 'value': 9}, {'name': '广西', 'value': 58}, {'name': '广东', 'value': 241}, {'name': '福建', 'value': 82}, {'name': '北京', 'value': 102}, {'name': '澳门', 'value': 7}, {'name': '安徽', 'value': 424}, {'name': '香港', 'value': 4855}, {'name': '浙江', 'value': 789}, {'name': '甘肃', 'value': 456}]
+
+        $.get("mapData/china.json",function(ret){
+            echarts.registerMap("china",ret)
+            var myCharts=echarts.init(document.querySelector("div"))
+            var option={
+                title:{
+                    text:"全国在1月28号累计确诊人数",
+                    link:"https://echarts.apache.org",
+                    textStyle:{
+                        color:"red",
+                        fontSize:20,
+                    },
+                    right:"center",
+                },
+                geo:{
+                    type:"map",
+                    map:"china",
+                    zoom:0.9,
+                    label:{
+                        show:true,
+                        color:'red',
+                        fontStyle:"normal",//italic
+                        fontWeight:"bold",
+                        fontSize:7,
+                    },
+
+
+                    center:[114,34]
+                },
+                series:{
+                    data:array,
+                    geoIndex:0,
+                    type:'map'
+                },
+                visualMap:{
+                    min:0,
+                    max:3500,
+                    inRange:{
+                        color:["white","darkblue"]
+                    },
+                    calculable:true,
+                }
+
+            }
+            myCharts.setOption(option)
+
+        })
+    </script>
+
+</body>
+</html>

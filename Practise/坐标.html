@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+      *{
+        margin:0;
+        padding:0;
+        overflow: hidden;
+      }
+      body{
+        height:100vh;
+        width:100vw;
+        display:flex;
+        justify-content: center;
+        align-items: center;
+      }
+      div{
+          width:400px;
+          height:300px;
+          background-color: #8e44ad;
+          position: absolute;
+      }
+
+      .title{
+          width:100%;
+          height:20%;
+          background-color: #3d4cd3;
+          cursor: move;
+      }
+
+    </style>
+</head>
+<body>
+    <div>
+        <div class="title"></div>
+    </div>
+    <script>
+        var div=document.querySelector('div')
+        var title=document.querySelector('.title')
+
+        title.addEventListener('mousedown', function(e) {//鼠标按下激活事件
+            var x = e.pageX -div.offsetLeft;
+            var y = e.pageY -div.offsetTop;
+            //鼠标移动的时候,把鼠标在页面的坐标(pageX，pageY)-鼠标在盒子内的坐标就是模态框的left和top值
+            document.addEventListener('mousemove', move)//鼠标移动
+            // //console.log(x);
+            function move(e) {
+                div.style.left = e.pageX - x + 'px';
+                div.style.top = e.pageY - y + 'px';
+            };
+            document.addEventListener('mouseup', function() {//鼠标释放
+                document.removeEventListener('mousemove', move)//删除事件
+            })
+        })
+
+
+        // div.addEventListener('mousemove',function(e){//鼠标移动激活事件
+        //     // console.log("距离:"+div.offsetLeft,div.offsetTop)
+        //     // console.log("坐标:"+e.pageX,e.pageY)//页面坐标
+        //     var x=e.pageX-div.offsetLeft
+        //     var y=e.pageY-div.offsetTop
+        //     console.log("盒子内的坐标:"+x,y)
+        //
+        // })
+        // // document.body.addEventListener('mousemove',function(e){
+        // //     console.log("坐标:"+e.pageX,e.pageY)
+        // // })
+
+
+
+
+
+    </script>
+</body>
+</html>
+

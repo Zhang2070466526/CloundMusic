@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>map与scatter的结合</title>
+    <script src="jquery.min.js"></script>
+    <script src="echarts.min.js"></script>
+    <style>
+        *{
+            margin:0;
+            padding:0;
+            overflow: hidden;
+        }
+        html,body{
+            height:100%;
+            width:100%;
+        }
+        div{
+            height:100%;
+            width:100%;
+            background-image: linear-gradient(to top left,rgba(0,47,167,1),rgba(23,76,155,0),rgba(0,0,0,1),rgba(64,21,65,1),rgba(88,124,65,1));
+        }
+    </style>
+</head>
+<body>
+    <div></div>
+    <script>
+        var arr=[];//series用的数据
+        var scatterData=[
+            {
+                value:[107.69031,35.31257]//武汉
+            },
+            {
+                value:[0.1,51.3]//伦敦
+            },
+            {
+                value:[-73,41]//华盛顿
+            }
+        ]
+        $.get("mapData/world.json",function (ret){
+            for(var i=1;i<=213;i++){
+                d={}
+                d["name"]=ret.features[i].properties.name
+                d["value"]=Math.random()*(1000-1)+1
+                arr.push(d)
+            }
+            console.log(arr)
+
+            echarts.registerMap("world",ret)
+            var myCharts=echarts.init(document.querySelector("div"))
+            var option={
+                title:{
+                    text:"日不落帝国",
+                    link:"https://echarts.apache.org",
+
+                    textStyle:{
+                        fontSize:30,
+                        color:"rgba(0,149,182,1)",//邦廸蓝
+                    }
+                },
+                geo:{
+                    type:"map",
+                    map:"world",
+                    roam:true,
+                    label:{
+                        show:true,
+                        color:'rgb(128,0,32)',//勃艮第红
+                        fontSize: 9,
+                    },
+                    zoom:1.2,
+                },
+                series:[
+                    {
+                        type:"map",
+                        geoIndex:0,
+                        data:arr,
+                    },
+                    {
+                        type:"effectScatter",//配置散点的坐标数据
+                        data:scatterData,
+                        coordinateSystem:'geo',//指明散点使用的坐标系统是geo的坐标系统(经纬度)
+                        rippleEffect:{
+                            scale:6,
+                            color:'yellow'
+                        },
+
+                    }
+                ],
+            visualMap:{
+                    min:1,
+                    max:1000,
+                    inRange:{
+                        color:["rgb(16,30,32)","rgb(70,146,185)"]//钢蓝,钴蓝
+                    },
+                    calculable:true
+                }
+            }
+            myCharts.setOption(option)
+            window.onresize=myCharts.resize
+
+        })
+    </script>
+</body>
+</html>

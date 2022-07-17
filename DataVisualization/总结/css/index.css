@@ -1,0 +1,114 @@
+*{
+    padding:0;
+    margin:0;
+}
+
+
+/*body {*/
+/*    */
+/*    !*background-image: linear-gradient(125deg,rgba(0,47,167,1),rgba(12,65,124,1),rgba(0,0,0,1),rgba(45,47,134,1));*!*/
+/*}*/
+
+html,body{
+    height:100vh;
+    width:100vw;
+    background-image: linear-gradient(135deg,#9b59b6,#2980b9,#e74c3c,#ecf0f1,#27ae60,#bdc3c7,#16a085);
+    background-size: 300%;
+    animation: backname 15s linear infinite alternate;
+}
+
+
+@keyframes backname{
+    to{
+        background-position: 0% 0%;
+    }
+    from{
+        background-position: 100% 100%;
+    }
+}
+
+.main{
+    max-width: 540px;
+    min-width: 320px;
+    margin: 0 auto;
+    font: normal 14px/1.5 Tahoma, "Lucida Grande", Verdana, "Microsoft Yahei", STXihei, hei;
+    color: #000;
+    /*background: #f2f2f2;*/
+    overflow-x: hidden;
+    -webkit-tap-highlight-color: transparent;
+}
+
+section{
+    height:100px;
+}
+
+
+/* nav */
+
+nav {
+    overflow: hidden;
+    border-radius: 8px;
+    /*margin: 0 4px 3px;*/
+}
+
+.infinite {
+    display: flex;
+    height: 88px;
+    background-color: pink;
+}
+
+.infinite:nth-child(2) {
+    margin: 3px 0;
+}
+
+.alternate {
+    /* 不冲突的 */
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+.alternate a {
+    flex: 1;
+    text-align: center;
+    line-height: 44px;
+    color: #fff;
+    font-size: 14px;
+    /* 文字阴影 */
+    text-shadow: 1px 1px rgba(0, 0, 0, .2);
+}
+
+.alternate a:nth-child(1) {
+    border-bottom: 1px solid #fff;
+}
+
+.alternate:nth-child(1) a {
+    border: 0;
+    background: url(hotel.png) no-repeat bottom center;
+    background-size: 121px auto;
+}
+
+
+/* -n+2就是选择前面两个元素 */
+
+.alternate:nth-child(-n+2) {
+    border-right: 1px solid #fff;
+}
+
+.infinite:nth-child(1) {
+    background: -webkit-linear-gradient(left, #FA5A55, #FA994D);
+}
+
+.infinite:nth-child(2) {
+    background: -webkit-linear-gradient(left, #4B90ED, #53BCED);
+}
+
+.infinite:nth-child(3) {
+    background: -webkit-linear-gradient(left, #34C2A9, #6CD559);
+}
+
+
+footer{
+    margin:100px auto; /*外边距*/
+    /*height:300px;*/
+}

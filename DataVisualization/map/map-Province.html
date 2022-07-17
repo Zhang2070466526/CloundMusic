@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>省份地图</title>
+    <script src="echarts.min.js"></script>
+    <script src="jquery.min.js"></script>
+    <style>
+        *{
+            padding:0;
+            margin: 0;
+        }
+        body,html{
+            height:100%;
+            width:100%;
+        }
+        div{
+            height:100%;
+            width: 100%;
+            background-image: linear-gradient(to bottom right,rgba(0,47,167,0),rgba(12,54,162,1),rgba(54,44,122,0));
+        }
+    </style>
+</head>
+<body>
+    <div></div>
+    <script>
+
+        $.get("mapData/province/hubei.json",function(ret){
+            // console.log(ret)
+            // console.log(ret.features[2].properties.cp)
+            echarts.registerMap("hubei",ret)
+            var myCharts=echarts.init(document.querySelector("div"))
+            var option={
+                geo:{
+                    type:"map",
+                    map:"hubei",
+                    label:{
+                        show:true
+                    },
+                    roam:true,
+                    zoom:0.87,
+                    center:ret.features[4].properties.cp//襄阳市的坐标
+                   // center:[114,30]//经度,维度
+                },
+            }
+            myCharts.setOption(option)
+        })
+
+    </script>
+</body>
+</html>

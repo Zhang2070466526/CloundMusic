@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>主轴方向</title>
+    <style>
+        .s1{
+            display:flex;
+            width:40%;
+            height:300px;
+            border:1px solid red;/*简写属性(可以按顺序设置如下属性：border-width,border-style,border-color)。*/
+            /*  none	定义无边框。
+                hidden	与 "none" 相同。不过应用于表时除外，对于表，hidden 用于解决边框冲突。
+                dotted	定义点状边框。在大多数浏览器中呈现为实线。
+                dashed	定义虚线。在大多数浏览器中呈现为实线。
+                solid	定义实线。
+                double	定义双线。双线的宽度等于 border-width 的值。
+                groove	定义 3D 凹槽边框。其效果取决于 border-color 的值。
+                ridge	定义 3D 垄状边框。其效果取决于 border-color 的值。
+                inset	定义 3D inset 边框。其效果取决于 border-color 的值。
+                outset	定义 3D outset 边框。其效果取决于 border-color 的值。
+                inherit	规定应该从父元素继承边框样式。
+             */
+            background:pink;
+            flex-direction: row;/*默认值,可以不用设置*/
+            font-size:100px;
+        }
+        .s2{
+            display:flex;
+            width:50%;
+            height:300px;
+            border:2px dashed yellow;/*虚线*/
+            background:purple;
+            flex-direction: row-reverse;
+            font-size:10px;
+        }
+        .s3{
+            display:flex;
+            width:60%;
+            height:300px;
+            border:1px none bisque;/*无边框*/
+            background:blue;
+            flex-direction: column;
+            font-size:50px;
+        }
+        .s4{
+            display:flex;
+            width:70%;
+            height:300px;
+            border:1px double cyan;/*双线*/
+            background:green;
+            flex-direction: column-reverse;
+
+        }
+        .s4 div{
+            width:100px;
+            height:100px;
+            border:2px solid #ff07c6;/*双线*/
+            background:#00ff0b;
+            color:#dbff19;/*字体颜色*/
+            font-size:50px;
+
+        }
+
+
+    </style>
+
+</head>
+<body>
+    <section class="s1">
+        <div>1</div>
+        <div>2</div>
+        <div>3</div>
+        <div>4</div>
+    </section>
+
+    <section class="s2">
+        <div>1</div>
+        <div>2</div>
+        <div>3</div>
+        <div>4</div>
+    </section>
+
+    <section class="s3">
+        <div>1</div>
+        <div>2</div>
+        <div>3</div>
+        <div>4</div>
+    </section>
+
+    <section class="s4">
+        <div>1</div>
+        <div>2</div>
+        <div>3</div>
+        <div>4</div>
+    </section>
+
+</body>
+</html>

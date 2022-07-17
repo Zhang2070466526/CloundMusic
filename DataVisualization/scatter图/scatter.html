@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>scatter散点图</title>
+    <script src="echarts.min.js"></script>
+</head>
+<body>
+    <div id="main" style="width:1000px;height:600px"></div>
+    <script>
+
+
+        var myCharts=echarts.init(document.getElementById("main"))
+        // function arg(){
+        //     return Array.from({length:100},()=>[Math.random()*(10-1)+1,Math.random()*(100-90)+90])
+        // }
+        function a(){
+            var arr=[]
+            for(var i=0;i<=100;i++){
+                arr[i]=[]
+                for(var j=0;j<=1;j++) {
+                    arr[i][j] = Math.random()*(100-10)+10
+                    //arr[i][1]=
+                }
+            }
+            return arr
+        }
+        console.log(a())
+
+        var option={
+            xAxis:{
+                type:"value",
+                //scale:true
+            },
+            yAxis:{
+                type:"value",
+                //scale:true
+            },
+            series:[
+                {
+                    type:"scatter",
+                    data:a(),//一定要是二维数组
+                }
+            ]
+        }
+
+
+
+        myCharts.setOption(option)
+
+    </script>
+</body>
+</html>

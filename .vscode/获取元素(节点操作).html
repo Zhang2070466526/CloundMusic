@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>节点(父兄子)</title>
+</head>
+<body>
+    <div class="father" data-index="one">
+        <span>你好,陌生人!</span>
+    </div>
+
+    <div class="brother">
+        <span>你好,陌生人!</span>
+    </div>
+
+    <ul class="shell">
+        <li class="button">
+            <span id="one">消息</span>
+            <ul class="inside">
+                <li>回复我的</li>
+                <li>收到的赞</li>
+                <li>我的消息</li>
+            </ul>
+        </li>
+    </ul>
+
+    <script>
+        //父节点   obj.parentNode  找不到父节点返回null
+        var span=document.querySelector('span')
+        var father=span.parentNode   //等价于 var father =document.querySelector('.father')
+        console.log(father)
+
+        //子节点
+        var ul=document.querySelector('.inside')
+        // var lis=ul.querySelector('li')
+        var lis1=ul.childNodes  //childNodes获得所有的子节点包括元素节点,文本节点等
+        console.log(lis1) //NodeList(7)[text, li, text, li, text, li, text]   text是空格和换行
+        var lis2=ul.children   //children获得所有子节点中的元素节点
+        console.log(lis2)   //HTMLCollection(3)[li, li, li]
+
+        console.log(ul.firstChild,ul.firstChild) //分别获得第一个子节点或最后一个子节点,同样包括元素节点,文本节点等
+        console.log(ul.firstElementChild,ul.lastElementChild)  //分别获得第一和最后一个子元素节点
+        console.log(ul.children[0],ul.children[ul.children.length-1]) //分别获得第一和最后一个子元素节点
+
+        //兄弟节点
+        var brother=document.querySelector('.brother')
+        console.log(brother.nextSibling,brother.previousSibling)//下一个兄弟节点和上一个兄弟节点,包括元素节点,文本节点等
+        console.log(brother.nextElementSibling,brother.previousElementSibling)//下一个元素节点和上一个元素节点,找不到返回null
+
+        function getNextElementSibling(element){   //封装一个nextElementSibling
+            var el=element
+            while(el = el.nextSibling){
+                if(el.nodeType===1){
+                    return el
+                }
+            }
+            return null
+        }
+
+    </script>
+</body>
+</html>

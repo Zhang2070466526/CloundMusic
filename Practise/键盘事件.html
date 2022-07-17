@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>键盘事件</title>
+</head>
+<body>
+    <ul>
+        <li>onkeyup     某键盘按键松开触发</li>
+        <li>onkeydown   某键盘按键按下触发</li>
+        <li>onkeypress  某键盘按键按下触发(不识别功能键,例如Ctrl,Shift等)</li>
+    </ul>
+
+    <script>
+        //方法
+
+        //执行顺序 keydown  --  keypress    --     keyup
+        document.addEventListener('keyup',function(){
+            console.log('keyup我弹起了!')
+        })
+        //keydown和keypress按住不妨会持续触发,keyup和keydown不区分大小写,但keypress区分字母大小写
+        document.addEventListener('keydown',function(){
+            console.log("keydown我按下了!")
+        })
+        document.addEventListener('keypress',function(){
+            console.log('keypress我按下了! ')
+        })
+
+
+        //属性
+        document.addEventListener('keydown',function(e){
+            console.log(e.keyCode)  //根据keyCode属性得到对应的ASCLL码值(判断用户按下的键),13是enter,49是数字1
+            //keydown和keyup不区分大小写(a和A都是65) keypress区分字母大小写
+            console.log(e.key)  //返回键名
+        })
+
+
+    </script>
+</body>
+</html>

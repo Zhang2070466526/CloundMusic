@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>动态生成表格</title>
+    <style>
+        body{
+            height:100vh;
+            display:flex;
+            justify-content: center;
+            align-items: center;
+        }
+        table{
+            text-align: center;
+            /*border:10px dotted red;*/
+            width:50vw;
+            /*height:50vh;*/
+            border-spacing:0 ; /* 设置相邻单元格边框之间的距离.   border-spacing:0;等同于cellspacing="0"）   */
+        }
+        th,td{
+            border:1px solid blue;
+        }
+        thead{
+            background-color: slategrey;
+        }
+
+
+
+    </style>
+</head>
+<body>
+    <table>
+        <thead>
+            <tr>
+                <th>姓名</th><th>科目</th><th>成绩</th><th>操作</th>
+            </tr>
+        </thead>
+        <tbody>
+
+        </tbody>
+    </table>
+    <script>
+        var datas =[
+            {
+                name:"张日天", subject:"Python", score:99,
+            },
+            {
+                name:"陈顶天", subject:"Python", score:12,
+            },
+            {
+                name:"王霸天", subject:"Python", score:56,
+            },
+            {
+                name:"吊炸天", subject:"Python", score:88,
+            },
+        ];
+        //有几个人(数组长度)创建几行
+        var tbody=document.querySelector('tbody');
+        for(var i=0;i<datas.length;i++){
+            var tr=document.createElement('tr')//创建行
+            tbody.appendChild(tr)
+            for(var k in datas[i]){//遍历datas中每个元素
+                var td=document.createElement('td')//创建td元素
+                tr.appendChild(td)//创建列
+                td.innerHTML=datas[i][k]
+            }
+            //创建删除单元格
+            var del=document.createElement('td')
+            tr.appendChild(del)
+            del.innerHTML="<a href='javascript:;'>删除</a>"
+        }
+
+        var as=document.querySelectorAll('a');
+        for(var i=0;i<as.length;i++){
+            as[i].onclick=function (){//标签a的爸爸是单元格td ,爷爷是行tr
+                tbody.removeChild(this.parentNode.parentNode) //要删除的行(tr)的父亲node是tbody
+            }
+        }
+
+
+
+
+
+    </script>
+
+</body>
+</html>
