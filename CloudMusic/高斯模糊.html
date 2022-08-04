@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+  <html lang="en">
+  <head>
+      <meta charset="UTF-8">
+      <title>Lightly-HTML-Project</title>
+      <style>
+        *{
+          margin:0;
+          padding:0;
+        }
+        body{
+          width:100vw;
+          height:100vh;
+          overflow:hidden;
+          display:flex;
+          justify-content: center;
+          align-items: center;
+          /* background-image:url('https://w.wallhaven.cc/full/1j/wallhaven-1j7owg.jpg'); */
+          /* filter:blur(5px);    都模糊 */
+        }
+        .cover::before{    
+            content:'';
+            position:absolute;
+            top:0;
+            left:0;
+            /* width:600px;
+            height:300px; */
+            background:transparent url('https://w.wallhaven.cc/full/1j/wallhaven-1j7owg.jpg') center center no-repeat;
+            filter:blur(5px);
+            z-index:-1;
+            background-size:cover;
+        }
+
+
+
+        div{
+          /* width:20vw;
+          height:20vh;
+          background-image:url('https://w.wallhaven.cc/full/yj/wallhaven-yjg3md.jpg') */
+          font-size: 200px;
+          color:red;
+        }
+      
+      </style>
+  </head>
+  <body>
+      <div>文字</div>
+  </body>
+</html>

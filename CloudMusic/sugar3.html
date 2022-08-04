@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+  <html lang="en">
+  <head>
+      <meta charset="UTF-8">
+      <title>Lightly-HTML-Project</title>
+      <script src="js/vue.min.js"></script>
+      <script src="js/axios.min.js"></script>
+      <link href="//netdna.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+  </head>
+  <body>
+<!-- http://m801.music.126.net/20220802110121/958da53dc7903134ca6754946548b4e5/jdymusic/obj/wo3DlMOGwrbDjj7DisKw/14096610050/8487/d118/1edb/9212346d7fb363b4a6f0155d377541a7.mp3
+ -->
+  <div class='wrap'>
+      <input class='search' type='text' v-on:keyup.enter="searchMusic()" v-model='query' />
+      <ul class='song_list'>
+            <li v-for='item in songList'>
+                <a href='javascript:;' v-on:click='playMusic(item.id)'> 
+                    <i class="fa fa-play-circle-o fa-2x"> <!-- 点击播放歌曲 --></i> 
+                    <b>{{item.name}}</b>
+                </a>
+
+                
+
+                <i class="fa fa-video-camera fa-2x" v-if='item.mvid!=0' v-on:click='playMv(item.mvid)'> 
+                    <!-- mvid!=0的表示有mv即显示 -->
+                    <!-- 点击播放视频 -->
+                </i> 
+            </li>
+      </ul>
+
+      <footer class='bottom'>
+          <audio v-bind:src='musicUrl' controls='controls' autoplay='autoplay' loop='loop' style='width:65vw;'></audio>
+
+          <div>
+                <video ref='video' :src="mvUrl" controls="controls"></video>
+                <!-- <div class="mask" @click="closeMv"></div>遮罩 -->
+          </div>
+
+
+      </footer>
+    </div>
+     <script>
+        axios.defaults.baseURL = 'https://autumnfish.cn';  //接口基地址
+        var app=new Vue({
+            el:".wrap",
+            data:{
+                query:"",//搜索词 
+                songList:[],//歌曲列表
+                musicUrl:"",//歌曲URL
+                mvUrl:"",//mvURL
+            },
+            methods:{
+                searchMusic:function(){   //搜索歌曲
+                    var that=this
+                    axios.get('/search?keywords='+this.query).then(
+                        function(response){
+                            that.songList=response.data.result.songs
+                        },
+                        function(err){
+                            console.log(err)
+                        }
+                    )
+                    this.query=""
+                },
+                playMusic(musicID){
+                  var that=this
+                    axios.get('/song/url?id='+musicID).then(
+                        function(response){
+                            console.log(response.data)
+                            that.musicUrl = response.data.data[0].url
+                        },
+                        function(err){
+                            console.log(err)
+                        }
+                    )
+                },
+                playMv(mvID){
+                    var that=this
+                    axios.get('/mv/url?id=' + mvID).then(
+                        function(response){
+                            that.mvUrl=response.data.data.url
+                        }
+                    )
+                }
+
+
+
+
+            }
+        })
+    </script>
+    
+  </body>
+</html>

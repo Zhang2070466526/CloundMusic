@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+  <html lang="en">
+  <head>
+      <meta charset="UTF-8">
+      <title>Lightly-HTML-Project</title>
+      <link href="//netdna.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+      <style>
+        *{
+            padding:0;
+            margin:0;
+        }
+        body{
+            width:100vw;
+            height:100vh;
+            display:flex;
+            justify-content: center;
+            align-items: center;
+            /* background: url(https://w.wallhaven.cc/full/1j/wallhaven-1j7owg.jpg); */
+            /* background:url(https://w.wallhaven.cc/full/0p/wallhaven-0pj7xe.jpg); */
+            background: url(https://w.wallhaven.cc/full/2k/wallhaven-2k9lqy.jpg);
+            background-size: cover;
+        }
+
+        .left{
+            /* flex:1.5; */
+
+            background-color: palevioletred;
+            height:425px;
+            overflow-x: hidden;
+
+            border-right: 1.5px solid ;/* 边框渐变 */
+            border-image: linear-gradient(to bottom, rgba(0,0,0,0),#578aef,rgba(0,47,167,1), rgba(0,0,0,0)) 1;
+
+            width:400px;
+            /* box-sizing: border-box;
+            padding: 10px;
+            list-style: none; 
+            overflow: hidden; 
+            position: absolute;
+            left: 0px;
+            top: 0px; 
+            z-index: 1; */
+
+        }
+        .song_list {
+            list-style:none; /* 取消前面的小圆点 */
+            width: 100%;
+            overflow-y: auto;
+            height: 100%;
+        }
+        .song_list::-webkit-scrollbar {
+            display: none;  /* 滚动条样式取消 */
+        }
+
+        .song_list li {
+            font-size: 13px;
+            color: #333;
+            height: 40px;
+            line-height: 40px;
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            width: 580px;
+            padding-left: 10px;
+        } 
+
+        .song_list li:nth-child(odd) {
+            background-color: rgba(240, 240, 240, 0.3);
+        }
+        .song_list li a {
+            /* display: block; 
+              box-sizing: border-box; 
+            margin-right: 5px; */
+            text-decoration:none; /* 去掉超链接下面的下划线 */
+            display:flex;
+            justify-content: center; 
+            align-items: center;
+        } 
+         .first{
+          margin-right: 5px;
+        }
+        .second{
+          margin-left: 5px;
+        }
+
+        a:link{color:#12FFF7;}      /* 未访问链接*/
+        a:visited {color:#780206;}  /* 已访问链接 */
+        a:hover {color:#061161;}  /* 鼠标移动到链接上 */
+        a:active {color:#4B1248;}  /* 鼠标点击时 */
+
+
+
+
+
+      </style>
+  </head>
+  <body>
+      
+            <div class='left'>
+               <ul class='song_list'>
+
+
+                     <li >
+                        <a href='javascript:;' class='first'> 
+                            <i class="fa fa-play-circle-o fa-2x" ></i> 
+                        </a>
+                        <b>恶气恶气恶气恶气恶气呃星火</b>
+
+                        <a href='javascript:;' class='second'> 
+                            <i class="fa fa-video-camera fa-2x"> </i> 
+                        </a>
+                    </li>
+
+                </ul>
+            </div>
+  </body>
+</html>

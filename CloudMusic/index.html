@@ -1,0 +1,543 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>YouYou音乐</title>
+    <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
+    <script src="js/vue.min.js"></script>
+    <script src="js/axios.min.js"></script>
+    <link href="//netdna.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+    <style>
+        *{
+            padding:0;
+            margin:0;
+        }
+        body{
+            width:100vw;
+            height:100vh;
+            display:flex;
+            justify-content: center;
+            align-items: center;
+            /* background: url(https://w.wallhaven.cc/full/1j/wallhaven-1j7owg.jpg); */
+            /* background:url(https://w.wallhaven.cc/full/0p/wallhaven-0pj7xe.jpg); */
+            background: url(https://w.wallhaven.cc/full/2k/wallhaven-2k9lqy.jpg);
+            background-size: cover;
+        }
+        body::before {   /* ::before 伪元素实现，原理就是给 body 添加了一个拥有高斯模糊的遮罩层 */
+            content: "";
+            position: absolute;  /* 一定要用绝对定位 */
+            width: 100%;
+            height: 100%;
+            backdrop-filter: blur(10px); /* 高斯模糊 模糊半径 */
+        }
+        .wrap{
+            width:65vw;
+            height:90vh;
+            /* background-color: blueviolet; */
+            display:flex;
+            flex-direction: column;
+            /* border:1px solid; */
+            position: absolute;
+            /* top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%); */
+            /* border: 2px solid #bebebe; */
+            border-radius: 15px; 
+            box-shadow: 8px 8px 20px rgba(0, 0, 0, .3), -8px -8px 20px rgba(0, 0, 0, .3);
+            /* background: url(https://w.wallhaven.cc/full/yj/wallhaven-yjg3md.jpg); */
+            /* background: url(https://w.wallhaven.cc/full/4x/wallhaven-4xwdjo.jpg); */
+            background: url(https://w.wallhaven.cc/full/0w/wallhaven-0wdjwp.png);
+            background-size: cover;
+        }
+        header{
+            background-color: cadetblue;
+            flex:1.1;
+            display: flex;
+            align-items: center;
+            border-radius: 15px; 
+            box-shadow: 8px 8px 20px rgba(0, 0, 0, .3), -8px -8px 20px rgba(0, 0, 0, .3);
+        }
+        section{
+            /* background-color:palegreen; */
+            flex:7;
+            display: flex;
+            flex-direction: row;
+            position: relative;
+        }
+        footer{
+            /* background-color: wheat; */
+            flex:1;
+            display: flex;
+            align-items: center;
+        }
+        .title{
+            position: relative;
+            left:30px;
+            color:red;
+        }
+        .title{
+            font-size: 25px;
+            color:#fff;
+            /* letter-spacing: 15px; 字符之间的距离 */
+            text-transform: uppercase; /*大写*/
+            text-align:center;
+            /*outline:none;*/
+            /* outline:green dashed 3px;绘制于元素周围的一条线，位于边框边缘的外围，可起到突出元素的作用。轮廓（outline）属性指定元素轮廓的样式、颜色和宽度。 */
+            /*--c:lightseagreen;*/
+            text-shadow:0 0 10px  lightseagreen, /*var(--c)*/
+                        /*文本阴影 水平阴影的位置  垂直阴影的位置  模糊的距离 阴影的颜色。*/
+                        0 0 20px lightseagreen,
+                        0 0 40px lightseagreen,
+                        0 0 80px lightseagreen,
+                        0 0 160px lightseagreen;
+            animation:animate 5s linear infinite;
+        }
+        @keyframes animate{
+            to{
+                filter :hue-rotate(360deg); /*    一个色调360度不断旋转*/
+            }
+        }
+
+
+
+
+
+
+        .search{
+            height:40px;
+            width:350px;
+            position: relative;
+            right:-240px;
+            border-radius: 20px;
+            opacity:0.6;/* 透明度 */
+            font-size: 15px;
+            line-height: 40px;
+            padding-left:20px;
+        }
+        ion-icon{
+            /* font-size: 64px; */
+            color: blue;
+            position: relative;
+            right:-190px;
+        }
+        .left{
+            flex:1.5;
+            /* background-color: palevioletred; */
+            height:425px;
+            overflow-x: hidden;
+
+            border-right: 1.5px solid ;/* 边框渐变 */
+            border-image: linear-gradient(to bottom, rgba(0,0,0,0),#578aef,rgba(0,47,167,1), rgba(0,0,0,0)) 1;
+
+            /* width:400px;
+            box-sizing: border-box;
+            padding: 10px;
+            list-style: none; 
+            overflow: hidden; 
+            position: absolute;
+            left: 0px;
+            top: 0px; 
+            z-index: 1; */
+
+        }
+        .song_list {
+            list-style:none; /* 取消前面的小圆点 */
+            width: 100%;
+            overflow-y: auto;
+            height: 100%;
+        }
+        .song_list::-webkit-scrollbar {
+            display: none;  /* 滚动条样式取消 */
+        }
+        .song_list li {
+            font-size: 13px;
+            color: #333;
+            height: 40px;
+            line-height: 40px;
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            /* width: 580px; */
+            padding-left: 10px;
+        } 
+
+        .song_list li:nth-child(odd) {
+            background-color: rgba(240, 240, 240, 0.3);
+        }
+        .song_list li a {
+            /* display: block; 
+              box-sizing: border-box; 
+            margin-right: 5px; */
+            text-decoration:none; /* 去掉超链接下面的下划线 */
+            display:flex;
+            justify-content: center; 
+            align-items: center;
+        } 
+         .first{
+          margin-right: 5px;
+        }
+        .second{
+          margin-left: 5px;
+        }
+
+        a:link{color:#000000;}      /* 未访问链接 #12FFF7*/
+        a:visited {color:#780206;}  /* 已访问链接 */
+        a:hover {color:#061161;}  /* 鼠标移动到链接上 */
+        a:active {color:#4B1248;}  /* 鼠标点击时 */
+
+
+
+
+
+
+
+
+
+
+
+
+        .center{
+            flex:2;
+            /* background-color: peru; */
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+
+            position: relative;
+            /* 给.music_bk的position上设置参考对象 */
+        }
+
+
+
+
+        .right{
+            width:260px;
+            /* background-color: blue; */
+            height:425px;
+            /* overflow-x: hidden; */
+            
+            border-left: 2px solid ;/* 边框渐变 */
+            border-image: linear-gradient(to bottom, rgba(0,0,0,0),#578aef,rgba(0,47,167,1), rgba(0,0,0,0)) 1;
+
+        }
+          .right::-webkit-scrollbar{
+              display:none;/* 滚动条样式取消 */
+          }
+          h5{
+            height:30px;
+            /* background-color: springgreen; */
+            /* padding-top:px; */
+            padding-left:10px;
+            line-height: 30px;
+          }
+          .comment_list{
+              width:90%;
+              height:90%;
+              overflow-y:auto ;
+              /* background-color: yellow; */
+              margin-bottom:5%;
+              margin-left:5%;
+          }
+          .comment_list::-webkit-scrollbar{
+              display:none;/* 滚动条样式取消 */
+          }
+
+          dl{
+              /* background-color: blueviolet;  */
+              position: relative;    /* 子元素参考对象 */
+              /* margin-bottom: 20px; */
+          }
+          dt {
+                position:absolute;   /* 固定定位是因为 希望移动后后面元素会往前走 */
+                top:15px;
+            }
+          dt img{
+              width:40px;
+              height:40px;
+              border-radius:50%;   /*给元素设置圆角边框  */
+
+          }
+          .name{
+              font-size: 15px;
+              color:rgba(0,0,0,1);
+              padding-top: 15px;
+              padding-left: 50px;
+          }
+          .detail{
+              font-size: 8px;
+              color:rgba(0,0,0,0.7);
+              padding-left: 50px;
+          } 
+
+
+
+        .music_bk{
+            position: absolute;
+            z-index: 2;
+        }
+        .disc{
+            z-index:3;/* 数字越大约在最上面 */
+        }
+        /* .player_bar{
+            position: absolute;
+            top:-12px; 
+            z-index:4;
+            transform: rotate(-25deg);
+            transform-origin: 12px 12px;
+            transition: 1s;
+        } */
+        
+        .video_con video {
+            position: fixed;
+            width: 800px;
+            height: 546px;
+            left: 50%;
+            top: 50%;
+            margin-top: -273px;
+            transform: translateX(-50%);
+            z-index: 990;
+        }
+        .video_con .mask {
+            position: fixed;
+            width: 100%;
+            height: 100%;
+            left: 0;
+            top: 0;
+            z-index: 980;
+            /* background-color: rgba(111, 123, 212, 0.8); */
+            /* background: url(https://w.wallhaven.cc/full/yj/wallhaven-yjvlog.jpg) ; */
+            background: url(img/bk.jpg);
+            background-size: cover;
+        }
+
+
+
+        
+        /* 旋转的动画 */
+        @keyframes Rotate {
+            from {
+                transform: rotateZ(0);
+            }
+            to {
+                transform: rotateZ(360deg);
+            }
+        }
+        /* 旋转的类名 */
+       .disc,.music_bk {
+        animation-name: Rotate;
+        animation-iteration-count: infinite;
+        animation-play-state: paused;
+        animation-timing-function: linear;
+        animation-duration: 5s;
+        }
+        /* 是否正在播放 */
+        .center.playing .disc,
+        .center.playing .music_bk {
+        animation-play-state: running;
+        }
+
+        .player_bar{
+            position: absolute;
+            /* left: 200px; */
+            top: -10px;
+            z-index: 10;
+            transform: rotate(-25deg);
+            transform-origin: 12px 12px;
+            transition: 1s;
+        }
+        /* 播放杆 转回去 */
+        .playing .player_bar {
+             transform: rotate(0);
+        }
+
+
+
+
+        
+
+
+    </style>
+</head>
+<body>
+    <div class='wrap'>
+        <header class='top'>
+            <h1 class='title' contenteditable="true" >YouYou音乐</h1>
+            <input class='search' type='text'placeholder="请输入歌曲名或歌手名" v-on:keyup.enter="searchMusic()" v-model='query' />
+            <ion-icon name="search-outline" size="large" ></ion-icon>
+        </header>
+
+        <section class='main'>
+
+            <div class='left'>
+               <ul class='song_list'>
+                    <li v-for='item in songList'>
+                        <a href='javascript:;' class='first'> 
+                            <i class="fa fa-play-circle-o fa-2x" v-on:click='playMusic(item.id)'> <!-- 点击播放歌曲 --></i> 
+                        </a>
+                        <b>{{item.name}}</b>
+                        <a href='javascript:;' class='second'> 
+                            <i class="fa fa-video-camera fa-2x" v-if='item.mvid!=0'  v-on:click='playMv(item.mvid)'> 
+                                <!-- mvid!=0的表示有mv即显示 -->
+                                <!-- 点击播放视频 -->
+                            </i> 
+                        </a>
+                    </li>
+                </ul>
+            </div>
+            
+            <div class='center' :class="{playing:isPlay}">
+                <!-- :class="{playing:isPlay}" -->
+                <img src="img/player_bar.png" class='player_bar'/>
+                <img src="img/disc.png" class='disc'/>
+                <!-- <img src="img/music_bk.jpg" class='music_bk' height="35%" width='45%'/> -->
+                <img v-bind:src="picUrl=='' ? 'img/music_bk.jpg' : picUrl" class='music_bk' height="35%" width='45%'/><!-- 三元运算符 -->
+            </div> 
+
+
+            <div class='right'><!-- 歌曲评论 -->
+                <h5>热门评论</h5>
+                <div class='comment_list'>
+                    <dl v-for='item in hotComments'>
+                        <dt><!-- 标题 -->
+                            <img v-bind:src="item.user.avatarUrl" alt="" />
+                        </dt>
+                        <dd class='name'> <!-- 内容 -->
+                            {{item.user.nickname}}
+                        </dd>
+                        <dd class='detail'>
+                            {{item.content}}
+                        </dd>
+                    </dl>
+                </div>
+
+
+
+
+
+
+            </div>
+        </section>
+
+        <footer class='bottom'>
+
+            <audio v-bind:src='musicUrl' controls='controls' autoplay='autoplay' loop='loop' style='width:65vw;' @play="play" @pause="pause"></audio>
+
+            <!-- @play="play" @pause="pause" -->
+
+                <!--  controls="controls" 提供播放控件 
+                      autoplay="autoplay" 自动播放
+                      loop='loop' 音频结束时重新开始播放。
+                -->
+            <div class='video_con' style="display:none;" v-show="isShow">  <!-- 先隐藏 -->
+                <video ref='video' :src="mvUrl" controls="controls" autoplay="autoplay" ></video>
+                <div class="mask" @click='closeMv'></div>
+                <!-- 遮罩 -->
+           </div>
+
+        </footer>
+    </div>
+
+    <script>
+        axios.defaults.baseURL = 'https://autumnfish.cn';  //接口基地址
+        var app=new Vue({
+            el:".wrap",
+            data:{
+                query:"",//搜索词 
+                songList:[],//歌曲列表
+                musicUrl:"",//歌曲URL
+                mvUrl:"",//mvURL
+                isShow:false,//遮罩层的显示状态
+                hotComments:[],//歌曲评论
+                picUrl:"",//歌曲封面                  
+                isPlay: false,// 是否正在播放
+            },
+            methods:{
+                searchMusic:function(){   //搜索歌曲
+                    // console.log(this.query)
+                    //   https://autumnfish.cn/search?keywords=张杰
+                    //   axios.get(地址 ? key=value & key2=values).then(function(response){}, function(err){})
+
+                    var that=this
+                    axios.get('/search?keywords='+this.query).then(
+                        function(response){
+                            that.songList=response.data.result.songs
+                            // console.log(that.songList)
+                        },
+                        function(err){
+                            console.log(err)
+                        }
+                    )
+                    this.query=""
+                },
+
+                playMusic(musicID){  //播放音乐
+                    var that=this
+                    axios.get('/song/url?id='+musicID).then(   //获取歌曲信息
+                        function(response){
+                            console.log(response)
+                            that.musicUrl = response.data.data[0].url
+                            // console.log(that.musicUrl)
+                        },
+                        function(err){
+                            console.log(err)
+                        }
+                    )
+                    axios.get('/comment/music?id='+musicID).then(//获取歌曲评论
+                        function(response){
+                            console.log(response.data.hotComments)
+                            that.hotComments=response.data.hotComments
+                        },
+                        function(err){
+                            console.log(err)
+                        }
+                    )
+                    axios.get('/song/detail?ids='+musicID).then(//获取歌曲封面
+                        function(response){
+                            // console.log(response.data)
+                            that.picUrl=response.data.songs[0].al.picUrl
+                        }
+
+                    )
+                },
+
+
+                playMv(mvID){  //播放MV
+                    var that=this
+                    axios.get('/mv/url?id=' + mvID).then(
+                        function(response){
+                            that.mvUrl=response.data.data.url;
+                            that.isShow=true;//显示遮罩层
+                        }
+                    )
+                },
+                closeMv(){//关闭MV
+                    this.isShow=false;
+                    this.mvURL="";
+                },
+
+                // audio的play事件
+                play() {
+                    this.isPlay = true
+                    // this.musicUrl=""
+                },
+                // audio的pause事件
+                pause() {
+                    this.isPlay = false 
+                }
+
+
+
+
+
+
+
+
+            },
+        })
+    </script>
+
+    
+    
+</body>
+</html>

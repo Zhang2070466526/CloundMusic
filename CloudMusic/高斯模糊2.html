@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<head>
+    <meta charset="UTF-8">
+    <title>高斯模糊效果</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            width:100vw;
+            height:100vh;
+            background: url(https://w.wallhaven.cc/full/1j/wallhaven-1j7owg.jpg);
+            background-size: cover;
+        }
+        body::before {
+            content: "";
+            position: absolute;  
+            width: 100%;
+            height: 100%;
+            backdrop-filter: blur(5px); 
+        }
+        .img-show {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            border: 2px solid #bebebe;
+            border-radius: 15px; 
+            box-shadow: 8px 8px 20px rgba(0, 0, 0, .3), -8px -8px 20px rgba(0, 0, 0, .3);
+            background: url(https://w.wallhaven.cc/full/yj/wallhaven-yjg3md.jpg);
+            background-size: cover;
+            width: 750px;
+            height: 450px;
+        }
+    </style>
+</head>
+<body>
+    <div class="img-show"></div>
+
+    <!-- https://blog.csdn.net/apple_54470279/article/details/124471956 -->
+</body>
+</html>

@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+  <html lang="en">
+  <head>
+      <meta charset="UTF-8">
+      <title>Lightly-HTML-Project</title>
+      <style>
+        *{
+          margin:0;
+          padding:0;
+        }
+        body{
+          height:100vh;
+          width:100vw;
+          display:flex;
+          justify-content: center;
+          align-items: center;
+        }
+        .right{
+            width:260px;
+            background-color: blue;
+            height:425px;
+            /* overflow-x: hidden; */
+
+        }
+          .right::-webkit-scrollbar{
+              display:none;/* 滚动条样式取消 */
+          }
+          h5{
+            height:30px;
+            background-color: springgreen;
+            /* padding-top:px; */
+            padding-left:10px;
+            line-height: 30px;
+          }
+          .comment_list{
+              width:90%;
+              height:90%;
+              overflow-y:auto ;
+              background-color: yellow;
+              margin-bottom:5%;
+              margin-left:5%;
+          }
+          .comment_list::-webkit-scrollbar{
+              display:none;/* 滚动条样式取消 */
+          }
+
+          dl{
+              background-color: blueviolet; 
+              position: relative;    /* 子元素参考对象 */
+              /* margin-bottom: 20px; */
+          }
+          dt {
+                position:absolute;   /* 固定定位是因为 希望移动后后面元素会往前走 */
+                top:15px;
+            }
+          dt img{
+              width:40px;
+              height:40px;
+              border-radius:50%;   /*给元素设置圆角边框  */
+
+          }
+          .name{
+              font-size: 15px;
+              color:rgba(0,0,0,1);
+              padding-top: 15px;
+              padding-left: 50px;
+          }
+          .detail{
+              font-size: 8px;
+              color:rgba(0,0,0,0.7);
+              padding-left: 50px;
+          } 
+      </style>
+  </head>
+  <body>
+        <div class='right'><!-- 歌曲评论 -->
+              <h5>热门评论</h5>
+              <div class='comment_list'>
+                  <dl>
+                      <dt>
+                          <img src="https://w.wallhaven.cc/full/4y/wallhaven-4ygd8k.jpg" alt="" />
+                      </dt>
+                      <dd class='name'> 
+                          你管我叫啥
+                      </dd>
+                      <dd class='detail'>
+                          你猜我评论了什么,你猜我评论了什么,你猜我评论了什么,你猜我评论了什么,你猜我评论了什么,你猜我评论了什么,你
+                          猜我评论了什么,你猜我评论了什么,你猜我评论了什么,你猜我评论了什么,你猜我评论了什么!
+                      </dd>
+                  </dl>
+
+                                    <dl>
+                      <dt>
+                          <img src="https://w.wallhaven.cc/full/4y/wallhaven-4ygd8k.jpg" alt="" />
+                      </dt>
+                      <dd class='name'>
+                          你管我叫啥
+                      </dd>
+                      <dd class='detail'>
+                          你猜我评论了什么,你猜我评论了什么,你猜我评论了什么,你猜我评论了什么,你猜我评论了什么,你猜我评论了什么,你
+                          猜我评论了什么,你猜我评论了什么,你猜我评论了什么,你猜我评论了什么,你猜我评论了什么!
+                      </dd>
+                  </dl>
+
+                                    <dl>
+                      <dt>
+                          <img src="https://w.wallhaven.cc/full/4y/wallhaven-4ygd8k.jpg" alt="" />
+                      </dt>
+                      <dd class='name'> 
+                          你管我叫啥
+                      </dd>
+                      <dd class='detail'>
+                          你猜我评论了什么,你猜我评论了什么,你猜我评论了什么,你猜我评论了什么,你猜我评论了什么,你猜我评论了什么,你
+                          猜我评论了什么,你猜我评论了什么,你猜我评论了什么,你猜我评论了什么,你猜我评论了什么!
+                      </dd>
+                  </dl>
+
+                                    <dl>
+                      <dt>
+                          <img src="https://w.wallhaven.cc/full/4y/wallhaven-4ygd8k.jpg" alt="" />
+                      </dt>
+                      <dd class='name'>
+                          你管我叫啥
+                      </dd>
+                      <dd class='detail'>
+                          你猜我评论了什么,你猜我评论了什么,你猜我评论了什么,你猜我评论了什么,你猜我评论了什么,你猜我评论了什么,你
+                          猜我评论了什么,你猜我评论了什么,你猜我评论了什么,你猜我评论了什么,你猜我评论了什么!
+                      </dd>
+                  </dl>
+
+                                    <dl>
+                      <dt>
+                          <img src="https://w.wallhaven.cc/full/4y/wallhaven-4ygd8k.jpg" alt="" />
+                      </dt>
+                      <dd class='name'>
+                          你管我叫啥
+                      </dd>
+                      <dd class='detail'>
+                          你猜我评论了什么,你猜我评论了什么,你猜我评论了什么,你猜我评论了什么,你猜我评论了什么,你猜我评论了什么,你
+                          猜我评论了什么,你猜我评论了什么,你猜我评论了什么,你猜我评论了什么,你猜我评论了什么!
+                      </dd>
+                  </dl>
+                  
+                                    <dl>
+                      <dt>
+                          <img src="https://w.wallhaven.cc/full/4y/wallhaven-4ygd8k.jpg" alt="" />
+                      </dt>
+                      <dd class='name'> 
+                          你管我叫啥
+                      </dd>
+                      <dd class='detail'>
+                          你猜我评论了什么,你猜我评论了什么,你猜我评论了什么,你猜我评论了什么,你猜我评论了什么,你猜我评论了什么,你
+                          猜我评论了什么,你猜我评论了什么,你猜我评论了什么,你猜我评论了什么,你猜我评论了什么!
+                      </dd>
+                  </dl>
+
+                                    <dl>
+                      <dt>
+                          <img src="https://w.wallhaven.cc/full/4y/wallhaven-4ygd8k.jpg" alt="" />
+                      </dt>
+                      <dd class='name'> 
+                          你管我叫啥
+                      </dd>
+                      <dd class='detail'>
+                          你猜我评论了什么,你猜我评论了什么,你猜我评论了什么,你猜我评论了什么,你猜我评论了什么,你猜我评论了什么,你
+                          猜我评论了什么,你猜我评论了什么,你猜我评论了什么,你猜我评论了什么,你猜我评论了什么!
+                      </dd>
+                  </dl>
+
+                                    <dl>
+                      <dt>
+                          <img src="https://w.wallhaven.cc/full/4y/wallhaven-4ygd8k.jpg" alt="" />
+                      </dt>
+                      <dd class='name'>
+                          你管我叫啥
+                      </dd>
+                      <dd class='detail'>
+                          你猜我评论了什么,你猜我评论了什么,你猜我评论了什么,你猜我评论了什么,你猜我评论了什么,你猜我评论了什么,你
+                          猜我评论了什么,你猜我评论了什么,你猜我评论了什么,你猜我评论了什么,你猜我评论了什么!
+                      </dd>
+                  </dl>
+
+                                    <dl>
+                      <dt>
+                          <img src="https://w.wallhaven.cc/full/4y/wallhaven-4ygd8k.jpg" alt="" />
+                      </dt>
+                      <dd class='name'> 
+                          你管我叫啥
+                      </dd>
+                      <dd class='detail'>
+                          你猜我评论了什么,你猜我评论了什么,你猜我评论了什么,你猜我评论了什么,你猜我评论了什么,你猜我评论了什么,你
+                          猜我评论了什么,你猜我评论了什么,你猜我评论了什么,你猜我评论了什么,你猜我评论了什么!
+                      </dd>
+                  </dl>
+
+              </div>
+          </div>
+      
+  </body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- 
+
+
+
+
+
+
+
+
+        *{
+          margin:0;
+          padding:0;
+        }
+
+      .right{
+        width: 180px;
+        height: 435px;
+        /* list-style: none; */
+        /* position: absolute;*/
+        /* left: 600px;
+        top: 0px;
+        padding: 25px 10px;  */
+        background-color: blueviolet;
+      }
+      /* .right .title {
+        position: absolute;
+        top: 0;
+        margin-top: 10px;
+      } */
+      .right .comment_list {
+        overflow: auto;
+        height: 400px;
+        background-color: chocolate;
+      }
+      .right .comment_list::-webkit-scrollbar {
+        display: none;
+      }
+      .right dl {
+        /* padding-top: 10px;
+        padding-left: 55px;
+        margin-bottom: 20px; */
+        position: relative; 
+        background-color: snow;  
+
+
+      }
+
+      .right dt {
+        position: absolute;
+        left: 4px;
+        top: 10px;
+      }
+
+      .right dt img {
+        width: 40px;
+        height: 40px;
+        border-radius: 20px;
+      }
+
+      .right dd {
+        font-size: 12px;
+      }
+
+      .right .name {
+        font-weight: bold;
+        color: #333;
+        padding-top: 5px;
+      }
+
+      .right.detail {
+        color: #666;
+        margin-top: 5px;
+        line-height: 18px;
+      }
+
+
+
+
+
+
+
+
+ -->
